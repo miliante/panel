@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>ipykernel.kernelbase — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/_modules/ipykernel/kernelbase.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../reference/index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<h1>Source code for ipykernel.kernelbase</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Base class for a kernel that talks to frontends over 0MQ."""</span>
+
+<span class="c1"># Copyright (c) IPython Development Team.</span>
+<span class="c1"># Distributed under the terms of the Modified BSD License.</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">signal</span> <span class="kn">import</span> <span class="n">signal</span><span class="p">,</span> <span class="n">default_int_handler</span><span class="p">,</span> <span class="n">SIGINT</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># jupyter_client &gt;= 5, use tz-aware now</span>
+    <span class="kn">from</span> <span class="nn">jupyter_client.session</span> <span class="kn">import</span> <span class="n">utcnow</span> <span class="k">as</span> <span class="n">now</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># jupyter_client &lt; 5, use local now()</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span>
+
+<span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">ioloop</span>
+<span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>
+<span class="kn">from</span> <span class="nn">tornado.queues</span> <span class="kn">import</span> <span class="n">PriorityQueue</span><span class="p">,</span> <span class="n">QueueEmpty</span>
+<span class="kn">import</span> <span class="nn">zmq</span>
+<span class="kn">from</span> <span class="nn">zmq.eventloop.zmqstream</span> <span class="kn">import</span> <span class="n">ZMQStream</span>
+
+<span class="kn">from</span> <span class="nn">traitlets.config.configurable</span> <span class="kn">import</span> <span class="n">SingletonConfigurable</span>
+<span class="kn">from</span> <span class="nn">IPython.core.error</span> <span class="kn">import</span> <span class="n">StdinNotImplementedError</span>
+<span class="kn">from</span> <span class="nn">ipython_genutils</span> <span class="kn">import</span> <span class="n">py3compat</span>
+<span class="kn">from</span> <span class="nn">ipython_genutils.py3compat</span> <span class="kn">import</span> <span class="n">unicode_type</span><span class="p">,</span> <span class="n">string_types</span>
+<span class="kn">from</span> <span class="nn">ipykernel.jsonutil</span> <span class="kn">import</span> <span class="n">json_clean</span>
+<span class="kn">from</span> <span class="nn">traitlets</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span>
+    <span class="n">observe</span><span class="p">,</span> <span class="n">default</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">jupyter_client.session</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="kn">from</span> <span class="nn">._version</span> <span class="kn">import</span> <span class="n">kernel_protocol_version</span>
+
+<span class="n">CONTROL_PRIORITY</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SHELL_PRIORITY</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ABORT_PRIORITY</span> <span class="o">=</span> <span class="mi">20</span>
+
+
+<span class="k">class</span> <span class="nc">Kernel</span><span class="p">(</span><span class="n">SingletonConfigurable</span><span class="p">):</span>
+
+    <span class="c1">#---------------------------------------------------------------------------</span>
+    <span class="c1"># Kernel interface</span>
+    <span class="c1">#---------------------------------------------------------------------------</span>
+
+    <span class="c1"># attribute to override with a GUI</span>
+    <span class="n">eventloop</span> <span class="o">=</span> <span class="n">Any</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@observe</span><span class="p">(</span><span class="s1">'eventloop'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_update_eventloop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+        <span class="sd">"""schedule call to eventloop from IOLoop"""</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">change</span><span class="o">.</span><span class="n">new</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">loop</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enter_eventloop</span><span class="p">)</span>
+
+    <span class="n">session</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">profile_dir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="s1">'IPython.core.profiledir.ProfileDir'</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">shell_streams</span> <span class="o">=</span> <span class="n">List</span><span class="p">()</span>
+    <span class="n">control_stream</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ZMQStream</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">iopub_socket</span> <span class="o">=</span> <span class="n">Any</span><span class="p">()</span>
+    <span class="n">iopub_thread</span> <span class="o">=</span> <span class="n">Any</span><span class="p">()</span>
+    <span class="n">stdin_socket</span> <span class="o">=</span> <span class="n">Any</span><span class="p">()</span>
+    <span class="n">log</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># identities:</span>
+    <span class="n">int_id</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ident</span> <span class="o">=</span> <span class="n">Unicode</span><span class="p">()</span>
+
+    <span class="nd">@default</span><span class="p">(</span><span class="s1">'ident'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_default_ident</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">unicode_type</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+
+    <span class="c1"># This should be overridden by wrapper kernels that implement any real</span>
+    <span class="c1"># language.</span>
+    <span class="n">language_info</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># any links that should go in the help menu</span>
+    <span class="n">help_links</span> <span class="o">=</span> <span class="n">List</span><span class="p">()</span>
+
+    <span class="c1"># Private interface</span>
+
+    <span class="n">_darwin_app_nap</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"""Whether to use appnope for compatibility with OS X App Nap.</span>
+
+<span class="s2">        Only affects OS X &gt;= 10.9.</span>
+<span class="s2">        """</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># track associations with current request</span>
+    <span class="n">_allow_stdin</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_parent_header</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span>
+    <span class="n">_parent_ident</span> <span class="o">=</span> <span class="n">Any</span><span class="p">(</span><span class="sa">b</span><span class="s1">''</span><span class="p">)</span>
+    <span class="c1"># Time to sleep after flushing the stdout/err buffers in each execute</span>
+    <span class="c1"># cycle.  While this introduces a hard limit on the minimal latency of the</span>
+    <span class="c1"># execute cycle, it helps prevent output synchronization problems for</span>
+    <span class="c1"># clients.</span>
+    <span class="c1"># Units are in seconds.  The minimum zmq latency on local host is probably</span>
+    <span class="c1"># ~150 microseconds, set this to 500us for now.  We may need to increase it</span>
+    <span class="c1"># a little if it's not enough after more interactive testing.</span>
+    <span class="n">_execute_sleep</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Frequency of the kernel's event loop.</span>
+    <span class="c1"># Units are in seconds, kernel subclasses for GUI toolkits may need to</span>
+    <span class="c1"># adapt to milliseconds.</span>
+    <span class="n">_poll_interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">stop_on_error_timeout</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span>
+        <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"""time (in seconds) to wait for messages to arrive</span>
+<span class="s2">        when aborting queued requests after an error.</span>
+
+<span class="s2">        Requests that arrive within this window after an error</span>
+<span class="s2">        will be cancelled.</span>
+
+<span class="s2">        Increase in the event of unusually slow network</span>
+<span class="s2">        causing significant delays,</span>
+<span class="s2">        which can manifest as e.g. "Run all" in a notebook</span>
+<span class="s2">        aborting some, but not all, messages after an error.</span>
+<span class="s2">        """</span>
+    <span class="p">)</span>
+
+    <span class="c1"># If the shutdown was requested over the network, we leave here the</span>
+    <span class="c1"># necessary reply message so it can be sent by our registered atexit</span>
+    <span class="c1"># handler.  This ensures that the reply is only sent to clients truly at</span>
+    <span class="c1"># the end of our shutdown process (which happens after the underlying</span>
+    <span class="c1"># IPython shell's own shutdown).</span>
+    <span class="n">_shutdown_message</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># This is a dict of port number that the kernel is listening on. It is set</span>
+    <span class="c1"># by record_ports and used by connect_request.</span>
+    <span class="n">_recorded_ports</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span>
+
+    <span class="c1"># set of aborted msg_ids</span>
+    <span class="n">aborted</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+
+    <span class="c1"># Track execution count here. For IPython, we override this to use the</span>
+    <span class="c1"># execution count we store in the shell.</span>
+    <span class="n">execution_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">msg_types</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'execute_request'</span><span class="p">,</span> <span class="s1">'complete_request'</span><span class="p">,</span>
+        <span class="s1">'inspect_request'</span><span class="p">,</span> <span class="s1">'history_request'</span><span class="p">,</span>
+        <span class="s1">'comm_info_request'</span><span class="p">,</span> <span class="s1">'kernel_info_request'</span><span class="p">,</span>
+        <span class="s1">'connect_request'</span><span class="p">,</span> <span class="s1">'shutdown_request'</span><span class="p">,</span>
+        <span class="s1">'is_complete_request'</span><span class="p">,</span>
+        <span class="c1"># deprecated:</span>
+        <span class="s1">'apply_request'</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="c1"># add deprecated ipyparallel control messages</span>
+    <span class="n">control_msg_types</span> <span class="o">=</span> <span class="n">msg_types</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'clear_request'</span><span class="p">,</span> <span class="s1">'abort_request'</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Kernel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Build dict of handlers for message types</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shell_handlers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">msg_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg_types</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shell_handlers</span><span class="p">[</span><span class="n">msg_type</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_handlers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">msg_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_msg_types</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_handlers</span><span class="p">[</span><span class="n">msg_type</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">dispatch_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">"""dispatch control requests"""</span>
+        <span class="n">idents</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">feed_identities</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Invalid Control Message"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Control received: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># Set the parent message for side effects.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_parent</span><span class="p">(</span><span class="n">idents</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="sa">u</span><span class="s1">'busy'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborting</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_send_abort_reply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">idents</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="sa">u</span><span class="s1">'idle'</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">header</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">'header'</span><span class="p">]</span>
+        <span class="n">msg_type</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">'msg_type'</span><span class="p">]</span>
+
+        <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_handlers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">msg_type</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">handler</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"UNKNOWN CONTROL MESSAGE TYPE: </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="p">,</span> <span class="n">idents</span><span class="p">,</span> <span class="n">msg</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Exception in control handler:"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="sa">u</span><span class="s1">'idle'</span><span class="p">)</span>
+        <span class="c1"># flush to ensure reply is sent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">POLLOUT</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">should_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">idents</span><span class="p">):</span>
+        <span class="sd">"""Check whether a shell-channel message should be handled</span>
+
+<span class="sd">        Allows subclasses to prevent handling of certain messages (e.g. aborted requests).</span>
+<span class="sd">        """</span>
+        <span class="n">msg_id</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">'header'</span><span class="p">][</span><span class="s1">'msg_id'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">msg_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">aborted</span><span class="p">:</span>
+            <span class="n">msg_type</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">'header'</span><span class="p">][</span><span class="s1">'msg_type'</span><span class="p">]</span>
+            <span class="c1"># is it safe to assume a msg_id will not be resubmitted?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aborted</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">msg_id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_send_abort_reply</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">idents</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">dispatch_shell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">"""dispatch shell requests"""</span>
+        <span class="n">idents</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">feed_identities</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Invalid Message"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Set the parent message for side effects.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_parent</span><span class="p">(</span><span class="n">idents</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="sa">u</span><span class="s1">'busy'</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborting</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_send_abort_reply</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">idents</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="sa">u</span><span class="s1">'idle'</span><span class="p">)</span>
+            <span class="c1"># flush to ensure reply is sent before</span>
+            <span class="c1"># handling the next request</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">POLLOUT</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">msg_type</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">'header'</span><span class="p">][</span><span class="s1">'msg_type'</span><span class="p">]</span>
+
+        <span class="c1"># Print some info about this message and leave a '---&gt;' marker, so it's</span>
+        <span class="c1"># easier to trace visually the message chain when debugging.  Each</span>
+        <span class="c1"># handler prints its message at the end.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">*** MESSAGE TYPE:</span><span class="si">%s</span><span class="s1">***'</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'   Content: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">   ---&gt;</span><span class="se">\n</span><span class="s1">   '</span><span class="p">,</span> <span class="n">msg</span><span class="p">[</span><span class="s1">'content'</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_handle</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">idents</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell_handlers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">msg_type</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">handler</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Unknown message type: </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pre_handler_hook</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Unable to signal in pre_handler_hook:"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">idents</span><span class="p">,</span> <span class="n">msg</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Exception in message handler:"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">post_handler_hook</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Unable to signal in post_handler_hook:"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="sa">u</span><span class="s1">'idle'</span><span class="p">)</span>
+        <span class="c1"># flush to ensure reply is sent before</span>
+        <span class="c1"># handling the next request</span>
+        <span class="n">stream</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">POLLOUT</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pre_handler_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Hook to execute before calling message handler"""</span>
+        <span class="c1"># ensure default_int_handler during handler call</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saved_sigint_handler</span> <span class="o">=</span> <span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">default_int_handler</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">post_handler_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Hook to execute after calling message handler"""</span>
+        <span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">saved_sigint_handler</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">enter_eventloop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""enter eventloop"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Entering eventloop </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eventloop</span><span class="p">)</span>
+        <span class="c1"># record handle, so we can check when this changes</span>
+        <span class="n">eventloop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eventloop</span>
+        <span class="k">if</span> <span class="n">eventloop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Exiting as there is no eventloop"</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">def</span> <span class="nf">advance_eventloop</span><span class="p">():</span>
+            <span class="c1"># check if eventloop changed:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eventloop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">eventloop</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"exiting eventloop </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">eventloop</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg_queue</span><span class="o">.</span><span class="n">qsize</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Delaying eventloop due to waiting messages"</span><span class="p">)</span>
+                <span class="c1"># still messages to process, make the eventloop wait</span>
+                <span class="n">schedule_next</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Advancing eventloop </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">eventloop</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">eventloop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+                <span class="c1"># Ctrl-C shouldn't crash the kernel</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"KeyboardInterrupt caught in kernel"</span><span class="p">)</span>
+                <span class="k">pass</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eventloop</span> <span class="ow">is</span> <span class="n">eventloop</span><span class="p">:</span>
+                <span class="c1"># schedule advance again</span>
+                <span class="n">schedule_next</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">schedule_next</span><span class="p">():</span>
+            <span class="sd">"""Schedule the next advance of the eventloop"""</span>
+            <span class="c1"># flush the eventloop every so often,</span>
+            <span class="c1"># giving us a chance to handle messages in the meantime</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Scheduling eventloop advance"</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">io_loop</span><span class="o">.</span><span class="n">call_later</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">advance_eventloop</span><span class="p">)</span>
+
+        <span class="c1"># begin polling the eventloop</span>
+        <span class="n">schedule_next</span><span class="p">()</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">do_one_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Process a single shell message</span>
+
+<span class="sd">        Any pending control messages will be flushed as well</span>
+
+<span class="sd">        .. versionchanged:: 5</span>
+<span class="sd">            This is now a coroutine</span>
+<span class="sd">        """</span>
+        <span class="c1"># flush messages off of shell streams into the message queue</span>
+        <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell_streams</span><span class="p">:</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="c1"># process all messages higher priority than shell (control),</span>
+        <span class="c1"># and at most one shell message per iteration</span>
+        <span class="n">priority</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">priority</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">priority</span> <span class="o">&lt;</span> <span class="n">SHELL_PRIORITY</span><span class="p">:</span>
+            <span class="n">priority</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_one</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">process_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">"""Process one request</span>
+
+<span class="sd">        Returns priority of the message handled.</span>
+<span class="sd">        Returns None if no message was handled.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">wait</span><span class="p">:</span>
+            <span class="n">priority</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">priority</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg_queue</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">QueueEmpty</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">))</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">dispatch_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Coroutine to preserve order of message handling</span>
+
+<span class="sd">        Ensures that only one message is processing at a time,</span>
+<span class="sd">        even when the handler is async</span>
+<span class="sd">        """</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># ensure control stream is flushed before processing shell messages</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="c1"># receive the next message and handle it</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_one</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"Error in message handler"</span><span class="p">)</span>
+
+    <span class="n">_message_counter</span> <span class="o">=</span> <span class="n">Any</span><span class="p">(</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"""Monotonic counter of messages</span>
+
+<span class="s2">        Ensures messages of the same priority are handled in arrival order.</span>
+<span class="s2">        """</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nd">@default</span><span class="p">(</span><span class="s1">'_message_counter'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_message_counter_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">schedule_dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">"""schedule a message for dispatch"""</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_message_counter</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">priority</span><span class="p">,</span>
+                <span class="n">idx</span><span class="p">,</span>
+                <span class="n">dispatch</span><span class="p">,</span>
+                <span class="n">args</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># ensure the eventloop wakes up</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">io_loop</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""register dispatchers for streams"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">io_loop</span> <span class="o">=</span> <span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg_queue</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">io_loop</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dispatch_queue</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="o">.</span><span class="n">on_recv</span><span class="p">(</span>
+                <span class="n">partial</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">schedule_dispatch</span><span class="p">,</span>
+                    <span class="n">CONTROL_PRIORITY</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_control</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell_streams</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_stream</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">on_recv</span><span class="p">(</span>
+                <span class="n">partial</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">schedule_dispatch</span><span class="p">,</span>
+                    <span class="n">SHELL_PRIORITY</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_shell</span><span class="p">,</span>
+                    <span class="n">s</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># publish idle status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publish_status</span><span class="p">(</span><span class="s1">'starting'</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">record_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ports</span><span class="p">):</span>
+        <span class="sd">"""Record the ports that this kernel is using.</span>
+
+<span class="sd">        The creator of the Kernel instance must call this methods if they</span>
+<span class="sd">        want the :meth:`connect_request` method to return the port numbers.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_ports</span> <span class="o">=</span> <span class="n">ports</span>
+
+    <span class="c1">#---------------------------------------------------------------------------</span>
+    <span class="c1"># Kernel request handlers</span>
+    <span class="c1">#---------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">_publish_execute_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">execution_count</span><span class="p">):</span>
+        <span class="sd">"""Publish the code request on the iopub stream."""</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iopub_socket</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'execute_input'</span><span class="p">,</span>
+                            <span class="p">{</span><span class="sa">u</span><span class="s1">'code'</span><span class="p">:</span><span class="n">code</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'execution_count'</span><span class="p">:</span> <span class="n">execution_count</span><span class="p">},</span>
+                            <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_topic</span><span class="p">(</span><span class="s1">'execute_input'</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_publish_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""send status (busy/idle) on IOPub"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iopub_socket</span><span class="p">,</span>
+                          <span class="sa">u</span><span class="s1">'status'</span><span class="p">,</span>
+                          <span class="p">{</span><span class="sa">u</span><span class="s1">'execution_state'</span><span class="p">:</span> <span class="n">status</span><span class="p">},</span>
+                          <span class="n">parent</span><span class="o">=</span><span class="n">parent</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_header</span><span class="p">,</span>
+                          <span class="n">ident</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_topic</span><span class="p">(</span><span class="s1">'status'</span><span class="p">),</span>
+                          <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">"""Set the current parent_header</span>
+
+<span class="sd">        Side effects (IOPub messages) and replies are associated with</span>
+<span class="sd">        the request that caused them via the parent_header.</span>
+
+<span class="sd">        The parent identity is used to route input_request messages</span>
+<span class="sd">        on the stdin channel.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span> <span class="o">=</span> <span class="n">ident</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_header</span> <span class="o">=</span> <span class="n">parent</span>
+
+    <span class="k">def</span> <span class="nf">send_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">msg_or_type</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">buffers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">track</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""Send a response to the message we're currently processing.</span>
+
+<span class="sd">        This accepts all the parameters of :meth:`jupyter_client.session.Session.send`</span>
+<span class="sd">        except ``parent``.</span>
+
+<span class="sd">        This relies on :meth:`set_parent` having been called for the current</span>
+<span class="sd">        message.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">msg_or_type</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_header</span><span class="p">,</span>
+                                 <span class="n">ident</span><span class="p">,</span> <span class="n">buffers</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">"""Initialize metadata.</span>
+
+<span class="sd">        Run at the beginning of execution requests.</span>
+<span class="sd">        """</span>
+        <span class="c1"># FIXME: `started` is part of ipyparallel</span>
+        <span class="c1"># Remove for ipykernel 5.0</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">'started'</span><span class="p">:</span> <span class="n">now</span><span class="p">(),</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">finish_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">reply_content</span><span class="p">):</span>
+        <span class="sd">"""Finish populating metadata.</span>
+
+<span class="sd">        Run after completing an execution request.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">metadata</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">execute_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">"""handle an execute_request"""</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="sa">u</span><span class="s1">'content'</span><span class="p">]</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">py3compat</span><span class="o">.</span><span class="n">cast_unicode_py2</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="sa">u</span><span class="s1">'code'</span><span class="p">])</span>
+            <span class="n">silent</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="sa">u</span><span class="s1">'silent'</span><span class="p">]</span>
+            <span class="n">store_history</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">u</span><span class="s1">'store_history'</span><span class="p">,</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">)</span>
+            <span class="n">user_expressions</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'user_expressions'</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">allow_stdin</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'allow_stdin'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Got bad msg: "</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">stop_on_error</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'stop_on_error'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_metadata</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="c1"># Re-broadcast our input for the benefit of listening clients, and</span>
+        <span class="c1"># start computing output</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execution_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish_execute_input</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">execution_count</span><span class="p">)</span>
+
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">do_execute</span><span class="p">(</span>
+                <span class="n">code</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">store_history</span><span class="p">,</span>
+                <span class="n">user_expressions</span><span class="p">,</span> <span class="n">allow_stdin</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Flush output before sending the reply.</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="c1"># FIXME: on rare occasions, the flush doesn't seem to make it to the</span>
+        <span class="c1"># clients... This seems to mitigate the problem, but we definitely need</span>
+        <span class="c1"># to better understand what's going on.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute_sleep</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_execute_sleep</span><span class="p">)</span>
+
+        <span class="c1"># Send the reply.</span>
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="n">json_clean</span><span class="p">(</span><span class="n">reply_content</span><span class="p">)</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">finish_metadata</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">reply_content</span><span class="p">)</span>
+
+        <span class="n">reply_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'execute_reply'</span><span class="p">,</span>
+                                      <span class="n">reply_content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
+                                      <span class="n">ident</span><span class="o">=</span><span class="n">ident</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">reply_msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span> <span class="ow">and</span> <span class="n">reply_msg</span><span class="p">[</span><span class="s1">'content'</span><span class="p">][</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">==</span> <span class="sa">u</span><span class="s1">'error'</span> <span class="ow">and</span> <span class="n">stop_on_error</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_abort_queues</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">do_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">store_history</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">user_expressions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_stdin</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">"""Execute user code. Must be overridden by subclasses.</span>
+<span class="sd">        """</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">complete_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span>
+        <span class="n">cursor_pos</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="s1">'cursor_pos'</span><span class="p">]</span>
+
+        <span class="n">matches</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">do_complete</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">cursor_pos</span><span class="p">))</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">json_clean</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span>
+        <span class="n">completion_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'complete_reply'</span><span class="p">,</span>
+                                           <span class="n">matches</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">cursor_pos</span><span class="p">):</span>
+        <span class="sd">"""Override in subclasses to find completions.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'matches'</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s1">'cursor_end'</span> <span class="p">:</span> <span class="n">cursor_pos</span><span class="p">,</span>
+                <span class="s1">'cursor_start'</span> <span class="p">:</span> <span class="n">cursor_pos</span><span class="p">,</span>
+                <span class="s1">'metadata'</span> <span class="p">:</span> <span class="p">{},</span>
+                <span class="s1">'status'</span> <span class="p">:</span> <span class="s1">'ok'</span><span class="p">}</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">inspect_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">do_inspect</span><span class="p">(</span>
+                <span class="n">content</span><span class="p">[</span><span class="s1">'code'</span><span class="p">],</span> <span class="n">content</span><span class="p">[</span><span class="s1">'cursor_pos'</span><span class="p">],</span>
+                <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'detail_level'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># Before we send this object over, we scrub it for JSON usage</span>
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="n">json_clean</span><span class="p">(</span><span class="n">reply_content</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'inspect_reply'</span><span class="p">,</span>
+                                <span class="n">reply_content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_inspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">cursor_pos</span><span class="p">,</span> <span class="n">detail_level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">"""Override in subclasses to allow introspection.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'status'</span><span class="p">:</span> <span class="s1">'ok'</span><span class="p">,</span> <span class="s1">'data'</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">'metadata'</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">'found'</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">history_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">do_history</span><span class="p">(</span><span class="o">**</span><span class="n">content</span><span class="p">))</span>
+
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="n">json_clean</span><span class="p">(</span><span class="n">reply_content</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'history_reply'</span><span class="p">,</span>
+                                <span class="n">reply_content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist_access_type</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">raw</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">"""Override in subclasses to access history.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'status'</span><span class="p">:</span> <span class="s1">'ok'</span><span class="p">,</span> <span class="s1">'history'</span><span class="p">:</span> <span class="p">[]}</span>
+
+    <span class="k">def</span> <span class="nf">connect_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_ports</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_ports</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">content</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'ok'</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'connect_reply'</span><span class="p">,</span>
+                                <span class="n">content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">kernel_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">'protocol_version'</span><span class="p">:</span> <span class="n">kernel_protocol_version</span><span class="p">,</span>
+            <span class="s1">'implementation'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span><span class="p">,</span>
+            <span class="s1">'implementation_version'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation_version</span><span class="p">,</span>
+            <span class="s1">'language_info'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">language_info</span><span class="p">,</span>
+            <span class="s1">'banner'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">banner</span><span class="p">,</span>
+            <span class="s1">'help_links'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">help_links</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">kernel_info_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'status'</span><span class="p">:</span> <span class="s1">'ok'</span><span class="p">}</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_info</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'kernel_info_reply'</span><span class="p">,</span>
+                                <span class="n">content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">comm_info_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+        <span class="n">target_name</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_name'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># Should this be moved to ipkernel?</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'comm_manager'</span><span class="p">):</span>
+            <span class="n">comms</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">target_name</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">target_name</span><span class="p">)</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comm_manager</span><span class="o">.</span><span class="n">comms</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">target_name</span> <span class="o">==</span> <span class="n">target_name</span> <span class="ow">or</span> <span class="n">target_name</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">comms</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">comms</span><span class="o">=</span><span class="n">comms</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">'ok'</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'comm_info_reply'</span><span class="p">,</span>
+                                <span class="n">reply_content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">shutdown_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">do_shutdown</span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">][</span><span class="s1">'restart'</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'shutdown_reply'</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="n">ident</span><span class="p">)</span>
+        <span class="c1"># same content, but different msg_id for broadcasting on IOPub</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">u</span><span class="s1">'shutdown_reply'</span><span class="p">,</span>
+                                                  <span class="n">content</span><span class="p">,</span> <span class="n">parent</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_at_shutdown</span><span class="p">()</span>
+        <span class="c1"># call sys.exit after a short delay</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+        <span class="n">loop</span><span class="o">.</span><span class="n">add_timeout</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">loop</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">restart</span><span class="p">):</span>
+        <span class="sd">"""Override in subclasses to do things when the frontend shuts down the</span>
+<span class="sd">        kernel.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'status'</span><span class="p">:</span> <span class="s1">'ok'</span><span class="p">,</span> <span class="s1">'restart'</span><span class="p">:</span> <span class="n">restart</span><span class="p">}</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">is_complete_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span>
+
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">maybe_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">do_is_complete</span><span class="p">(</span><span class="n">code</span><span class="p">))</span>
+        <span class="n">reply_content</span> <span class="o">=</span> <span class="n">json_clean</span><span class="p">(</span><span class="n">reply_content</span><span class="p">)</span>
+        <span class="n">reply_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'is_complete_reply'</span><span class="p">,</span>
+                                      <span class="n">reply_content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">reply_msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_is_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">"""Override in subclasses to find completions.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'status'</span> <span class="p">:</span> <span class="s1">'unknown'</span><span class="p">,</span>
+                <span class="p">}</span>
+
+    <span class="c1">#---------------------------------------------------------------------------</span>
+    <span class="c1"># Engine methods (DEPRECATED)</span>
+    <span class="c1">#---------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">apply_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"apply_request is deprecated in kernel_base, moving to ipyparallel."</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="sa">u</span><span class="s1">'content'</span><span class="p">]</span>
+            <span class="n">bufs</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="sa">u</span><span class="s1">'buffers'</span><span class="p">]</span>
+            <span class="n">msg_id</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'header'</span><span class="p">][</span><span class="s1">'msg_id'</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Got bad msg: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">md</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_metadata</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="n">reply_content</span><span class="p">,</span> <span class="n">result_buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_apply</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">bufs</span><span class="p">,</span> <span class="n">msg_id</span><span class="p">,</span> <span class="n">md</span><span class="p">)</span>
+
+        <span class="c1"># flush i/o</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="n">md</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">finish_metadata</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">md</span><span class="p">,</span> <span class="n">reply_content</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'apply_reply'</span><span class="p">,</span> <span class="n">reply_content</span><span class="p">,</span>
+                    <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="n">ident</span><span class="p">,</span><span class="n">buffers</span><span class="o">=</span><span class="n">result_buf</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">bufs</span><span class="p">,</span> <span class="n">msg_id</span><span class="p">,</span> <span class="n">reply_metadata</span><span class="p">):</span>
+        <span class="sd">"""DEPRECATED"""</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c1">#---------------------------------------------------------------------------</span>
+    <span class="c1"># Control messages (DEPRECATED)</span>
+    <span class="c1">#---------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">abort_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">"""abort a specific msg by id"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"abort_request is deprecated in kernel_base. It is only part of IPython parallel"</span><span class="p">)</span>
+        <span class="n">msg_ids</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'msg_ids'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg_ids</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+            <span class="n">msg_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg_ids</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">msg_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_abort_queues</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">mid</span> <span class="ow">in</span> <span class="n">msg_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aborted</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mid</span><span class="p">))</span>
+
+        <span class="n">content</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">'ok'</span><span class="p">)</span>
+        <span class="n">reply_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'abort_reply'</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
+                <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="n">ident</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">reply_msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clear_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">idents</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">"""Clear our namespace."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"clear_request is deprecated in kernel_base. It is only part of IPython parallel"</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">'clear_reply'</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="n">idents</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""DEPRECATED since 4.0.3"""</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c1">#---------------------------------------------------------------------------</span>
+    <span class="c1"># Protected interface</span>
+    <span class="c1">#---------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">):</span>
+        <span class="sd">"""prefixed topic for IOPub messages"""</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s2">"kernel.</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">ident</span>
+
+        <span class="k">return</span> <span class="n">py3compat</span><span class="o">.</span><span class="n">cast_bytes</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">topic</span><span class="p">))</span>
+
+    <span class="n">_aborting</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">_abort_queues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell_streams</span><span class="p">:</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aborting</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule_dispatch</span><span class="p">(</span>
+            <span class="n">ABORT_PRIORITY</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch_abort</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">_dispatch_abort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Finishing abort"</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">gen</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_on_error_timeout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aborting</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_send_abort_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">idents</span><span class="p">):</span>
+        <span class="sd">"""Send a reply to an aborted request"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Aborting:"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="n">reply_type</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">'header'</span><span class="p">][</span><span class="s1">'msg_type'</span><span class="p">]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'_reply'</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'status'</span><span class="p">:</span> <span class="s1">'aborted'</span><span class="p">}</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'engine'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ident</span><span class="p">}</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span>
+            <span class="n">stream</span><span class="p">,</span> <span class="n">reply_type</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="n">status</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="n">idents</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_no_raw_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Raise StdinNotImplentedError if active frontend doesn't support</span>
+<span class="sd">        stdin."""</span>
+        <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="s2">"raw_input was called, but this "</span>
+                                       <span class="s2">"frontend does not support stdin."</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getpass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""Forward getpass to frontends</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        StdinNotImplentedError if active frontend doesn't support stdin.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span>
+                <span class="s2">"getpass was called, but this frontend does not support input requests."</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">stream</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"The `stream` parameter of `getpass.getpass` will have no effect when using ipykernel"</span><span class="p">,</span>
+                    <span class="ne">UserWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_header</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">raw_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="s1">''</span><span class="p">):</span>
+        <span class="sd">"""Forward raw_input to frontends</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        StdinNotImplentedError if active frontend doesn't support stdin.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span>
+                <span class="s2">"raw_input was called, but this frontend does not support input requests."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_header</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_input_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">ident</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># Flush output before making the request.</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="c1"># flush the stdin socket, to purge stale replies</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stdin_socket</span><span class="o">.</span><span class="n">recv_multipart</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">NOBLOCK</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">zmq</span><span class="o">.</span><span class="n">ZMQError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">zmq</span><span class="o">.</span><span class="n">EAGAIN</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span>
+
+        <span class="c1"># Send the input request.</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">json_clean</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdin_socket</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'input_request'</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span>
+                          <span class="n">ident</span><span class="o">=</span><span class="n">ident</span><span class="p">)</span>
+
+        <span class="c1"># Await a response.</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Use polling with select() so KeyboardInterrupts can get</span>
+                <span class="c1"># through; doing a blocking recv() means stdin reads are</span>
+                <span class="c1"># uninterruptible on Windows. We need a timeout because</span>
+                <span class="c1"># zmq.select() is also uninterruptible, but at least this</span>
+                <span class="c1"># way reads get noticed immediately and KeyboardInterrupts</span>
+                <span class="c1"># get noticed fairly quickly by human response time standards.</span>
+                <span class="n">rlist</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">xlist</span> <span class="o">=</span> <span class="n">zmq</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+                    <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stdin_socket</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stdin_socket</span><span class="p">],</span> <span class="mf">0.01</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">rlist</span> <span class="ow">or</span> <span class="n">xlist</span><span class="p">:</span>
+                    <span class="n">ident</span><span class="p">,</span> <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdin_socket</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">ident</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                        <span class="k">break</span>
+            <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+                <span class="c1"># re-raise KeyboardInterrupt, to truncate traceback</span>
+                <span class="k">raise</span> <span class="ne">KeyboardInterrupt</span><span class="p">(</span><span class="s2">"Interrupted by user"</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Invalid Message:"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">py3compat</span><span class="o">.</span><span class="n">unicode_to_str</span><span class="p">(</span><span class="n">reply</span><span class="p">[</span><span class="s1">'content'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Bad input_reply: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">'</span><span class="se">\x04</span><span class="s1">'</span><span class="p">:</span>
+            <span class="c1"># EOF</span>
+            <span class="k">raise</span> <span class="ne">EOFError</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_at_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Actions taken at shutdown by the kernel, called by python's atexit.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_message</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iopub_socket</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_message</span><span class="p">,</span> <span class="n">ident</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_topic</span><span class="p">(</span><span class="s1">'shutdown'</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_message</span><span class="p">)</span>
+        <span class="p">[</span> <span class="n">s</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">POLLOUT</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell_streams</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

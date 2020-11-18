@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Divider — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/layouts/Divider.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="divider">
+<span id="layouts-gallery-divider"></span><h1>Divider<a class="headerlink" href="#divider" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/layouts/Divider.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="kn">import</span> <span class="nn">panel.widgets</span> <span class="k">as</span> <span class="nn">pnw</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="b3d6b915-b598-4e9b-9546-d216c59fa877"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#b3d6b915-b598-4e9b-9546-d216c59fa877');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="2664b1dd-b39c-4ec4-a5dd-87de55966de0"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#2664b1dd-b39c-4ec4-a5dd-87de55966de0');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <code>Divider</code> draws a horizontal rule (a <code>&lt;hr&gt;</code> tag in HTML) to separate multiple components in a layout. It automatically spans the full width of the container.</p>
+<hr/>
+<h2 id="Divider">Divider<a class="anchor-link" href="#Divider">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Divider</code> is useful for clearly separating different components in a panel:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</span>
+<span class="s2">ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </span>
+<span class="s2">ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</span>
+<span class="s2">reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+<span class="s2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</span>
+<span class="s2">mollit anim id est laborum.</span>
+<span class="s2">"""</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
+    <span class="s1">'# Lorem Ipsum'</span><span class="p">,</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Divider</span><span class="p">(),</span>
+    <span class="n">text</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="s1">'whitesmoke'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="9c268dc4-0869-42e4-90d9-8d7d10225031"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"f8467a52-c395-4cfb-8d2a-2fc0094a40fa":{"roots":{"references":[{"attributes":{"margin":[5,5,5,5],"name":"Divider02859","style":{"height":"100%","width":"100%"},"text":"<hr style=\"margin: 0px\">","width_policy":"fit"},"id":"1003","type":"Div"},{"attributes":{"background":"whitesmoke","children":[{"id":"1002"},{"id":"1003"},{"id":"1004"}],"margin":[0,0,0,0],"min_width":400,"name":"Column02864","tags":["embedded"],"width":400},"id":"1001","type":"Column"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02862","text":"&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \nullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in\nreprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt\nmollit anim id est laborum.&lt;/p&gt;"},"id":"1004","type":"panel.models.markup.HTML"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02860","text":"&lt;h1&gt;Lorem Ipsum&lt;/h1&gt;"},"id":"1002","type":"panel.models.markup.HTML"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"f8467a52-c395-4cfb-8d2a-2fc0094a40fa","root_ids":["1001"],"roots":{"1001":"9c268dc4-0869-42e4-90d9-8d7d10225031"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we enable responsive sizing on the container (or globally) the <code>Divider</code> will automatically span the full width:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
+    <span class="s1">'## Slider'</span><span class="p">,</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Divider</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+        <span class="n">pnw</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Float'</span><span class="p">),</span> <span class="n">pnw</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Int'</span><span class="p">),</span>
+        <span class="n">pnw</span><span class="o">.</span><span class="n">RangeSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Range'</span><span class="p">),</span> <span class="n">pnw</span><span class="o">.</span><span class="n">IntRangeSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Int Range'</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="s1">'## Input'</span><span class="p">,</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Divider</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+        <span class="n">pnw</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Text'</span><span class="p">),</span> <span class="n">pnw</span><span class="o">.</span><span class="n">DatetimeInput</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Date'</span><span class="p">),</span>
+        <span class="n">pnw</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Password'</span><span class="p">),</span> <span class="n">pnw</span><span class="o">.</span><span class="n">Spinner</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1007">
+<div class="bk-root" data-root-id="1007" id="4517999d-fcf1-4824-a0da-6ea1d92ec7e5"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"b548ea01-96da-4600-8307-9d6105f76579":{"roots":{"references":[{"attributes":{"children":[{"id":"1011"},{"id":"1012"},{"id":"1013"},{"id":"1014"}],"margin":[0,0,0,0],"name":"Row02873","sizing_mode":"stretch_width"},"id":"1010","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02880","sizing_mode":"stretch_width","text":"&lt;h2&gt;Slider&lt;/h2&gt;"},"id":"1008","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1008"},{"id":"1009"},{"id":"1010"},{"id":"1015"},{"id":"1016"},{"id":"1017"}],"margin":[0,0,0,0],"name":"Column02884","sizing_mode":"stretch_width","tags":["embedded"]},"id":"1007","type":"Column"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02882","sizing_mode":"stretch_width","text":"&lt;h2&gt;Input&lt;/h2&gt;"},"id":"1015","type":"panel.models.markup.HTML"},{"attributes":{"end":1,"format":"0[.]00","margin":[5,10,5,10],"sizing_mode":"stretch_width","start":0,"title":"Range","value":[0,1],"value_throttled":[0,1]},"id":"1013","type":"RangeSlider"},{"attributes":{"margin":[5,10,5,10],"sizing_mode":"stretch_width","title":"Text"},"id":"1018","type":"TextInput"},{"attributes":{"end":1,"format":"0[.]00","margin":[5,10,5,10],"sizing_mode":"stretch_width","start":0,"title":"Int","value":0,"value_throttled":0},"id":"1012","type":"Slider"},{"attributes":{"format":null,"margin":[5,10,5,10],"mode":"int","placeholder":"0","sizing_mode":"stretch_width","title":"Number","value":0,"value_throttled":0},"id":"1021","type":"Spinner"},{"attributes":{"margin":[5,10,5,10],"sizing_mode":"stretch_width","title":"Date"},"id":"1019","type":"TextInput"},{"attributes":{"margin":[-20,0,0,0],"name":"Divider02874","sizing_mode":"stretch_width","style":{"height":"100%","width":"100%"},"text":"<hr style=\"margin: 0px\">","width_policy":"fit"},"id":"1016","type":"Div"},{"attributes":{"end":1,"format":"0[.]00","margin":[5,10,5,10],"sizing_mode":"stretch_width","start":0,"title":"Int Range","value":[0,1],"value_throttled":[0,1]},"id":"1014","type":"RangeSlider"},{"attributes":{"children":[{"id":"1018"},{"id":"1019"},{"id":"1020"},{"id":"1021"}],"margin":[0,0,0,0],"name":"Row02879","sizing_mode":"stretch_width"},"id":"1017","type":"Row"},{"attributes":{"end":1.0,"format":"0[.]00","margin":[5,10,5,10],"sizing_mode":"stretch_width","start":0.0,"step":0.1,"title":"Float","value":0.0,"value_throttled":0.0},"id":"1011","type":"Slider"},{"attributes":{"margin":[5,10,5,10],"sizing_mode":"stretch_width","title":"Password"},"id":"1020","type":"PasswordInput"},{"attributes":{"margin":[-20,0,0,0],"name":"Divider02868","sizing_mode":"stretch_width","style":{"height":"100%","width":"100%"},"text":"<hr style=\"margin: 0px\">","width_policy":"fit"},"id":"1009","type":"Div"}],"root_ids":["1007"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"b548ea01-96da-4600-8307-9d6105f76579","root_ids":["1007"],"roots":{"1007":"4517999d-fcf1-4824-a0da-6ea1d92ec7e5"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/layouts/Divider.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

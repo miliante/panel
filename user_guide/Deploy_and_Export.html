@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Deploy and Export — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/css/main.css" rel="stylesheet"/>
+<link href="../_static/nbsite.css" rel="stylesheet"/>
+<link href="../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/user_guide/Deploy_and_Export.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../index.html">
+<img alt="Logo" src="../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../reference/index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIs.html">APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Deploy &amp; Export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interact.html">Interact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Widgets.html">Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Param.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Links.html">Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pipelines.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Server_Deployment.html">Server Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Django_Apps.html">Django Apps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="deploy-and-export">
+<h1>Deploy and Export<a class="headerlink" href="#deploy-and-export" title="Permalink to this headline">¶</a></h1>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="d2259a2d-8a07-4739-898f-be1032ad6fd1"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#d2259a2d-8a07-4739-898f-be1032ad6fd1');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="9b4ceba6-0894-460f-9517-0c37b37636e0"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#9b4ceba6-0894-460f-9517-0c37b37636e0');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One of the main design goals for Panel was that it should make it possible to seamlessly transition back and forth between interactively prototyping a dashboard in the notebook or on the commandline to deploying it as a standalone server app. This section shows how to display panels interactively, embed static output, save a snapshot, and deploy as a separate web-server app. For more information about deploying Panel apps to various cloud providers see the <a href="Server_Deployment.html">Server Deployment</a> documentation.</p>
+<h2 id="Configuring-output">Configuring output<a class="anchor-link" href="#Configuring-output">¶</a></h2><p>As you may have noticed, almost all the Panel documentation is written using notebooks. Panel objects display themselves automatically in a notebook and take advantage of Jupyter Comms to support communication between the rendered app and the Jupyter kernel that backs it on the Python end. To display a Panel object in the notebook is as simple as putting it on the end of a cell. Note, however, that the <code>panel.extension</code> first has to be loaded to initialize the required JavaScript in the notebook context.  Also, if you are working in JupyterLab, the pyviz labextension has to be installed with:</p>
+<pre><code>jupyter labextension install @pyviz/jupyterlab_pyviz
+
+</code></pre>
+<h3 id="Optional-dependencies">Optional dependencies<a class="anchor-link" href="#Optional-dependencies">¶</a></h3><p>Also remember that in order to use certain components such as Vega, LaTeX, and Plotly plots in a notebook, the models must be loaded using the extension. If you forget to load the extension, you should get a warning reminding you to do it. To load certain JS components, simply list them as part of the call to <code>pn.extension</code>:</p>
+<pre><code>pn.extension('vega', 'katex')
+
+</code></pre>
+<p>Here we've ensured that the Vega and LaTeX JS dependencies will be loaded.</p>
+<h3 id="Initializing-JS-and-CSS">Initializing JS and CSS<a class="anchor-link" href="#Initializing-JS-and-CSS">¶</a></h3><p>Additionally, any external <code>css_files</code>, <code>js_files</code> and <code>raw_css</code> needed should be declared in the extension. The <code>js_files</code> should be declared as a dictionary mapping from the exported JS module name to the URL containing the JS components, while the <code>css_files</code> can be defined as a list:</p>
+<pre><code>pn.extension(js_files={'deck': https://unpkg.com/deck.gl@~5.2.0/deckgl.min.js},
+             css_files=['https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css'])
+
+</code></pre>
+<p>The <code>raw_css</code> argument allows defining a list of strings containing CSS to publish as part of the notebook and app.</p>
+<p>Providing keyword arguments via the <code>extension</code> is the same as setting them on <code>pn.config</code>, which is the preferred approach outside the notebook. <code>js_files</code> and <code>css_files</code> may be set to your chosen values as follows:</p>
+<pre><code>pn.config.js_files  = {'deck': 'https://unpkg.com/deck.gl@~5.2.0/deckgl.min.js'}
+pn.config.css_files = ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css']</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Display-in-the-notebook">Display in the notebook<a class="anchor-link" href="#Display-in-the-notebook">¶</a></h2><h4 id="The-repr">The repr<a class="anchor-link" href="#The-repr">¶</a></h4><p>Once the extension is loaded, Panel objects will display themselves if placed at the end of cell in the notebook:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pane</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s1">'&lt;marquee&gt;Here is some custom HTML&lt;/marquee&gt;'</span><span class="p">)</span>
+
+<span class="n">pane</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="3a912744-fcb9-48b2-86d6-a28490eab4d3"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"1b34709f-fd70-4fa4-9c65-021afd15e2f1":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02859","text":"&lt;p&gt;&lt;marquee&gt;Here is some custom HTML&lt;/marquee&gt;&lt;/p&gt;"},"id":"1001","type":"panel.models.markup.HTML"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"1b34709f-fd70-4fa4-9c65-021afd15e2f1","root_ids":["1001"],"roots":{"1001":"3a912744-fcb9-48b2-86d6-a28490eab4d3"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To instead see a textual representation of the component, you can use the <code>pprint</code> method on any Panel object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pane</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Markdown(str)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="The-display-function">The <code>display</code> function<a class="anchor-link" href="#The-display-function">¶</a></h4><p>To avoid having to put a Panel on the last line of a notebook cell, e.g. to display it from inside a function call, you can use the IPython built-in <code>display</code> function:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">display_marquee</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s1">'&lt;marquee&gt;</span><span class="si">{text}</span><span class="s1">&lt;/marquee&gt;'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)))</span>
+    
+<span class="n">display_marquee</span><span class="p">(</span><span class="s1">'This Panel was displayed from within a function'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_html rendered_html output_subarea">
+<div id="1003">
+<div class="bk-root" data-root-id="1003" id="c8fada6f-e3e7-4400-b8b7-650baa90d724"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"3652d88f-2afb-4bba-a8e4-72f41d1d2008":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02864","text":"&lt;p&gt;&lt;marquee&gt;This Panel was displayed from within a function&lt;/marquee&gt;&lt;/p&gt;"},"id":"1003","type":"panel.models.markup.HTML"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"3652d88f-2afb-4bba-a8e4-72f41d1d2008","root_ids":["1003"],"roots":{"1003":"c8fada6f-e3e7-4400-b8b7-650baa90d724"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Inline-apps">Inline apps<a class="anchor-link" href="#Inline-apps">¶</a></h4><p>Lastly it is also possible to display a Panel object as a Bokeh server app inside the notebook.  To do so call the <code>.app</code> method on the Panel object and provide the URL of your notebook server:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pane</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="s1">'localhost:8888'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_html rendered_html output_subarea">
+<script id="1005">
+  var xhr = new XMLHttpRequest()
+  xhr.responseType = 'blob';
+  xhr.open('GET', "http://localhost:33993/autoload.js?bokeh-autoload-element=1005&bokeh-absolute-url=http://localhost:33993&resources=none", true);
+  
+  xhr.onload = function (event) {
+    var script = document.createElement('script'),
+    src = URL.createObjectURL(event.target.response);
+    script.src = src;
+    document.body.appendChild(script);
+  };
+xhr.send();
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;bokeh.server.server.Server at 0x7f081c766b10&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The app will now run on a Bokeh server instance separate from the Jupyter notebook kernel, allowing you to quickly test that all the functionality of your app works both in a notebook and in a server context.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="ipywidgets">ipywidgets<a class="anchor-link" href="#ipywidgets">¶</a></h3><p>If the <code>jupyter_bokeh</code> package is installed it is also possible to render Panel objects as an ipywidget rather than using Bokeh's internal communication mechanisms.  You can enable ipywidgets support  globally using:</p>
+<div class="highlight"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="n">comms</span><span class="o">=</span><span class="s1">'ipywidgets'</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">comms</span> <span class="o">=</span> <span class="s1">'ipywidgets'</span>
+</pre></div>
+<p>This global setting can be useful when trying to serve an entire notebook using <a href="https://github.com/voila-dashboards/voila">Voilà</a>. Alternatively, we can convert individual objects to an ipywidget one at a time using the <code>pn.ipywidget()</code> function:</p>
+<div class="highlight"><pre><span></span><span class="n">ipywidget</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">ipywidget</span><span class="p">(</span><span class="n">pane</span><span class="p">)</span>
+<span class="n">ipywidget</span>
+</pre></div>
+<p>This approach also allows combining a Panel object with any other Jupyter-widget--based model:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Accordion</span>
+<span class="n">Accordion</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">pn</span><span class="o">.</span><span class="n">ipywidget</span><span class="p">(</span><span class="n">pane</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To use Panel's ipywidgets support in JupyterLab, the following extensions have to be installed:</p>
+<pre><code>jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install @bokeh/jupyter_bokeh</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Additionally the <code>jupyter_bokeh</code> package should be installed using either pip:</p>
+<pre><code>pip install jupyter_bokeh</code></pre>
+<p>or using conda:</p>
+<pre><code>conda install -c bokeh jupyter_bokeh</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Display-in-the-Python-REPL">Display in the Python REPL<a class="anchor-link" href="#Display-in-the-Python-REPL">¶</a></h3><p>Working from the command line will not automatically display rich representations inline as in a notebook, but you can still interact with your Panel components if you start a Bokeh server instance and open a separate browser window using the <code>show</code> method. The method has the following arguments:</p>
+<pre><code>port: int (optional)
+   Allows specifying a specific port (default=0 chooses an arbitrary open port)
+websocket_origin: str or list(str) (optional)
+   A list of hosts that can connect to the websocket.
+   This is typically required when embedding a server app in
+   an external-facing web site.
+   If None, "localhost" is used.
+threaded: boolean (optional, default=False)
+   Whether to launch the Server on a separate thread, allowing
+   interactive use.
+title : str
+   A string title to give the Document (if served as an app)
+**kwargs : dict
+   Additional keyword arguments passed to the bokeh.server.server.Server instance.
+
+</code></pre>
+<p>To work with an app completely interactively you can set <code>threaded=True</code> which will launch the server on a separate thread and let you interactively play with the app.</p>
+<p><img src="https://assets.holoviews.org/panel/gifs/commandline_show.gif"/></p>
+<p>The <code>.show</code> call will return either a Bokeh server instance (if <code>threaded=False</code>) or a <code>StoppableThread</code> instance (if <code>threaded=True</code>) which both provide a <code>stop</code> method to stop the server instance.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Serving-multiple-apps">Serving multiple apps<a class="anchor-link" href="#Serving-multiple-apps">¶</a></h3><p>If you want to serve more than one app on a single server you can use the <code>pn.serve</code> function. By supplying a dictionary where the keys represent the URL slugs and the values must be either Panel objects or functions returning Panel objects you can easily launch a server with a number of apps, e.g.:</p>
+<div class="highlight"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">serve</span><span class="p">({</span><span class="s1">'markdown'</span><span class="p">:</span> <span class="s1">'# This is a Panel app'</span><span class="p">,</span> <span class="s1">'json'</span><span class="p">:</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">JSON</span><span class="p">({</span><span class="s1">'abc'</span><span class="p">:</span> <span class="mi">123</span><span class="p">})})</span>
+</pre></div>
+<p>You can customize the HTML title of each application by supplying a dictionary where the keys represent the URL slugs and the values represent the titles, e.g.:</p>
+<div class="highlight"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">'markdown'</span><span class="p">:</span> <span class="s1">'# This is a Panel app'</span><span class="p">,</span> <span class="s1">'json'</span><span class="p">:</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">JSON</span><span class="p">({</span><span class="s1">'abc'</span><span class="p">:</span> <span class="mi">123</span><span class="p">})},</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="s1">'markdown'</span><span class="p">:</span> <span class="s1">'A Markdown App'</span><span class="p">,</span> <span class="s1">'json'</span><span class="p">:</span> <span class="s1">'A JSON App'</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+<p>The <code>pn.serve</code> accepts a number of arguments:</p>
+<pre><code>panel: Viewable, function or {str: Viewable or function}
+  A Panel object, a function returning a Panel object or a
+  dictionary mapping from the URL slug to either.
+port: int (optional, default=0)
+  Allows specifying a specific port
+address: str
+  The address the server should listen on for HTTP requests.
+websocket_origin: str or list(str) (optional)
+  A list of hosts that can connect to the websocket.
+
+  This is typically required when embedding a server app in
+  an external web site.
+
+  If None, "localhost" is used.
+loop: tornado.ioloop.IOLoop (optional, default=IOLoop.current())
+  The tornado IOLoop to run the Server on
+show: boolean (optional, default=False)
+  Whether to open the server in a new browser tab on start
+start: boolean(optional, default=False)
+  Whether to start the Server
+title: str or {str: str} (optional, default=None)
+  An HTML title for the application or a dictionary mapping
+  from the URL slug to a customized title
+verbose: boolean (optional, default=True)
+  Whether to print the address and port
+location: boolean or panel.io.location.Location
+  Whether to create a Location component to observe and
+  set the URL location.
+kwargs: dict
+  Additional keyword arguments to pass to Server instance</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Launching-a-server-on-the-commandline">Launching a server on the commandline<a class="anchor-link" href="#Launching-a-server-on-the-commandline">¶</a></h2><p>Once the app is ready for deployment it can be served using the Bokeh server.  For a detailed breakdown of the design and functionality of Bokeh server, see the <a href="https://bokeh.pydata.org/en/latest/docs/user_guide/server.html">Bokeh documentation</a>. The most important thing to know is that Panel (and Bokeh) provide a CLI command to serve a Python script, app directory, or Jupyter notebook containing a Bokeh or Panel app. To launch a server using the CLI, simply run:</p>
+<pre><code>panel serve app.ipynb
+
+</code></pre>
+<p>Alternatively you can also list multiple apps:</p>
+<pre><code>panel serve app1.py app2.ipynb
+
+</code></pre>
+<p>or even serve a number of apps at once:</p>
+<pre><code>panel serve apps/*.py
+
+</code></pre>
+<p>The <code>panel serve</code> command has the following options:</p>
+<pre><code>positional arguments:
+  DIRECTORY-OR-SCRIPT   The app directories or scripts or notebooks to serve 
+                        (serve empty document if not specified)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --port PORT           Port to listen on
+  --address ADDRESS     Address to listen on
+  --log-level LOG-LEVEL
+                        One of: trace, debug, info, warning, error or critical
+  --log-format LOG-FORMAT
+                        A standard Python logging format string (default:
+                        '%(asctime)s %(message)s')
+  --log-file LOG-FILE   A filename to write logs to, or None to write to the
+                        standard stream (default: None)
+  --args ...            Any command line arguments remaining are passed on to
+                        the application handler
+  --show                Open server app(s) in a browser
+  --allow-websocket-origin HOST[:PORT]
+                        Public hostnames which may connect to the Bokeh
+                        websocket
+  --prefix PREFIX       URL prefix for Bokeh server URLs
+  --keep-alive MILLISECONDS
+                        How often to send a keep-alive ping to clients, 0 to
+                        disable.
+  --check-unused-sessions MILLISECONDS
+                        How often to check for unused sessions
+  --unused-session-lifetime MILLISECONDS
+                        How long unused sessions last
+  --stats-log-frequency MILLISECONDS
+                        How often to log stats
+  --mem-log-frequency MILLISECONDS
+                        How often to log memory usage information
+  --use-xheaders        Prefer X-headers for IP/protocol information
+  --session-ids MODE    One of: unsigned, signed, or external-signed
+  --index INDEX         Path to a template to use for the site index
+  --disable-index       Do not use the default index on the root path
+  --disable-index-redirect
+                        Do not redirect to running app from root path
+  --num-procs N         Number of worker processes for an app. Using 0 will
+                        autodetect number of cores (defaults to 1)
+  --static-dirs         Static directories to serve specified as key=value
+                        pairs mapping from URL route to static file directory.
+  --websocket-max-message-size BYTES
+                        Set the Tornado websocket_max_message_size value
+                        (defaults to 20MB) NOTE: This setting has effect ONLY
+                        for Tornado&gt;=4.5
+  --dev [FILES-TO-WATCH [FILES-TO-WATCH ...]]
+                        Enable live reloading during app development.By
+                        default it watches all *.py *.html *.css *.yaml
+                        filesin the app directory tree. Additional files can
+                        be passedas arguments. NOTE: This setting only works
+                        with a single app.It also restricts the number of
+                        processes to 1.
+
+</code></pre>
+<p>To turn a notebook into a deployable app simply append <code>.servable()</code> to one or more Panel objects, which will add the app to Bokeh's <code>curdoc</code>, ensuring it can be discovered by Bokeh server on deployment. In this way it is trivial to build dashboards that can be used interactively in a notebook and then seamlessly deployed on Bokeh server.</p>
+<p>When called on a notebook, <code>panel serve</code> first converts it to a python script using <a href="https://nbconvert.readthedocs.io/en/stable/api/exporters.html"><code>nbconvert.PythonExporter()</code></a>, albeit with <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">IPython magics</a> stripped out. This means that non-code cells, such as raw cells, are entirely handled by <code>nbconvert</code> and <a href="https://nbsphinx.readthedocs.io/en/latest/raw-cells.html">may modify the served app</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Static-file-hosting">Static file hosting<a class="anchor-link" href="#Static-file-hosting">¶</a></h2><p>Whether you're launching your application using <code>panel serve</code> from the commandline or using <code>pn.serve</code> in a script you can also serve static files. When using <code>panel serve</code> you can use the <code>--static-dirs</code> argument to specify a list of static directories to serve along with their routes, e.g.:</p>
+<pre><code>panel serve some_script.py --static-dirs assets=./assets
+
+</code></pre>
+<p>This will serve the <code>./assets</code> directory on the servers <code>/assets</code> route. Note however that the <code>/static</code> route is reserved internally by Panel.</p>
+<p>Similarly when using <code>pn.serve</code> or <code>panel_obj.show</code> the static routes may be defined as a dictionary, e.g. the equivalent to the example would be:</p>
+<pre><code>pn.serve(panel_obj, static_dirs={'assets': './assets'})</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Accessing-session-state">Accessing session state<a class="anchor-link" href="#Accessing-session-state">¶</a></h2><p>Whenever a Panel app is being served the <code>panel.state</code> object exposes some of the internal Bokeh server components to a user.</p>
+<h4 id="Document">Document<a class="anchor-link" href="#Document">¶</a></h4><p>The current Bokeh <code>Document</code> can be accessed using <code>panel.state.curdoc</code>.</p>
+<h4 id="Request-arguments">Request arguments<a class="anchor-link" href="#Request-arguments">¶</a></h4><p>When a browser makes a request to a Bokeh server a session is created for the Panel application. The request arguments are made available to be accessed on <code>pn.state.session_args</code>. For example if your application is hosted at <code>localhost:8001/app</code>, appending <code>?phase=0.5</code> to the URL will allow you to access the phase variable using the following code:</p>
+<div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">session_args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'phase'</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+<p>This mechanism may be used to modify the behavior of an app dependending on parameters provided in the URL.</p>
+<h4 id="Cookies">Cookies<a class="anchor-link" href="#Cookies">¶</a></h4><p>The <code>panel.state.cookies</code> will allow accessing the cookies stored in the browser and on the bokeh server.</p>
+<h4 id="Headers">Headers<a class="anchor-link" href="#Headers">¶</a></h4><p>The <code>panel.state.headers</code> will allow accessing the HTTP headers stored in the browser and on the bokeh server.</p>
+<h4 id="Location">Location<a class="anchor-link" href="#Location">¶</a></h4><p>When starting a server session Panel will attach a <code>Location</code> component which can be accessed using <code>pn.state.location</code>. The <code>Location</code> component servers a number of functions:</p>
+<ul>
+<li>Navigation between pages via <code>pathname</code></li>
+<li>Sharing (parts of) the page state in the url as <code>search</code> parameters for bookmarking and sharing.</li>
+<li>Navigating to subsections of the page via the <code>hash_</code> parameter.</li>
+</ul>
+<h5 id="Core">Core<a class="anchor-link" href="#Core">¶</a></h5><ul>
+<li><strong><code>pathname</code></strong> (string): pathname part of the url, e.g. '/user_guide/Interact.html'.</li>
+<li><strong><code>search</code></strong> (string): search part of the url e.g. '?color=blue'.</li>
+<li><strong><code>hash_</code></strong> (string): hash part of the url e.g. '#interact'.</li>
+<li><strong><code>reload</code></strong> (bool): Whether or not to reload the page when the url is updated.<ul>
+<li>For independent apps this should be set to True. </li>
+<li>For integrated or single page apps this should be set to False.</li>
+</ul>
+</li>
+</ul>
+<h5 id="Readonly">Readonly<a class="anchor-link" href="#Readonly">¶</a></h5><ul>
+<li><strong><code>href</code></strong> (string): The full url, e.g. '<a href="https://panel.holoviz.org/user_guide/Interact.html:80?color=blue#interact">https://panel.holoviz.org/user_guide/Interact.html:80?color=blue#interact</a>'.</li>
+<li><strong><code>protocol</code></strong> (string): protocol part of the url, e.g. 'http:' or 'https:'</li>
+<li><strong><code>port</code></strong> (string): port number, e.g. '80'</li>
+</ul>
+<h4 id="pn.state.busy">pn.state.busy<a class="anchor-link" href="#pn.state.busy">¶</a></h4><p>Often an application will have longer running callbacks which are being processed on the server, to give users some indication that the server is busy you may therefore have some way of indicating that busy state. The <code>pn.state.busy</code> parameter indicates whether a callback is being actively processed and may be linked to some visual indicator.</p>
+<p>Below we will create a little application to demonstrate this, we will create a button which executes some longer running task on click and then create an indicator function that displays <code>'I'm busy'</code> when the <code>pn.state.busy</code> parameter is <code>True</code> and <code>'I'm idle'</code> when it is not:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">processing</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="c1"># Some longer running task</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="n">button</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Click me!'</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">processing</span><span class="p">)</span>
+
+<span class="nd">@pn</span><span class="o">.</span><span class="n">depends</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">busy</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">indicator</span><span class="p">(</span><span class="n">busy</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">"I'm busy"</span> <span class="k">if</span> <span class="n">busy</span> <span class="k">else</span> <span class="s2">"I'm idle"</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">indicator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1006">
+<div class="bk-root" data-root-id="1006" id="266570fa-596a-44fb-80b8-7056dc3eee5a"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"12ce7d1c-c95b-43c7-b049-45572bca5a6f":{"roots":{"references":[{"attributes":{"children":[{"id":"1007"},{"id":"1008"}],"margin":[0,0,0,0],"name":"Row02876","tags":["embedded"]},"id":"1006","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"ParamFunction02869","text":"&lt;p&gt;I&amp;rsquo;m idle&lt;/p&gt;"},"id":"1009","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1009"}],"margin":[0,0,0,0],"name":"Row02873"},"id":"1008","type":"Row"},{"attributes":{"icon":null,"label":"Click me!","margin":[5,10,5,10],"subscribed_events":["button_click"]},"id":"1007","type":"Button"}],"root_ids":["1006"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"12ce7d1c-c95b-43c7-b049-45572bca5a6f","root_ids":["1006"],"roots":{"1006":"266570fa-596a-44fb-80b8-7056dc3eee5a"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This way we can create a global indicator for the busy state instead of modifying all our callbacks.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="pn.state.onload">pn.state.onload<a class="anchor-link" href="#pn.state.onload">¶</a></h4><p>Another useful callback to define the onload callback, in a server context this will execute when a session is first initialized. Let us for example define a minimal example inside a function which we will pass to <code>pn.serve</code>. This emulates what happens when we call <code>panel serve</code> on the commandline. We will create a widget without populating its options, then we will add an <code>onload</code> callback, which will set the options once the initial page is loaded. Imagine for example that we have to fetch the options from some database which might take a little while, by deferring the loading of the options to the callback we can get something on the screen as quickly as possible and only run the expensive callback when we have already rendered something for the user to look at.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">app</span><span class="p">():</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Select</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">on_load</span><span class="p">():</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Emulate some long running process</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">]</span>
+
+    <span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">onload</span><span class="p">(</span><span class="n">on_load</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">widget</span>
+
+<span class="c1"># pn.serve(app) </span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scheduling-callbacks">Scheduling callbacks<a class="anchor-link" href="#Scheduling-callbacks">¶</a></h2><p>When you build an app you frequently want to schedule a callback to be run periodically to refresh the data and update visual components. Additionally if you want to update Bokeh components directly you may need to schedule a callback to get around Bokeh's document lock to avoid errors like this:</p>
+<blockquote><p>RuntimeError: _pending_writes should be non-None when we have a document lock, and we should have the lock when the document changes</p>
+</blockquote>
+<p>In this section we will discover how we can leverage Bokeh's Document and <code>pn.state.add_periodic_callback</code> to set this up.</p>
+<h3 id="Server-callbacks">Server callbacks<a class="anchor-link" href="#Server-callbacks">¶</a></h3><p>The Bokeh server that Panel builds on is designed to be thread safe which requires a set of locks to avoid multiple threads modifying the Bokeh models simultaneously. Therefore if we want to work with Bokeh models directly we should ensure that any changes to a Bokeh model are executed on the correct thread by adding a callback, which the event loop will then execute safely.</p>
+<p>In the example below we will launch an application on a thread using <code>pn.serve</code> and make the Bokeh plot (in practice you may provide handles to this object on a class). Finally we will wait 1 second until the server is launched and schedule a callback which updates the <code>y_range</code> by accessing the <code>Document</code> and calling <code>add_next_tick_callback</code> on it. This pattern will ensure that the update to the Bokeh model is executed on the correct thread:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="k">global</span> <span class="n">p</span>
+<span class="n">p</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">app</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">curdoc</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">p</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">threaded</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_next_tick_callback</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">y_range</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+<h3 id="Periodic-callbacks">Periodic callbacks<a class="anchor-link" href="#Periodic-callbacks">¶</a></h3><p>As we discussed above periodic callbacks allow periodically updating your application with new data. Below we will create a simple Bokeh plot and display it with Panel:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">({</span><span class="s2">"x"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)})</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">bokeh_pane</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Bokeh</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">bokeh_pane</span><span class="o">.</span><span class="n">servable</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1049">
+<div class="bk-root" data-root-id="1049" id="a064ae4a-a74f-4d3e-b846-2784d16931e5"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"45dd69ba-1c7e-4018-a0ac-505042fbcc49":{"roots":{"references":[{"attributes":{},"id":"1035","type":"HelpTool"},{"attributes":{},"id":"1016","type":"DataRange1d"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6,7,8,9],"y":[0,1,2,3,4,5,6,7,8,9]},"selected":{"id":"1057"},"selection_policy":{"id":"1056"}},"id":"1012","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1012"}},"id":"1048","type":"CDSView"},{"attributes":{},"id":"1056","type":"UnionRenderers"},{"attributes":{"below":[{"id":"1022"}],"center":[{"id":"1025"},{"id":"1029"}],"left":[{"id":"1026"}],"renderers":[{"id":"1047"}],"title":{"id":"1051"},"toolbar":{"id":"1037"},"x_range":{"id":"1014"},"x_scale":{"id":"1018"},"y_range":{"id":"1016"},"y_scale":{"id":"1020"}},"id":"1013","subtype":"Figure","type":"Plot"},{"attributes":{"formatter":{"id":"1053"},"ticker":{"id":"1023"}},"id":"1022","type":"LinearAxis"},{"attributes":{"children":[{"id":"1013"}],"margin":[0,0,0,0],"name":"Row02880","tags":["embedded"]},"id":"1049","type":"Row"},{"attributes":{},"id":"1027","type":"BasicTicker"},{"attributes":{},"id":"1030","type":"PanTool"},{"attributes":{"data_source":{"id":"1012"},"glyph":{"id":"1045"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1046"},"selection_glyph":null,"view":{"id":"1048"}},"id":"1047","type":"GlyphRenderer"},{"attributes":{},"id":"1023","type":"BasicTicker"},{"attributes":{},"id":"1053","type":"BasicTickFormatter"},{"attributes":{},"id":"1031","type":"WheelZoomTool"},{"attributes":{"axis":{"id":"1022"},"ticker":null},"id":"1025","type":"Grid"},{"attributes":{},"id":"1055","type":"BasicTickFormatter"},{"attributes":{"text":""},"id":"1051","type":"Title"},{"attributes":{"overlay":{"id":"1036"}},"id":"1032","type":"BoxZoomTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1036","type":"BoxAnnotation"},{"attributes":{"axis":{"id":"1026"},"dimension":1,"ticker":null},"id":"1029","type":"Grid"},{"attributes":{"formatter":{"id":"1055"},"ticker":{"id":"1027"}},"id":"1026","type":"LinearAxis"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1046","type":"Line"},{"attributes":{},"id":"1033","type":"SaveTool"},{"attributes":{},"id":"1014","type":"DataRange1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1030"},{"id":"1031"},{"id":"1032"},{"id":"1033"},{"id":"1034"},{"id":"1035"}]},"id":"1037","type":"Toolbar"},{"attributes":{},"id":"1057","type":"Selection"},{"attributes":{},"id":"1018","type":"LinearScale"},{"attributes":{"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1045","type":"Line"},{"attributes":{},"id":"1034","type":"ResetTool"},{"attributes":{},"id":"1020","type":"LinearScale"}],"root_ids":["1049"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"45dd69ba-1c7e-4018-a0ac-505042fbcc49","root_ids":["1049"],"roots":{"1049":"a064ae4a-a74f-4d3e-b846-2784d16931e5"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we will define a callback that updates the data on the <code>ColumnDataSource</code> and use the <code>pn.state.add_periodic_callback</code> method to schedule updates every 200 ms. We will also set a timeout of 5 seconds after which the callback will automatically stop.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"y"</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+    <span class="n">bokeh_pane</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">trigger</span><span class="p">(</span><span class="s1">'object'</span><span class="p">)</span> <span class="c1"># Only needed in notebook</span>
+
+<span class="n">cb</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">add_periodic_callback</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In a notebook or bokeh server context we should now see the plot update periodically. The other nice thing about this is that <code>pn.state.add_periodic_callback</code> returns <code>PeriodicCallback</code> we can call <code>.stop()</code> and <code>.start()</code> on if we want to stop or pause the periodic execution. Additionally we can also dynamically adjust the period by setting the <code>timeout</code> parameter to speed up or slow down the callback.</p>
+<p>Other nice features on a periodic callback are the ability to check the number of executions using the <code>cb.counter</code> property and the ability to toggle the callback on and off simply by setting the running parameter. This makes it possible to link a widget to the running state:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">toggle</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Toggle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Toggle callback'</span><span class="p">)</span>
+
+<span class="n">toggle</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'running'</span><span class="p">)</span>
+<span class="n">toggle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1115">
+<div class="bk-root" data-root-id="1115" id="5c51ff4f-dd78-4fde-a23d-51548fa22897"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"4db45184-16a3-4e3f-bdf3-91a7f25b8061":{"roots":{"references":[{"attributes":{"icon":null,"label":"Toggle callback","margin":[5,10,5,10]},"id":"1115","type":"Toggle"}],"root_ids":["1115"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"4db45184-16a3-4e3f-bdf3-91a7f25b8061","root_ids":["1115"],"roots":{"1115":"5c51ff4f-dd78-4fde-a23d-51548fa22897"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that when starting a server dynamically with <code>pn.serve</code> you cannot start a periodic callback before the application is actually being served. Therefore you should create the application and start the callback in a wrapping function:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"y"</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">panel_app</span><span class="p">():</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">({</span><span class="s2">"x"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)})</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">add_periodic_callback</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">source</span><span class="p">),</span> <span class="mi">200</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Bokeh</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">panel_app</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Accessing-the-Bokeh-model">Accessing the Bokeh model<a class="anchor-link" href="#Accessing-the-Bokeh-model">¶</a></h2><p>Since Panel is built on top of Bokeh, all Panel objects can easily be converted to a Bokeh model. The <code>get_root</code> method returns a model representing the contents of a Panel:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">'# Some markdown'</span><span class="p">)</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span>
+<span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="display: table;"><div style="display: table-row;"><div style="display: table-cell;"><b title="bokeh.models.layouts.Column">Column</b>(</div><div style="display: table-cell;">id = '1117', <span id="1120" style="cursor: pointer;">…)</span></div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">align = 'start',</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">aspect_ratio = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">background = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">children = [HTML(id='1118', ...)],</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">css_classes = [],</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">disabled = False,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">height = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">height_policy = 'auto',</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">js_event_callbacks = {},</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">js_property_callbacks = {},</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">margin = (0, 0, 0, 0),</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">max_height = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">max_width = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">min_height = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">min_width = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">name = 'Column02889',</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">rows = 'auto',</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">sizing_mode = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">spacing = 0,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">subscribed_events = [],</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">tags = [],</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">visible = True,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">width = None,</div></div><div class="1119" style="display: none;"><div style="display: table-cell;"></div><div style="display: table-cell;">width_policy = 'auto')</div></div></div>
+<script>
+(function() {
+  var expanded = false;
+  var ellipsis = document.getElementById("1120");
+  ellipsis.addEventListener("click", function() {
+    var rows = document.getElementsByClassName("1119");
+    for (var i = 0; i < rows.length; i++) {
+      var el = rows[i];
+      el.style.display = expanded ? "none" : "table-row";
+    }
+    ellipsis.innerHTML = expanded ? "&hellip;)" : "&lsaquo;&lsaquo;&lsaquo;";
+    expanded = !expanded;
+  });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By default this model will be associated with Bokeh's <code>curdoc()</code>, so if you want to associate the model with some other <code>Document</code> ensure you supply it explictly as the first argument. Once you have access to the underlying bokeh model you can use all the usual bokeh utilities such as <code>components</code>, <code>file_html</code>, or <code>show</code></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">components</span><span class="p">,</span> <span class="n">file_html</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">html</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Embedding">Embedding<a class="anchor-link" href="#Embedding">¶</a></h2><p>Panel generally relies on either the Jupyter kernel or a Bokeh Server to be running in the background to provide interactive behavior. However for simple apps with a limited amount of state it is also possible to <code>embed</code> all the widget state, allowing the app to be used entirely from within Javascript. To demonstrate this we will create a simple app which simply takes a slider value, multiplies it by 5 and then display the result.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">slider</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nd">@pn</span><span class="o">.</span><span class="n">depends</span><span class="p">(</span><span class="n">slider</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">'</span><span class="si">%d</span><span class="s1"> * 5 = </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">row</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we displayed this the normal way it would call back into Python every time the value changed. However, the <code>.embed()</code> method will record the state of the app for the different widget configurations.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">row</span><span class="o">.</span><span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_html rendered_html output_subarea">
+<div id="1121">
+<div class="bk-root" data-root-id="1121" id="1586346f-8553-46bb-a0c3-9c55f1daef8a"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"f7f81f1a-8650-4334-9390-bcee16d6a3c0":{"roots":{"references":[{"attributes":{"margin":[5,0,0,10],"name":"","style":{"white-space":"nowrap"},"text":"<b>0</b>"},"id":"1127","type":"Div"},{"attributes":{"state":{"0":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1124\"}, \"new\": \"&lt;p&gt;0 * 5 = 0&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1133\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"1":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1124\"}, \"new\": \"&lt;p&gt;5 * 5 = 25&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1132\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"2":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1124\"}, \"new\": \"&lt;p&gt;10 * 5 = 50&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1131\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"}},"values":[0],"widgets":{"1128":0}},"id":"1125","type":"panel.models.state.State"},{"attributes":{"children":[{"id":"1126"},{"id":"1123"}],"margin":[0,0,0,0],"name":"Row02898","tags":["embedded"]},"id":"1121","type":"Row"},{"attributes":{"code":"\nvar state = null\nfor (var root of cb_obj.document.roots()) {\n  if (root.id == '1125') {\n    state = root;\n    break;\n  }\n}\nif (!state) { return; }\nstate.set_state(cb_obj, cb_obj.value)\n"},"id":"1130","type":"CustomJS"},{"attributes":{"children":[{"id":"1124"}],"margin":[0,0,0,0],"name":"Row02895"},"id":"1123","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"ParamFunction02891","text":"&lt;p&gt;0 * 5 = 0&lt;/p&gt;"},"id":"1124","type":"panel.models.markup.HTML"},{"attributes":{"args":{"source":{"id":"1128"},"target":{"id":"1127"}},"code":"\n    var labels = ['<b>0</b>', '<b>5</b>', '<b>10</b>']\n    target.text = labels[source.value]\n    "},"id":"1129","type":"CustomJS"},{"attributes":{"children":[{"id":"1127"},{"id":"1128"}],"margin":[0,0,0,0],"name":"Column02905"},"id":"1126","type":"Column"},{"attributes":{"end":2,"format":"0[.]00","js_property_callbacks":{"change:value":[{"id":"1129"},{"id":"1130"}]},"margin":[0,10,5,10],"show_value":false,"start":0,"tooltips":false,"value":0,"value_throttled":0},"id":"1128","type":"Slider"}],"root_ids":["1121","1125"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"f7f81f1a-8650-4334-9390-bcee16d6a3c0","root_ids":["1121"],"roots":{"1121":"1586346f-8553-46bb-a0c3-9c55f1daef8a"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you try the widget above you will note that it only has 3 different states, 0, 5 and 10. This is because by default embed will try to limit the number of options of non-discrete or semi-discrete widgets to at most three values. This can be controlled using the <code>max_opts</code> argument to the embed method or you can provide an explicit list of <code>states</code> to embed for each widget:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">row</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">{</span><span class="n">slider</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">))})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_html rendered_html output_subarea">
+<div id="1134">
+<div class="bk-root" data-root-id="1134" id="9f80d2b9-ae1d-4b0c-bc7c-6d08af476059"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"6e3a7115-9377-4ff0-b2b9-ff4e3a625a2b":{"roots":{"references":[{"attributes":{"end":5,"format":"0[.]00","js_property_callbacks":{"change:value":[{"id":"1142"},{"id":"1143"}]},"margin":[0,10,5,10],"show_value":false,"start":0,"tooltips":false,"value":0,"value_throttled":0},"id":"1141","type":"Slider"},{"attributes":{"state":{"0":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1137\"}, \"new\": \"&lt;p&gt;0 * 5 = 0&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1149\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"1":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1137\"}, \"new\": \"&lt;p&gt;2 * 5 = 10&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1148\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"2":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1137\"}, \"new\": \"&lt;p&gt;4 * 5 = 20&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1147\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"3":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1137\"}, \"new\": \"&lt;p&gt;6 * 5 = 30&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1146\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"4":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1137\"}, \"new\": \"&lt;p&gt;8 * 5 = 40&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1145\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"5":{"content":"{\"events\": [{\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1137\"}, \"new\": \"&lt;p&gt;10 * 5 = 50&lt;/p&gt;\"}], \"references\": []}","header":"{\"msgid\": \"1144\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"}},"values":[0],"widgets":{"1141":0}},"id":"1138","type":"panel.models.state.State"},{"attributes":{"margin":[5,0,0,10],"name":"","style":{"white-space":"nowrap"},"text":"<b>0</b>"},"id":"1140","type":"Div"},{"attributes":{"children":[{"id":"1137"}],"margin":[0,0,0,0],"name":"Row02895"},"id":"1136","type":"Row"},{"attributes":{"args":{"source":{"id":"1141"},"target":{"id":"1140"}},"code":"\n    var labels = ['<b>0</b>', '<b>2</b>', '<b>4</b>', '<b>6</b>', '<b>8</b>', '<b>10</b>']\n    target.text = labels[source.value]\n    "},"id":"1142","type":"CustomJS"},{"attributes":{"children":[{"id":"1140"},{"id":"1141"}],"margin":[0,0,0,0],"name":"Column02914"},"id":"1139","type":"Column"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"ParamFunction02891","text":"&lt;p&gt;0 * 5 = 0&lt;/p&gt;"},"id":"1137","type":"panel.models.markup.HTML"},{"attributes":{"code":"\nvar state = null\nfor (var root of cb_obj.document.roots()) {\n  if (root.id == '1138') {\n    state = root;\n    break;\n  }\n}\nif (!state) { return; }\nstate.set_state(cb_obj, cb_obj.value)\n"},"id":"1143","type":"CustomJS"},{"attributes":{"children":[{"id":"1139"},{"id":"1136"}],"margin":[0,0,0,0],"name":"Row02898","tags":["embedded"]},"id":"1134","type":"Row"}],"root_ids":["1134","1138"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"6e3a7115-9377-4ff0-b2b9-ff4e3a625a2b","root_ids":["1134"],"roots":{"1134":"9f80d2b9-ae1d-4b0c-bc7c-6d08af476059"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The full set of options for the embed method include:</p>
+<ul>
+<li><p><strong><code>max_states</code></strong>: The maximum number of states to embed</p>
+</li>
+<li><p><strong><code>max_opts</code></strong>: The maximum number of states for a single widget</p>
+</li>
+<li><p><strong><code>states</code></strong> (default={}): A dictionary specifying the widget values to embed for each widget</p>
+</li>
+<li><p><strong><code>json</code></strong> (default=True): Whether to export the data to json files</p>
+</li>
+<li><p><strong><code>save_path</code></strong> (default='./'): The path to save json files to</p>
+</li>
+<li><p><strong><code>load_path</code></strong> (default=None):  The path or URL the json files will be loaded from (same as <code>save_path</code> if not specified)</p>
+</li>
+<li><p><strong><code>progress</code></strong> (default=False): Whether to report progress</p>
+</li>
+</ul>
+<p>As you might imagine if there are multiple widgets there can quickly be a combinatorial explosion of states so by default the output is limited to about 1000 states. For larger apps the states can also be exported to json files, e.g. if you want to serve the app on a website specify the <code>save_path</code> to declare where it will be stored and the <code>load_path</code> to declare where the JS code running on the website will look for the files.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Saving">Saving<a class="anchor-link" href="#Saving">¶</a></h2><p>In case you don't need an actual server or simply want to export a static snapshot of a panel app, you can use the <code>save</code> method, which allows exporting the app to a standalone HTML or PNG file.</p>
+<p>By default, the HTML file generated will depend on loading JavaScript code for BokehJS from the online <code>CDN</code> repository, to reduce the file size. If you need to work in an airgapped or no-network environment, you can declare that <code>INLINE</code> resources should be used instead of <code>CDN</code>:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.resources</span> <span class="kn">import</span> <span class="n">INLINE</span>
+<span class="n">panel</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'test.html'</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="n">INLINE</span><span class="p">)</span>
+</pre></div>
+<p>Additionally the save method also allows enabling the <code>embed</code> option, which, as explained above, will embed the apps state in the app or save the state to json files which you can ship alongside the exported HTML.</p>
+<p>Finally, if a 'png' file extension is specified, the exported plot will be rendered as a PNG, which currently requires Selenium and PhantomJS to be installed:</p>
+<div class="highlight"><pre><span></span><span class="n">pane</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'test.png'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils"/>
+<p><a class="reference external" href="https://raw.githubusercontent.com/holoviz/panel/master/examples/user_guide/Deploy_and_Export.ipynb">Right click to download this notebook from GitHub.</a></p>
+</div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

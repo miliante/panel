@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Progress — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/widgets/Progress.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="progress">
+<span id="widgets-gallery-progress"></span><h1>Progress<a class="headerlink" href="#progress" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/widgets/Progress.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="406c1816-ab1c-4f09-8c0f-e4a7172fab6a"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#406c1816-ab1c-4f09-8c0f-e4a7172fab6a');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="15c7d4dc-49d4-412f-82c0-da604c320623"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#15c7d4dc-49d4-412f-82c0-da604c320623');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Progress</code> widget displays the progress towards some target based on the current <code>value</code> and the <code>max</code> value. If no <code>value</code> is set the <code>Progress</code> widget is in indeterminate mode an will animate depending</p>
+<p>For more information about listening to widget events and laying out widgets refer to the <a href="../../user_guide/Widgets.html">widgets user guide</a>. Alternatively you can learn how to build GUIs by declaring parameters independently of any specific widgets in the <a href="../../user_guide/Param.html">param user guide</a>. To express interactivity entirely using Javascript without the need for a Python server take a look at the <a href="../../user_guide/Param.html">links user guide</a>.</p>
+<h4 id="Parameters:">Parameters:<a class="anchor-link" href="#Parameters:">¶</a></h4><p>For layout and styling related parameters see the <a href="../../user_guide/Customization.html">customization user guide</a>.</p>
+<ul>
+<li><strong><code>active</code></strong> (boolean): Whether to animate the bar when in indeterminate mode</li>
+<li><strong><code>bar_color</code></strong> (str): The color of the bar, one of 'primary', 'secondary', 'success', 'info', 'warn', 'danger', 'light', 'dark'</li>
+<li><strong><code>max</code></strong> (int): The maximum progress value</li>
+<li><strong><code>style</code></strong> (dict): A dictionary of CSS to apply to the progress bar</li>
+<li><strong><code>value</code></strong> (int or None): The current value towards the progress</li>
+</ul>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Progress</code> widget can be instantiated with and without a value. If given a <code>value</code> the progress bar will fill according to the progress to the <code>max</code> value which is 100 by default:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">progress</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Progress</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Progress'</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">progress</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="d0dcf0c1-3992-4a4a-936f-2bdd8f9bf981"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"d20e1460-f1e4-4ae1-9471-d7803f4d4459":{"roots":{"references":[{"attributes":{"bar_color":"success","margin":[5,10,5,10],"sizing_mode":"fixed","value":20,"width":200},"id":"1001","type":"panel.models.widgets.Progress"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"d20e1460-f1e4-4ae1-9471-d7803f4d4459","root_ids":["1001"],"roots":{"1001":"d0dcf0c1-3992-4a4a-936f-2bdd8f9bf981"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The progress <code>value</code> can be updated from Python:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">progress</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">80</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Progress</code> can also be instantiated without a <code>value</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">indeterminate</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Progress</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Indeterminate Progress'</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">indeterminate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1003">
+<div class="bk-root" data-root-id="1003" id="69993b3a-01d3-470a-8d62-3a522d6e0edc"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"68f0b02b-7ae7-4c38-b488-65aaf9153ec9":{"roots":{"references":[{"attributes":{"bar_color":"success","margin":[5,10,5,10],"sizing_mode":"fixed","width":200},"id":"1003","type":"panel.models.widgets.Progress"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"68f0b02b-7ae7-4c38-b488-65aaf9153ec9","root_ids":["1003"],"roots":{"1003":"69993b3a-01d3-470a-8d62-3a522d6e0edc"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Progress</code> widget also supports a range of bar colors:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">running</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="o">*</span><span class="p">[</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Progress</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">bar_color</span><span class="o">=</span><span class="n">bs</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Progress</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">bar_color</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="n">running</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1005">
+<div class="bk-root" data-root-id="1005" id="1740dfbe-0102-4993-8bf9-b0bf46b80bc7"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"2299d1be-91ef-4a01-be96-29ab34dfe6f9":{"roots":{"references":[{"attributes":{"bar_color":"info","margin":[5,10,5,10],"sizing_mode":"fixed","value":40,"width":300},"id":"1017","type":"panel.models.widgets.Progress"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02882","text":"&lt;p&gt;danger&lt;/p&gt;","width":100},"id":"1019","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1016"},{"id":"1017"}],"margin":[0,0,0,0],"name":"Row02881"},"id":"1015","type":"Row"},{"attributes":{"children":[{"id":"1006"},{"id":"1009"},{"id":"1012"},{"id":"1015"},{"id":"1018"},{"id":"1021"},{"id":"1024"},{"id":"1027"}],"margin":[0,0,0,0],"name":"Column02898","tags":["embedded"]},"id":"1005","type":"Column"},{"attributes":{"bar_color":"danger","margin":[5,10,5,10],"sizing_mode":"fixed","value":50,"width":300},"id":"1020","type":"panel.models.widgets.Progress"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02874","text":"&lt;p&gt;success&lt;/p&gt;","width":100},"id":"1013","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1007"},{"id":"1008"}],"margin":[0,0,0,0],"name":"Row02869"},"id":"1006","type":"Row"},{"attributes":{"bar_color":"success","margin":[5,10,5,10],"sizing_mode":"fixed","value":30,"width":300},"id":"1014","type":"panel.models.widgets.Progress"},{"attributes":{"margin":[5,10,5,10],"sizing_mode":"fixed","value":10,"width":300},"id":"1008","type":"panel.models.widgets.Progress"},{"attributes":{"children":[{"id":"1022"},{"id":"1023"}],"margin":[0,0,0,0],"name":"Row02889"},"id":"1021","type":"Row"},{"attributes":{"children":[{"id":"1019"},{"id":"1020"}],"margin":[0,0,0,0],"name":"Row02885"},"id":"1018","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02870","text":"&lt;p&gt;secondary&lt;/p&gt;","width":100},"id":"1010","type":"panel.models.markup.HTML"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02866","text":"&lt;p&gt;primary&lt;/p&gt;","width":100},"id":"1007","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1010"},{"id":"1011"}],"margin":[0,0,0,0],"name":"Row02873"},"id":"1009","type":"Row"},{"attributes":{"bar_color":"light","margin":[5,10,5,10],"sizing_mode":"fixed","value":70,"width":300},"id":"1026","type":"panel.models.widgets.Progress"},{"attributes":{"bar_color":"secondary","margin":[5,10,5,10],"sizing_mode":"fixed","value":20,"width":300},"id":"1011","type":"panel.models.widgets.Progress"},{"attributes":{"children":[{"id":"1025"},{"id":"1026"}],"margin":[0,0,0,0],"name":"Row02893"},"id":"1024","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02894","text":"&lt;p&gt;dark&lt;/p&gt;","width":100},"id":"1028","type":"panel.models.markup.HTML"},{"attributes":{"bar_color":"warning","margin":[5,10,5,10],"sizing_mode":"fixed","value":60,"width":300},"id":"1023","type":"panel.models.widgets.Progress"},{"attributes":{"bar_color":"dark","margin":[5,10,5,10],"sizing_mode":"fixed","value":80,"width":300},"id":"1029","type":"panel.models.widgets.Progress"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02878","text":"&lt;p&gt;info&lt;/p&gt;","width":100},"id":"1016","type":"panel.models.markup.HTML"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02890","text":"&lt;p&gt;light&lt;/p&gt;","width":100},"id":"1025","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1028"},{"id":"1029"}],"margin":[0,0,0,0],"name":"Row02897"},"id":"1027","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02886","text":"&lt;p&gt;warning&lt;/p&gt;","width":100},"id":"1022","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1013"},{"id":"1014"}],"margin":[0,0,0,0],"name":"Row02877"},"id":"1012","type":"Row"}],"root_ids":["1005"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"2299d1be-91ef-4a01-be96-29ab34dfe6f9","root_ids":["1005"],"roots":{"1005":"1740dfbe-0102-4993-8bf9-b0bf46b80bc7"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Controls">Controls<a class="anchor-link" href="#Controls">¶</a></h3><p>The <code>Progress</code> widget exposes a number of options which can be changed from both Python and Javascript. Try out the effect of these parameters interactively:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">progress</span><span class="o">.</span><span class="n">controls</span><span class="p">(</span><span class="n">jslink</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">progress</span><span class="p">,</span> <span class="n">indeterminate</span><span class="o">.</span><span class="n">controls</span><span class="p">(</span><span class="n">jslink</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">indeterminate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1032">
+<div class="bk-root" data-root-id="1032" id="9a956eb4-c217-4fe9-a2b3-6306c32d9955"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"42a14219-cc00-4230-9d47-be6450277be7":{"roots":{"references":[{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1141"}]},"margin":[5,10,5,10],"title":"Css classes"},"id":"1074","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max"},"source":{"id":"1040"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057872]},"id":"1095","type":"CustomJS"},{"attributes":{"child":{"id":"1042"},"name":"Layout","title":"Layout"},"id":"1058","type":"Panel"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max"},"source":{"id":"1059"},"target":{"id":"1040"}},"code":"\n    var value = source['max'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057872]},"id":"1096","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1113"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max width","value":0,"value_throttled":0},"id":"1052","type":"Spinner"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1157"}]},"margin":[5,10,5,10],"options":[["auto","auto"],["fixed","fixed"],["fit","fit"],["min","min"],["max","max"]],"title":"Width policy","value":"auto"},"id":"1082","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_height"},"source":{"id":"1059"},"target":{"id":"1053"}},"code":"\n    var value = source['max_height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533008]},"id":"1116","type":"CustomJS"},{"attributes":{"children":[{"id":"1043"},{"id":"1044"},{"id":"1045"},{"id":"1046"},{"id":"1047"},{"id":"1048"},{"id":"1049"},{"id":"1050"},{"id":"1051"},{"id":"1052"},{"id":"1053"},{"id":"1054"},{"id":"1055"},{"id":"1056"},{"id":"1057"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"min_width":300,"name":"Layout","width":300},"id":"1042","type":"Column"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1143"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Width","value":200,"value_throttled":200},"id":"1075","type":"Spinner"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1097"}]},"margin":[5,10,5,10],"options":[["start","start"],["end","end"],["center","center"]],"title":"Align","value":"start"},"id":"1044","type":"Select"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1151"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max width","value":0,"value_throttled":0},"id":"1079","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_height"},"source":{"id":"1053"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max_height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max_height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max_height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533008]},"id":"1115","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width_policy"},"source":{"id":"1059"},"target":{"id":"1055"}},"code":"\n    var value = source['width_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057104]},"id":"1120","type":"CustomJS"},{"attributes":{"margin":[5,10,5,10],"name":"","text":"<b>Layout</b>"},"id":"1043","type":"Div"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1119"}]},"margin":[5,10,5,10],"options":[["auto","auto"],["fixed","fixed"],["fit","fit"],["min","min"],["max","max"]],"title":"Width policy","value":"auto"},"id":"1055","type":"Select"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1105"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Width","value":200,"value_throttled":200},"id":"1048","type":"Spinner"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1145"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Height","value":0,"value_throttled":0},"id":"1076","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width_policy"},"source":{"id":"1055"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['width_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set width_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['width_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057104]},"id":"1119","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"align"},"source":{"id":"1059"},"target":{"id":"1044"}},"code":"\n    var value = source['align'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057936]},"id":"1098","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"margin"},"source":{"id":"1059"},"target":{"id":"1054"}},"code":"\n    var value = source['margin'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533136]},"id":"1118","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1103"}]},"margin":[5,10,5,10],"title":"Css classes"},"id":"1047","type":"TextInput"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1147"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Min width","value":0,"value_throttled":0},"id":"1077","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"aspect_ratio"},"source":{"id":"1045"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['aspect_ratio'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set aspect_ratio on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['aspect_ratio'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057744]},"id":"1099","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"margin"},"source":{"id":"1054"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['margin'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set margin on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['margin'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533136]},"id":"1117","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1149"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Min height","value":0,"value_throttled":0},"id":"1078","type":"Spinner"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1107"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Height","value":0,"value_throttled":0},"id":"1049","type":"Spinner"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1153"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max height","value":0,"value_throttled":0},"id":"1080","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height_policy"},"source":{"id":"1059"},"target":{"id":"1056"}},"code":"\n    var value = source['height_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533264]},"id":"1122","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1161"}]},"margin":[5,10,5,10],"options":[["fixed","fixed"],["stretch_width","stretch_width"],["stretch_height","stretch_height"],["stretch_both","stretch_both"],["scale_width","scale_width"],["scale_height","scale_height"],["scale_both","scale_both"],["None","None"]],"title":"Sizing mode","value":"fixed"},"id":"1084","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"aspect_ratio"},"source":{"id":"1059"},"target":{"id":"1045"}},"code":"\n    var value = source['aspect_ratio'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057744]},"id":"1100","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1109"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Min width","value":0,"value_throttled":0},"id":"1050","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height_policy"},"source":{"id":"1056"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['height_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set height_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['height_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533264]},"id":"1121","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1111"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Min height","value":0,"value_throttled":0},"id":"1051","type":"Spinner"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1155"}]},"margin":[5,10,5,10],"title":"Margin","value":"[5, 10]"},"id":"1081","type":"TextInput"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1115"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max height","value":0,"value_throttled":0},"id":"1053","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"sizing_mode"},"source":{"id":"1059"},"target":{"id":"1057"}},"code":"\n    var value = source['sizing_mode'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533648]},"id":"1124","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"background"},"source":{"id":"1059"},"target":{"id":"1046"}},"code":"\n    var value = source['background'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540054928]},"id":"1102","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1123"}]},"margin":[5,10,5,10],"options":[["fixed","fixed"],["stretch_width","stretch_width"],["stretch_height","stretch_height"],["stretch_both","stretch_both"],["scale_width","scale_width"],["scale_height","scale_height"],["scale_both","scale_both"],["None","None"]],"title":"Sizing mode","value":"fixed"},"id":"1057","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"background"},"source":{"id":"1046"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['background'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set background on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['background'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540054928]},"id":"1101","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"sizing_mode"},"source":{"id":"1057"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['sizing_mode'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set sizing_mode on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['sizing_mode'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539533648]},"id":"1123","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1159"}]},"margin":[5,10,5,10],"options":[["auto","auto"],["fixed","fixed"],["fit","fit"],["min","min"],["max","max"]],"title":"Height policy","value":"auto"},"id":"1083","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"bar_color"},"source":{"id":"1086"},"target":{"id":"1066"}},"code":"\n    var value = source['bar_color'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538876944]},"id":"1132","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"css_classes"},"source":{"id":"1059"},"target":{"id":"1047"}},"code":"\n    var value = source['css_classes'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540032208]},"id":"1104","type":"CustomJS"},{"attributes":{"margin":[5,10,5,10],"name":"","text":"<b>Controls</b>"},"id":"1062","type":"Div"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"css_classes"},"source":{"id":"1047"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['css_classes'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set css_classes on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['css_classes'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540032208]},"id":"1103","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1121"}]},"margin":[5,10,5,10],"options":[["auto","auto"],["fixed","fixed"],["fit","fit"],["min","min"],["max","max"]],"title":"Height policy","value":"auto"},"id":"1056","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width"},"source":{"id":"1048"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540032656]},"id":"1105","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"bar_color"},"source":{"id":"1059"},"target":{"id":"1039"}},"code":"\n    var value = source['bar_color'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539904016]},"id":"1094","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"disabled"},"source":{"id":"1086"},"target":{"id":"1063"}},"code":"\n    var value = source['disabled'];\n    value = value;\n    value = value ? [0] : [];\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539451280]},"id":"1126","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height"},"source":{"id":"1049"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540031760]},"id":"1107","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"disabled"},"source":{"id":"1063"},"target":{"id":"1086"}},"code":"\n    var value = source['active'];\n    value = value.indexOf(0) >= 0;\n    value = value;\n    try {\n      var property = target.properties['disabled'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set disabled on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['disabled'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539451280]},"id":"1125","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width"},"source":{"id":"1059"},"target":{"id":"1048"}},"code":"\n    var value = source['width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540032656]},"id":"1106","type":"CustomJS"},{"attributes":{"children":[{"id":"1062"},{"id":"1063"},{"id":"1064"},{"id":"1065"},{"id":"1066"},{"id":"1067"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"min_width":300,"name":"Controls","width":300},"id":"1061","type":"Column"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"disabled"},"source":{"id":"1036"},"target":{"id":"1059"}},"code":"\n    var value = source['active'];\n    value = value.indexOf(0) >= 0;\n    value = value;\n    try {\n      var property = target.properties['disabled'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set disabled on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['disabled'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539509968]},"id":"1087","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1064"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539451984]},"id":"1127","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"disabled"},"source":{"id":"1059"},"target":{"id":"1036"}},"code":"\n    var value = source['disabled'];\n    value = value;\n    value = value ? [0] : [];\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539509968]},"id":"1088","type":"CustomJS"},{"attributes":{"child":{"id":"1069"},"name":"Layout","title":"Layout"},"id":"1085","type":"Panel"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_width"},"source":{"id":"1050"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['min_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set min_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['min_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539531408]},"id":"1109","type":"CustomJS"},{"attributes":{"bar_color":"success","js_property_callbacks":{"change:active":[{"id":"1130"}],"change:align":[{"id":"1136"}],"change:aspect_ratio":[{"id":"1138"}],"change:background":[{"id":"1140"}],"change:bar_color":[{"id":"1132"}],"change:css_classes":[{"id":"1142"}],"change:disabled":[{"id":"1126"}],"change:height":[{"id":"1146"}],"change:height_policy":[{"id":"1160"}],"change:margin":[{"id":"1156"}],"change:max":[{"id":"1134"}],"change:max_height":[{"id":"1154"}],"change:max_width":[{"id":"1152"}],"change:min_height":[{"id":"1150"}],"change:min_width":[{"id":"1148"}],"change:sizing_mode":[{"id":"1162"}],"change:value":[{"id":"1128"}],"change:width":[{"id":"1144"}],"change:width_policy":[{"id":"1158"}]},"margin":[5,10,5,10],"sizing_mode":"fixed","width":200},"id":"1086","type":"panel.models.widgets.Progress"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height"},"source":{"id":"1059"},"target":{"id":"1049"}},"code":"\n    var value = source['height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540031760]},"id":"1108","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1086"},"target":{"id":"1064"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539451984]},"id":"1128","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1037"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540000912]},"id":"1089","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:active":[{"id":"1125"}]},"labels":["Disabled"],"margin":[5,10,5,10]},"id":"1063","type":"CheckboxGroup"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"active"},"source":{"id":"1065"},"target":{"id":"1086"}},"code":"\n    var value = source['active'];\n    value = value.indexOf(0) >= 0;\n    value = value;\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538723856]},"id":"1129","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1059"},"target":{"id":"1037"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540000912]},"id":"1090","type":"CustomJS"},{"attributes":{"child":{"id":"1061"},"name":"Controls","title":"Controls"},"id":"1068","type":"Panel"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_width"},"source":{"id":"1059"},"target":{"id":"1050"}},"code":"\n    var value = source['min_width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539531408]},"id":"1110","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"active"},"source":{"id":"1086"},"target":{"id":"1065"}},"code":"\n    var value = source['active'];\n    value = value;\n    value = value ? [0] : [];\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538723856]},"id":"1130","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"active"},"source":{"id":"1038"},"target":{"id":"1059"}},"code":"\n    var value = source['active'];\n    value = value.indexOf(0) >= 0;\n    value = value;\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540000976]},"id":"1091","type":"CustomJS"},{"attributes":{"end":100,"format":"0[.]00","js_property_callbacks":{"change:value":[{"id":"1127"}]},"margin":[5,10,5,10],"start":0,"title":"Value","value":0,"value_throttled":0},"id":"1064","type":"Slider"},{"attributes":{"active":[0],"js_property_callbacks":{"change:active":[{"id":"1129"}]},"labels":["Active"],"margin":[5,10,5,10]},"id":"1065","type":"CheckboxGroup"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"bar_color"},"source":{"id":"1066"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['bar_color'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set bar_color on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['bar_color'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538876944]},"id":"1131","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"active"},"source":{"id":"1059"},"target":{"id":"1038"}},"code":"\n    var value = source['active'];\n    value = value;\n    value = value ? [0] : [];\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540000976]},"id":"1092","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_height"},"source":{"id":"1059"},"target":{"id":"1051"}},"code":"\n    var value = source['min_height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539532752]},"id":"1112","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max"},"source":{"id":"1086"},"target":{"id":"1067"}},"code":"\n    var value = source['max'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538878864]},"id":"1134","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1133"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max","value":100,"value_throttled":100},"id":"1067","type":"Spinner"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1139"}]},"margin":[5,10,5,10],"title":"Background"},"id":"1073","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_height"},"source":{"id":"1051"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['min_height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set min_height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['min_height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539532752]},"id":"1111","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"align"},"source":{"id":"1071"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['align'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set align on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['align'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538878928]},"id":"1135","type":"CustomJS"},{"attributes":{"children":[{"id":"1070"},{"id":"1071"},{"id":"1072"},{"id":"1073"},{"id":"1074"},{"id":"1075"},{"id":"1076"},{"id":"1077"},{"id":"1078"},{"id":"1079"},{"id":"1080"},{"id":"1081"},{"id":"1082"},{"id":"1083"},{"id":"1084"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"min_width":300,"name":"Layout","width":300},"id":"1069","type":"Column"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"bar_color"},"source":{"id":"1039"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['bar_color'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set bar_color on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['bar_color'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539904016]},"id":"1093","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_width"},"source":{"id":"1052"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539530640]},"id":"1113","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1135"}]},"margin":[5,10,5,10],"options":[["start","start"],["end","end"],["center","center"]],"title":"Align","value":"start"},"id":"1071","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_width"},"source":{"id":"1059"},"target":{"id":"1052"}},"code":"\n    var value = source['max_width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230539530640]},"id":"1114","type":"CustomJS"},{"attributes":{"margin":[5,10,5,10],"name":"","text":"<b>Layout</b>"},"id":"1070","type":"Div"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max"},"source":{"id":"1067"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538878864]},"id":"1133","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"align"},"source":{"id":"1044"},"target":{"id":"1059"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['align'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set align on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['align'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230540057936]},"id":"1097","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1137"}]},"margin":[5,10,5,10],"title":"Aspect ratio"},"id":"1072","type":"TextInput"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1101"}]},"margin":[5,10,5,10],"title":"Background"},"id":"1046","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width_policy"},"source":{"id":"1086"},"target":{"id":"1082"}},"code":"\n    var value = source['width_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433936]},"id":"1158","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"align"},"source":{"id":"1086"},"target":{"id":"1071"}},"code":"\n    var value = source['align'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538878928]},"id":"1136","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"aspect_ratio"},"source":{"id":"1072"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['aspect_ratio'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set aspect_ratio on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['aspect_ratio'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538877840]},"id":"1137","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1117"}]},"margin":[5,10,5,10],"title":"Margin","value":"[5, 10]"},"id":"1054","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width_policy"},"source":{"id":"1082"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['width_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set width_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['width_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433936]},"id":"1157","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"margin"},"source":{"id":"1086"},"target":{"id":"1081"}},"code":"\n    var value = source['margin'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433808]},"id":"1156","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"margin"},"source":{"id":"1081"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['margin'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set margin on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['margin'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433808]},"id":"1155","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1131"}]},"margin":[5,10,5,10],"options":[["primary","primary"],["secondary","secondary"],["success","success"],["info","info"],["danger","danger"],["warning","warning"],["light","light"],["dark","dark"]],"title":"Bar color","value":"success"},"id":"1066","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height_policy"},"source":{"id":"1086"},"target":{"id":"1083"}},"code":"\n    var value = source['height_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538434256]},"id":"1160","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"aspect_ratio"},"source":{"id":"1086"},"target":{"id":"1072"}},"code":"\n    var value = source['aspect_ratio'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538877840]},"id":"1138","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height_policy"},"source":{"id":"1083"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['height_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set height_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['height_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538434256]},"id":"1159","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"background"},"source":{"id":"1086"},"target":{"id":"1073"}},"code":"\n    var value = source['background'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538432656]},"id":"1140","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"sizing_mode"},"source":{"id":"1086"},"target":{"id":"1084"}},"code":"\n    var value = source['sizing_mode'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538432784]},"id":"1162","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"background"},"source":{"id":"1073"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['background'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set background on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['background'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538432656]},"id":"1139","type":"CustomJS"},{"attributes":{"active":[0],"js_property_callbacks":{"change:active":[{"id":"1091"}]},"labels":["Active"],"margin":[5,10,5,10]},"id":"1038","type":"CheckboxGroup"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"sizing_mode"},"source":{"id":"1084"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['sizing_mode'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set sizing_mode on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['sizing_mode'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538432784]},"id":"1161","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"css_classes"},"source":{"id":"1086"},"target":{"id":"1074"}},"code":"\n    var value = source['css_classes'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433104]},"id":"1142","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"css_classes"},"source":{"id":"1074"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['css_classes'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set css_classes on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['css_classes'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433104]},"id":"1141","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1099"}]},"margin":[5,10,5,10],"title":"Aspect ratio"},"id":"1045","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width"},"source":{"id":"1075"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433232]},"id":"1143","type":"CustomJS"},{"attributes":{"child":{"id":"1034"},"name":"Controls","title":"Controls"},"id":"1041","type":"Panel"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width"},"source":{"id":"1086"},"target":{"id":"1075"}},"code":"\n    var value = source['width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433232]},"id":"1144","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height"},"source":{"id":"1076"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433360]},"id":"1145","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_width"},"source":{"id":"1077"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['min_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set min_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['min_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433296]},"id":"1147","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height"},"source":{"id":"1086"},"target":{"id":"1076"}},"code":"\n    var value = source['height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433360]},"id":"1146","type":"CustomJS"},{"attributes":{"children":[{"id":"1033"},{"id":"1059"},{"id":"1060"},{"id":"1086"}],"margin":[0,0,0,0],"name":"Row03037","tags":["embedded"]},"id":"1032","type":"Row"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1041"},{"id":"1058"}]},"id":"1033","type":"Tabs"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1068"},{"id":"1085"}]},"id":"1060","type":"Tabs"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_width"},"source":{"id":"1086"},"target":{"id":"1077"}},"code":"\n    var value = source['min_width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433296]},"id":"1148","type":"CustomJS"},{"attributes":{"bar_color":"success","js_property_callbacks":{"change:active":[{"id":"1092"}],"change:align":[{"id":"1098"}],"change:aspect_ratio":[{"id":"1100"}],"change:background":[{"id":"1102"}],"change:bar_color":[{"id":"1094"}],"change:css_classes":[{"id":"1104"}],"change:disabled":[{"id":"1088"}],"change:height":[{"id":"1108"}],"change:height_policy":[{"id":"1122"}],"change:margin":[{"id":"1118"}],"change:max":[{"id":"1096"}],"change:max_height":[{"id":"1116"}],"change:max_width":[{"id":"1114"}],"change:min_height":[{"id":"1112"}],"change:min_width":[{"id":"1110"}],"change:sizing_mode":[{"id":"1124"}],"change:value":[{"id":"1090"}],"change:width":[{"id":"1106"}],"change:width_policy":[{"id":"1120"}]},"margin":[5,10,5,10],"sizing_mode":"fixed","value":80,"width":200},"id":"1059","type":"panel.models.widgets.Progress"},{"attributes":{"children":[{"id":"1035"},{"id":"1036"},{"id":"1037"},{"id":"1038"},{"id":"1039"},{"id":"1040"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"min_width":300,"name":"Controls","width":300},"id":"1034","type":"Column"},{"attributes":{"margin":[5,10,5,10],"name":"","text":"<b>Controls</b>"},"id":"1035","type":"Div"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_height"},"source":{"id":"1086"},"target":{"id":"1078"}},"code":"\n    var value = source['min_height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433424]},"id":"1150","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:active":[{"id":"1087"}]},"labels":["Disabled"],"margin":[5,10,5,10]},"id":"1036","type":"CheckboxGroup"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_height"},"source":{"id":"1078"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['min_height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set min_height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['min_height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433424]},"id":"1149","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_width"},"source":{"id":"1086"},"target":{"id":"1079"}},"code":"\n    var value = source['max_width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433552]},"id":"1152","type":"CustomJS"},{"attributes":{"end":100,"format":"0[.]00","js_property_callbacks":{"change:value":[{"id":"1089"}]},"margin":[5,10,5,10],"start":0,"title":"Value","value":80,"value_throttled":80},"id":"1037","type":"Slider"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_width"},"source":{"id":"1079"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433552]},"id":"1151","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_height"},"source":{"id":"1086"},"target":{"id":"1080"}},"code":"\n    var value = source['max_height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433680]},"id":"1154","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1093"}]},"margin":[5,10,5,10],"options":[["primary","primary"],["secondary","secondary"],["success","success"],["info","info"],["danger","danger"],["warning","warning"],["light","light"],["dark","dark"]],"title":"Bar color","value":"success"},"id":"1039","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_height"},"source":{"id":"1080"},"target":{"id":"1086"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max_height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max_height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max_height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140230538433680]},"id":"1153","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1095"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max","value":100,"value_throttled":100},"id":"1040","type":"Spinner"}],"root_ids":["1032"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"42a14219-cc00-4230-9d47-be6450277be7","root_ids":["1032"],"roots":{"1032":"9a956eb4-c217-4fe9-a2b3-6306c32d9955"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/widgets/Progress.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

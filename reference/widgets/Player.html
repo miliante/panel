@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Player — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/widgets/Player.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="player">
+<span id="widgets-gallery-player"></span><h1>Player<a class="headerlink" href="#player" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/widgets/Player.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="4a783454-63a1-49c7-91f8-da34b6458736"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#4a783454-63a1-49c7-91f8-da34b6458736');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="d119c12b-08ed-4f67-98eb-64a61fc80d38"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#d119c12b-08ed-4f67-98eb-64a61fc80d38');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Player</code> widget displays media-player-like controls that allow playing and stepping through a range of values. When playing it triggers events at a pre-defined interval on the frontend, advancing the player value each time. It falls into the broad category of single-value slider widgets that provide a compatible API and includes the <a href="IntSlider.html"><code>IntSlider</code></a> and <a href="FloatSlider.html"><code>FloatSlider</code></a> widgets.</p>
+<p>For more information about listening to widget events and laying out widgets refer to the <a href="../../user_guide/Widgets.html">widgets user guide</a>. Alternatively you can learn how to build GUIs by declaring parameters independently of any specific widgets in the <a href="../../user_guide/Param.html">param user guide</a>. To express interactivity entirely using Javascript without the need for a Python server take a look at the <a href="../../user_guide/Param.html">links user guide</a>.</p>
+<h4 id="Parameters:">Parameters:<a class="anchor-link" href="#Parameters:">¶</a></h4><p>For layout and styling related parameters see the <a href="../../user_guide/Customization.html">customization user guide</a>.</p>
+<h5 id="Core">Core<a class="anchor-link" href="#Core">¶</a></h5><ul>
+<li><strong><code>start</code></strong> (int): The range's lower bound</li>
+<li><strong><code>end</code></strong> (int): The range's upper bound</li>
+<li><strong><code>step</code></strong> (int): The interval between values</li>
+<li><strong><code>value</code></strong> (object): The current value; must be one of the option values</li>
+</ul>
+<h5 id="Display">Display<a class="anchor-link" href="#Display">¶</a></h5><ul>
+<li><strong><code>disabled</code></strong> (boolean): Whether the widget is editable</li>
+<li><strong><code>interval</code></strong> (int): Interval in milliseconds between updates</li>
+<li><strong><code>name</code></strong> (str): The title of the widget</li>
+<li><strong><code>loop_policy</code></strong> (str): Looping policy; must be one of 'once', 'loop', or 'reflect'</li>
+<li><strong><code>show_loop_controls</code></strong> (boolean): Whether radio buttons allowing to switch between loop policies options are shown</li>
+</ul>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The widget has a number of buttons to go to the first or last value, step forward or backward, or play and pause the widget. It also provides control over the <code>loop_policy</code> which determines whether to play 'once', 'loop', or 'reflect'. Additionally <code>-</code> and <code>+</code> buttons slow down and speed up the player speed.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">player</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Player'</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">loop_policy</span><span class="o">=</span><span class="s1">'loop'</span><span class="p">)</span>
+
+<span class="n">player</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="71f73ea1-576b-4e92-8d3f-3626b093ef77"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"c725f19b-89fa-41a1-a174-680a1e4ba11b":{"roots":{"references":[{"attributes":{"end":100,"height":80,"loop_policy":"loop","margin":[5,10,5,10],"min_height":80,"min_width":510,"start":0,"value":32,"width":510},"id":"1001","type":"panel.models.widgets.Player"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"c725f19b-89fa-41a1-a174-680a1e4ba11b","root_ids":["1001"],"roots":{"1001":"71f73ea1-576b-4e92-8d3f-3626b093ef77"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Like most other widgets, <code>Player</code> has a value parameter that can be accessed or set:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">player</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>32</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Controls">Controls<a class="anchor-link" href="#Controls">¶</a></h3><p>The <code>Player</code> widget exposes a number of options which can be changed from both Python and Javascript. Try out the effect of these parameters interactively:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">controls</span><span class="p">(</span><span class="n">jslink</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">player</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1003">
+<div class="bk-root" data-root-id="1003" id="34840143-48fe-4188-b1f1-c5c8cb6ad225"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"fa8574c4-85d6-483c-9fbb-7d3b3371506c":{"roots":{"references":[{"attributes":{"args":{"bidirectional":true,"properties":{"value":"loop_policy"},"source":{"id":"1033"},"target":{"id":"1009"}},"code":"\n    var value = source['loop_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227005648]},"id":"1039","type":"CustomJS"},{"attributes":{"children":[{"id":"1006"},{"id":"1007"},{"id":"1008"},{"id":"1009"},{"id":"1010"},{"id":"1011"},{"id":"1012"},{"id":"1013"},{"id":"1014"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"min_width":300,"name":"Controls","width":300},"id":"1005","type":"Column"},{"attributes":{"margin":[5,10,5,10],"name":"","text":"<b>Controls</b>"},"id":"1006","type":"Div"},{"attributes":{"code":"\nvar state = null\nfor (var root of cb_obj.document.roots()) {\n  if (root.id == '1078') {\n    state = root;\n    break;\n  }\n}\nif (!state) { return; }\nstate.set_state(cb_obj, cb_obj.value)\n"},"id":"1079","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"background"},"source":{"id":"1033"},"target":{"id":"1020"}},"code":"\n    var value = source['background'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552528]},"id":"1055","type":"CustomJS"},{"attributes":{"end":100,"height":80,"js_property_callbacks":{"change:align":[{"id":"1051"}],"change:aspect_ratio":[{"id":"1053"}],"change:background":[{"id":"1055"}],"change:css_classes":[{"id":"1057"}],"change:disabled":[{"id":"1035"}],"change:end":[{"id":"1047"}],"change:height":[{"id":"1061"}],"change:height_policy":[{"id":"1075"}],"change:interval":[{"id":"1037"}],"change:loop_policy":[{"id":"1039"}],"change:margin":[{"id":"1071"}],"change:max_height":[{"id":"1069"}],"change:max_width":[{"id":"1067"}],"change:min_height":[{"id":"1065"}],"change:min_width":[{"id":"1063"}],"change:show_loop_controls":[{"id":"1043"}],"change:sizing_mode":[{"id":"1077"}],"change:start":[{"id":"1045"}],"change:step":[{"id":"1041"}],"change:value":[{"id":"1049"},{"id":"1079"}],"change:width":[{"id":"1059"}],"change:width_policy":[{"id":"1073"}]},"loop_policy":"loop","margin":[5,10,5,10],"min_height":80,"min_width":510,"start":0,"value":32,"width":510},"id":"1033","type":"panel.models.widgets.Player"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"sizing_mode"},"source":{"id":"1033"},"target":{"id":"1031"}},"code":"\n    var value = source['sizing_mode'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553936]},"id":"1077","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"interval"},"source":{"id":"1008"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['interval'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set interval on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['interval'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227005776]},"id":"1036","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height_policy"},"source":{"id":"1033"},"target":{"id":"1030"}},"code":"\n    var value = source['height_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226554128]},"id":"1075","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:active":[{"id":"1034"}]},"labels":["Disabled"],"margin":[5,10,5,10]},"id":"1007","type":"CheckboxGroup"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"background"},"source":{"id":"1020"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['background'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set background on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['background'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552528]},"id":"1054","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"interval"},"source":{"id":"1033"},"target":{"id":"1008"}},"code":"\n    var value = source['interval'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227005776]},"id":"1037","type":"CustomJS"},{"attributes":{"active":[0],"js_property_callbacks":{"change:active":[{"id":"1042"}]},"labels":["Show loop controls"],"margin":[5,10,5,10]},"id":"1011","type":"CheckboxGroup"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1040"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Step","value":1,"value_throttled":1},"id":"1010","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"css_classes"},"source":{"id":"1033"},"target":{"id":"1021"}},"code":"\n    var value = source['css_classes'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552976]},"id":"1057","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"loop_policy"},"source":{"id":"1009"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['loop_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set loop_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['loop_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227005648]},"id":"1038","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1036"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Interval","value":500,"value_throttled":500},"id":"1008","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"css_classes"},"source":{"id":"1021"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['css_classes'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set css_classes on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['css_classes'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552976]},"id":"1056","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"sizing_mode"},"source":{"id":"1031"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['sizing_mode'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set sizing_mode on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['sizing_mode'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553936]},"id":"1076","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width"},"source":{"id":"1022"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553104]},"id":"1058","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"align"},"source":{"id":"1033"},"target":{"id":"1018"}},"code":"\n    var value = source['align'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552272]},"id":"1051","type":"CustomJS"},{"attributes":{"margin":[5,10,5,10],"name":"","text":"<b>Layout</b>"},"id":"1017","type":"Div"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width"},"source":{"id":"1033"},"target":{"id":"1022"}},"code":"\n    var value = source['width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553104]},"id":"1059","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1056"}]},"margin":[5,10,5,10],"title":"Css classes"},"id":"1021","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"step"},"source":{"id":"1033"},"target":{"id":"1010"}},"code":"\n    var value = source['step'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227005520]},"id":"1041","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1044"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Start","value":0,"value_throttled":0},"id":"1012","type":"Spinner"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1038"}]},"margin":[5,10,5,10],"options":[["once","once"],["loop","loop"],["reflect","reflect"]],"title":"Loop policy","value":"loop"},"id":"1009","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"step"},"source":{"id":"1010"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['step'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set step on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['step'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227005520]},"id":"1040","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1048"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Value","value":32,"value_throttled":32},"id":"1014","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height"},"source":{"id":"1023"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553232]},"id":"1060","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1046"}]},"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"End","value":100,"value_throttled":100},"id":"1013","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_width"},"source":{"id":"1024"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['min_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set min_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['min_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553040]},"id":"1062","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height"},"source":{"id":"1033"},"target":{"id":"1023"}},"code":"\n    var value = source['height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553232]},"id":"1061","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"show_loop_controls"},"source":{"id":"1011"},"target":{"id":"1033"}},"code":"\n    var value = source['active'];\n    value = value.indexOf(0) >= 0;\n    value = value;\n    try {\n      var property = target.properties['show_loop_controls'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set show_loop_controls on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['show_loop_controls'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227268880]},"id":"1042","type":"CustomJS"},{"attributes":{"child":{"id":"1016"},"name":"Layout","title":"Layout"},"id":"1032","type":"Panel"},{"attributes":{"children":[{"id":"1017"},{"id":"1018"},{"id":"1019"},{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"},{"id":"1024"},{"id":"1025"},{"id":"1026"},{"id":"1027"},{"id":"1028"},{"id":"1029"},{"id":"1030"},{"id":"1031"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"min_width":300,"name":"Layout","width":300},"id":"1016","type":"Column"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1050"}]},"margin":[5,10,5,10],"options":[["start","start"],["end","end"],["center","center"]],"title":"Align","value":"start"},"id":"1018","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"show_loop_controls"},"source":{"id":"1033"},"target":{"id":"1011"}},"code":"\n    var value = source['show_loop_controls'];\n    value = value;\n    value = value ? [0] : [];\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227268880]},"id":"1043","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1054"}]},"margin":[5,10,5,10],"title":"Background"},"id":"1020","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_width"},"source":{"id":"1033"},"target":{"id":"1024"}},"code":"\n    var value = source['min_width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553040]},"id":"1063","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1052"}]},"margin":[5,10,5,10],"title":"Aspect ratio"},"id":"1019","type":"TextInput"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"disabled"},"source":{"id":"1033"},"target":{"id":"1007"}},"code":"\n    var value = source['disabled'];\n    value = value;\n    value = value ? [0] : [];\n    try {\n      var property = target.properties['active'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set active on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['active'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227083408]},"id":"1035","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1072"}]},"margin":[5,10,5,10],"options":[["auto","auto"],["fixed","fixed"],["fit","fit"],["min","min"],["max","max"]],"title":"Width policy","value":"auto"},"id":"1029","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"start"},"source":{"id":"1012"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['start'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set start on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['start'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552016]},"id":"1044","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1058"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Width","value":510,"value_throttled":510},"id":"1022","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"start"},"source":{"id":"1033"},"target":{"id":"1012"}},"code":"\n    var value = source['start'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552016]},"id":"1045","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1066"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max width","value":0,"value_throttled":0},"id":"1026","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_height"},"source":{"id":"1033"},"target":{"id":"1025"}},"code":"\n    var value = source['min_height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553168]},"id":"1065","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"end"},"source":{"id":"1013"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['end'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set end on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['end'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552080]},"id":"1046","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"min_height"},"source":{"id":"1025"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['min_height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set min_height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['min_height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553168]},"id":"1064","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1060"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Height","value":80,"value_throttled":80},"id":"1023","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"disabled"},"source":{"id":"1007"},"target":{"id":"1033"}},"code":"\n    var value = source['active'];\n    value = value.indexOf(0) >= 0;\n    value = value;\n    try {\n      var property = target.properties['disabled'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set disabled on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['disabled'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073227083408]},"id":"1034","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"end"},"source":{"id":"1033"},"target":{"id":"1013"}},"code":"\n    var value = source['end'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552080]},"id":"1047","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_width"},"source":{"id":"1033"},"target":{"id":"1026"}},"code":"\n    var value = source['max_width'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553296]},"id":"1067","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1062"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Min width","value":0,"value_throttled":0},"id":"1024","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_width"},"source":{"id":"1026"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553296]},"id":"1066","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1068"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Max height","value":0,"value_throttled":0},"id":"1027","type":"Spinner"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1014"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552144]},"id":"1048","type":"CustomJS"},{"attributes":{"child":{"id":"1005"},"name":"Controls","title":"Controls"},"id":"1015","type":"Panel"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1033"},"target":{"id":"1014"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552144]},"id":"1049","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_height"},"source":{"id":"1033"},"target":{"id":"1027"}},"code":"\n    var value = source['max_height'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553424]},"id":"1069","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"max_height"},"source":{"id":"1027"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['max_height'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set max_height on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['max_height'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553424]},"id":"1068","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1070"}]},"margin":[5,10,5,10],"title":"Margin","value":"[5, 10]"},"id":"1028","type":"TextInput"},{"attributes":{"json":true,"state":{"0":"./json_e9eb168778b145b89052683b897bb617/0.json","1":"./json_e9eb168778b145b89052683b897bb617/1.json","10":"./json_e9eb168778b145b89052683b897bb617/10.json","11":"./json_e9eb168778b145b89052683b897bb617/11.json","12":"./json_e9eb168778b145b89052683b897bb617/12.json","13":"./json_e9eb168778b145b89052683b897bb617/13.json","14":"./json_e9eb168778b145b89052683b897bb617/14.json","15":"./json_e9eb168778b145b89052683b897bb617/15.json","16":"./json_e9eb168778b145b89052683b897bb617/16.json","17":"./json_e9eb168778b145b89052683b897bb617/17.json","18":"./json_e9eb168778b145b89052683b897bb617/18.json","19":"./json_e9eb168778b145b89052683b897bb617/19.json","2":"./json_e9eb168778b145b89052683b897bb617/2.json","20":"./json_e9eb168778b145b89052683b897bb617/20.json","21":"./json_e9eb168778b145b89052683b897bb617/21.json","22":"./json_e9eb168778b145b89052683b897bb617/22.json","23":"./json_e9eb168778b145b89052683b897bb617/23.json","24":"./json_e9eb168778b145b89052683b897bb617/24.json","25":"./json_e9eb168778b145b89052683b897bb617/25.json","26":"./json_e9eb168778b145b89052683b897bb617/26.json","27":"./json_e9eb168778b145b89052683b897bb617/27.json","28":"./json_e9eb168778b145b89052683b897bb617/28.json","29":"./json_e9eb168778b145b89052683b897bb617/29.json","3":"./json_e9eb168778b145b89052683b897bb617/3.json","30":"./json_e9eb168778b145b89052683b897bb617/30.json","31":"./json_e9eb168778b145b89052683b897bb617/31.json","32":"./json_e9eb168778b145b89052683b897bb617/32.json","33":"./json_e9eb168778b145b89052683b897bb617/33.json","34":"./json_e9eb168778b145b89052683b897bb617/34.json","35":"./json_e9eb168778b145b89052683b897bb617/35.json","36":"./json_e9eb168778b145b89052683b897bb617/36.json","37":"./json_e9eb168778b145b89052683b897bb617/37.json","38":"./json_e9eb168778b145b89052683b897bb617/38.json","39":"./json_e9eb168778b145b89052683b897bb617/39.json","4":"./json_e9eb168778b145b89052683b897bb617/4.json","40":"./json_e9eb168778b145b89052683b897bb617/40.json","41":"./json_e9eb168778b145b89052683b897bb617/41.json","42":"./json_e9eb168778b145b89052683b897bb617/42.json","43":"./json_e9eb168778b145b89052683b897bb617/43.json","44":"./json_e9eb168778b145b89052683b897bb617/44.json","45":"./json_e9eb168778b145b89052683b897bb617/45.json","46":"./json_e9eb168778b145b89052683b897bb617/46.json","47":"./json_e9eb168778b145b89052683b897bb617/47.json","48":"./json_e9eb168778b145b89052683b897bb617/48.json","49":"./json_e9eb168778b145b89052683b897bb617/49.json","5":"./json_e9eb168778b145b89052683b897bb617/5.json","50":"./json_e9eb168778b145b89052683b897bb617/50.json","51":"./json_e9eb168778b145b89052683b897bb617/51.json","52":"./json_e9eb168778b145b89052683b897bb617/52.json","53":"./json_e9eb168778b145b89052683b897bb617/53.json","54":"./json_e9eb168778b145b89052683b897bb617/54.json","55":"./json_e9eb168778b145b89052683b897bb617/55.json","56":"./json_e9eb168778b145b89052683b897bb617/56.json","57":"./json_e9eb168778b145b89052683b897bb617/57.json","58":"./json_e9eb168778b145b89052683b897bb617/58.json","59":"./json_e9eb168778b145b89052683b897bb617/59.json","6":"./json_e9eb168778b145b89052683b897bb617/6.json","60":"./json_e9eb168778b145b89052683b897bb617/60.json","61":"./json_e9eb168778b145b89052683b897bb617/61.json","62":"./json_e9eb168778b145b89052683b897bb617/62.json","63":"./json_e9eb168778b145b89052683b897bb617/63.json","64":"./json_e9eb168778b145b89052683b897bb617/64.json","65":"./json_e9eb168778b145b89052683b897bb617/65.json","66":"./json_e9eb168778b145b89052683b897bb617/66.json","67":"./json_e9eb168778b145b89052683b897bb617/67.json","68":"./json_e9eb168778b145b89052683b897bb617/68.json","69":"./json_e9eb168778b145b89052683b897bb617/69.json","7":"./json_e9eb168778b145b89052683b897bb617/7.json","70":"./json_e9eb168778b145b89052683b897bb617/70.json","71":"./json_e9eb168778b145b89052683b897bb617/71.json","72":"./json_e9eb168778b145b89052683b897bb617/72.json","73":"./json_e9eb168778b145b89052683b897bb617/73.json","74":"./json_e9eb168778b145b89052683b897bb617/74.json","75":"./json_e9eb168778b145b89052683b897bb617/75.json","76":"./json_e9eb168778b145b89052683b897bb617/76.json","77":"./json_e9eb168778b145b89052683b897bb617/77.json","78":"./json_e9eb168778b145b89052683b897bb617/78.json","79":"./json_e9eb168778b145b89052683b897bb617/79.json","8":"./json_e9eb168778b145b89052683b897bb617/8.json","80":"./json_e9eb168778b145b89052683b897bb617/80.json","81":"./json_e9eb168778b145b89052683b897bb617/81.json","82":"./json_e9eb168778b145b89052683b897bb617/82.json","83":"./json_e9eb168778b145b89052683b897bb617/83.json","84":"./json_e9eb168778b145b89052683b897bb617/84.json","85":"./json_e9eb168778b145b89052683b897bb617/85.json","86":"./json_e9eb168778b145b89052683b897bb617/86.json","87":"./json_e9eb168778b145b89052683b897bb617/87.json","88":"./json_e9eb168778b145b89052683b897bb617/88.json","89":"./json_e9eb168778b145b89052683b897bb617/89.json","9":"./json_e9eb168778b145b89052683b897bb617/9.json","90":"./json_e9eb168778b145b89052683b897bb617/90.json","91":"./json_e9eb168778b145b89052683b897bb617/91.json","92":"./json_e9eb168778b145b89052683b897bb617/92.json","93":"./json_e9eb168778b145b89052683b897bb617/93.json","94":"./json_e9eb168778b145b89052683b897bb617/94.json","95":"./json_e9eb168778b145b89052683b897bb617/95.json","96":"./json_e9eb168778b145b89052683b897bb617/96.json","97":"./json_e9eb168778b145b89052683b897bb617/97.json","98":"./json_e9eb168778b145b89052683b897bb617/98.json","99":"./json_e9eb168778b145b89052683b897bb617/99.json"},"values":[32],"widgets":{"1033":0}},"id":"1078","type":"panel.models.state.State"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"align"},"source":{"id":"1018"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['align'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set align on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['align'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552272]},"id":"1050","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"margin"},"source":{"id":"1028"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['margin'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set margin on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['margin'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553552]},"id":"1070","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"margin"},"source":{"id":"1033"},"target":{"id":"1028"}},"code":"\n    var value = source['margin'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553552]},"id":"1071","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width_policy"},"source":{"id":"1029"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['width_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set width_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['width_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553680]},"id":"1072","type":"CustomJS"},{"attributes":{"children":[{"id":"1004"},{"id":"1033"}],"margin":[0,0,0,0],"name":"Row02940","tags":["embedded"]},"id":"1003","type":"Row"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"width_policy"},"source":{"id":"1033"},"target":{"id":"1029"}},"code":"\n    var value = source['width_policy'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226553680]},"id":"1073","type":"CustomJS"},{"attributes":{"format":null,"js_property_callbacks":{"change:value":[{"id":"1064"}]},"low":0,"margin":[5,10,5,10],"mode":"int","placeholder":"0","title":"Min height","value":0,"value_throttled":0},"id":"1025","type":"Spinner"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1074"}]},"margin":[5,10,5,10],"options":[["auto","auto"],["fixed","fixed"],["fit","fit"],["min","min"],["max","max"]],"title":"Height policy","value":"auto"},"id":"1030","type":"Select"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1015"},{"id":"1032"}]},"id":"1004","type":"Tabs"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"height_policy"},"source":{"id":"1030"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['height_policy'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set height_policy on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['height_policy'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226554128]},"id":"1074","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"aspect_ratio"},"source":{"id":"1019"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = JSON.parse(value.replace(/'/g, '\"'));\n    value = value;\n    try {\n      var property = target.properties['aspect_ratio'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set aspect_ratio on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['aspect_ratio'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552400]},"id":"1052","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1076"}]},"margin":[5,10,5,10],"options":[["fixed","fixed"],["stretch_width","stretch_width"],["stretch_height","stretch_height"],["stretch_both","stretch_both"],["scale_width","scale_width"],["scale_height","scale_height"],["scale_both","scale_both"],["None","None"]],"title":"Sizing mode"},"id":"1031","type":"Select"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"aspect_ratio"},"source":{"id":"1033"},"target":{"id":"1019"}},"code":"\n    var value = source['aspect_ratio'];\n    value = value;\n    value = JSON.stringify(value).replace(/,/g, \", \").replace(/:/g, \": \");\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140073226552400]},"id":"1053","type":"CustomJS"}],"root_ids":["1003","1078"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"fa8574c4-85d6-483c-9fbb-7d3b3371506c","root_ids":["1003"],"roots":{"1003":"34840143-48fe-4188-b1f1-c5c8cb6ad225"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/widgets/Player.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

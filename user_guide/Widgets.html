@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Widgets — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/css/main.css" rel="stylesheet"/>
+<link href="../_static/nbsite.css" rel="stylesheet"/>
+<link href="../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/user_guide/Widgets.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../index.html">
+<img alt="Logo" src="../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../reference/index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIs.html">APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deploy_and_Export.html">Deploy &amp; Export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interact.html">Interact</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Param.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Links.html">Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pipelines.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Server_Deployment.html">Server Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Django_Apps.html">Django Apps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="widgets">
+<h1>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h1>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="00b4aaf4-d43b-4bc6-bb72-a110f1e2b91c"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#00b4aaf4-d43b-4bc6-bb72-a110f1e2b91c');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="41774912-88c0-408e-8ceb-7411759ff9ee"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#41774912-88c0-408e-8ceb-7411759ff9ee');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>Panel</code> provides a wide range of widgets to provide precise control over parameter values. The widget classes use a consistent API that allows treating broad categories of widgets as interchangeable. For instance, to select a value from a list of options, you can interchangeably use a <code>Select</code> widget, a <code>RadioButtonGroup</code>, or a range of other equivalent widgets.</p>
+<p>Like all other components in <code>Panel</code>, <code>Widget</code> objects will render and sync their state both in the notebook and on Bokeh server:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'A widget'</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'A string'</span><span class="p">)</span>
+<span class="n">widget</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="cb733e19-a042-4177-9dcc-087a2689ab07"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"a54c88ec-a256-4649-bd7f-5db5e5eee608":{"roots":{"references":[{"attributes":{"margin":[5,10,5,10],"title":"A widget","value":"A string"},"id":"1001","type":"TextInput"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"a54c88ec-a256-4649-bd7f-5db5e5eee608","root_ids":["1001"],"roots":{"1001":"cb733e19-a042-4177-9dcc-087a2689ab07"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Changing the text value will automatically update the corresponding parameter, if you have a live running Python process:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">widget</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'A string'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Updating the parameter value will also update the widget:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">widget</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">'ABCDEFG'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Callbacks-and-links">Callbacks and links<a class="anchor-link" href="#Callbacks-and-links">¶</a></h2><p>To listen to a parameter change we can call <code>widget.param.watch</code> with the parameter to watch and a function:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="n">widget</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="nb">print</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Watcher(inst=TextInput(name='A widget', value='ABCDEFG'), cls=&lt;class 'panel.widgets.input.TextInput'&gt;, fn=&lt;built-in function print&gt;, mode='args', onlychanged=True, parameter_names=('value',), what='value', queued=False)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we change the <code>widget.value</code> now, the resulting change event will be printed:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">widget</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">'A'</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Event(what='value', name='value', obj=TextInput(name='A widget', value='A'), cls=TextInput(name='A widget', value='A'), old='ABCDEFG', new='A', type='changed')
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In combination with <code>Panel</code> objects, widgets make it possible to build interactive dashboards and visualizations very easily. For more detail on defining callbacks and links between widgets and other components see the <a href="Links.html">Links user guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Laying-out-widgets">Laying out widgets<a class="anchor-link" href="#Laying-out-widgets">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To compose multiple widgets they can be added to a <code>Row</code>, <code>Column</code> or <code>Tabs</code> Panel. To learn more about laying out widgets and panels, see the <a href="Customization.html">customization user guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">slider</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Another widget'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">slider</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1003">
+<div class="bk-root" data-root-id="1003" id="c58bb9e7-5c81-48fe-b1ac-2857d07b5e31"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"977a9944-b5e1-4341-a821-513197561b58":{"roots":{"references":[{"attributes":{"children":[{"id":"1004"},{"id":"1005"}],"margin":[0,0,0,0],"min_width":200,"name":"Column02864","tags":["embedded"],"width":200},"id":"1003","type":"Column"},{"attributes":{"end":1.0,"format":"0[.]00","margin":[5,10,5,10],"min_width":200,"start":0.0,"step":0.1,"title":"Another widget","value":0.0,"value_throttled":0.0,"width":200},"id":"1005","type":"Slider"},{"attributes":{"margin":[5,10,5,10],"title":"A widget","value":"A"},"id":"1004","type":"TextInput"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"977a9944-b5e1-4341-a821-513197561b58","root_ids":["1003"],"roots":{"1003":"c58bb9e7-5c81-48fe-b1ac-2857d07b5e31"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Types-of-Widgets">Types of Widgets<a class="anchor-link" href="#Types-of-Widgets">¶</a></h2><p>The supported widgets can be grouped into a number of distinct categories with compatible APIs.</p>
+<h3 id="Options-selectors">Options selectors<a class="anchor-link" href="#Options-selectors">¶</a></h3><p>Option selector widgets allow selecting one or more values from a list or dictionary. All widgets of this type have <code>options</code> and <code>value</code> parameters.</p>
+<h4 id="Single-values">Single values<a class="anchor-link" href="#Single-values">¶</a></h4><p>These widgets allow selecting one value from a list or dictionary of options:</p>
+<ul>
+<li><strong><a href="../reference/widgets/AutocompleteInput.html"><code>AutocompleteInput</code></a></strong>: Select a <code>value</code> by entering it into an auto-completing text field.</li>
+<li><strong><a href="../reference/widgets/DiscretePlayer.html"><code>DiscretePlayer</code></a></strong>: Displays media-player-like controls which allow playing and stepping through the provided options.</li>
+<li><strong><a href="../reference/widgets/DiscreteSlider.html"><code>DiscreteSlider</code></a></strong>: Select a value using a slider.</li>
+<li><strong><a href="../reference/widgets/RadioButtonGroup.html"><code>RadioButtonGroup</code></a></strong>: Select a value from a set of mutually exclusive toggle buttons.</li>
+<li><strong><a href="../reference/widgets/RadioBoxGroup.html"><code>RadioBoxGroup</code></a></strong>: Select a value from a set of mutually exclusive checkboxes.</li>
+<li><strong><a href="../reference/widgets/Select.html"><code>Select</code></a></strong>: Select a value using a dropdown menu.</li>
+</ul>
+<h4 id="Multiple-values">Multiple values<a class="anchor-link" href="#Multiple-values">¶</a></h4><p>These widgets allow selecting <em>multiple</em> values from a list or dictionary of options:</p>
+<ul>
+<li><strong><a href="../reference/widgets/CheckBoxGroup.html"><code>CheckBoxGroup</code></a></strong>: Select values by ticking the corresponding checkboxes.</li>
+<li><strong><a href="../reference/widgets/CheckButtonGroup.html"><code>CheckButtonGroup</code></a></strong>: Select values by toggling the corresponding buttons. </li>
+<li><strong><a href="../reference/widgets/CrossSelector.html"><code>CrossSelector</code></a></strong>: Select values by moving items between two lists.</li>
+<li><strong><a href="../reference/widgets/MultiSelect.html"><code>MultiSelect</code></a></strong>: Select values by highlighting in a list.</li>
+</ul>
+<h3 id="Type-based-selectors">Type-based selectors<a class="anchor-link" href="#Type-based-selectors">¶</a></h3><p>Type-based selectors provide means to select a value according to its type, and all have a <code>value</code>. The widgets in this category may also have other forms of validation beyond the type, e.g. the upper and lower bounds of sliders.</p>
+<h4 id="Single-value">Single value<a class="anchor-link" href="#Single-value">¶</a></h4><p>Allow selecting a single <code>value</code> of the appropriate type:</p>
+<h5 id="Numeric">Numeric<a class="anchor-link" href="#Numeric">¶</a></h5><p>Numeric selectors are bounded by a <code>start</code> and <code>end</code> value:</p>
+<ul>
+<li><strong><a href="../reference/widgets/IntSlider.html"><code>IntSlider</code></a></strong>: Select an integer value within a set bounds using a slider.</li>
+<li><strong><a href="../reference/widgets/FloatSlider.html"><code>FloatSlider</code></a></strong>: Select a float value within a set bounds using a slider.</li>
+<li><strong><a href="../reference/widgets/Player.html"><code>Player</code></a></strong>: Displays media-player-like controls, which allow playing and stepping over a range of integer values.</li>
+</ul>
+<h5 id="Boolean">Boolean<a class="anchor-link" href="#Boolean">¶</a></h5><ul>
+<li><strong><a href="../reference/widgets/Checkbox.html"><code>Checkbox</code></a></strong>: Toggle a single condition between <code>True</code>/<code>False</code> states by ticking a checkbox.</li>
+<li><strong><a href="../reference/widgets/Toggle.html"><code>Toggle</code></a></strong>: Toggle a single condition between <code>True</code>/<code>False</code> states by clicking a button.</li>
+</ul>
+<h5 id="Dates">Dates<a class="anchor-link" href="#Dates">¶</a></h5><ul>
+<li><strong><a href="../reference/widgets/DatetimeInput.html"><code>DatetimeInput</code></a></strong>: Enter a datetime value as text, parsing it using a pre-defined formatter. </li>
+<li><strong><a href="../reference/widgets/DatePicker.html"><code>DatePicker</code></a></strong>: Select a date value using a text box and the browser's date-picking utility.</li>
+<li><strong><a href="../reference/widgets/DateSlider.html"><code>DateSlider</code></a></strong>: Select a date value within a set bounds using a slider.</li>
+</ul>
+<h5 id="Text">Text<a class="anchor-link" href="#Text">¶</a></h5><ul>
+<li><strong><a href="../reference/widgets/PasswordInput.html"><code>PasswordInput</code></a></strong>: Enter any string using a password input box.</li>
+<li><strong><a href="../reference/widgets/TextInput.html"><code>TextInput</code></a></strong>: Enter any string using a text input box.</li>
+<li><strong><a href="../reference/widgets/TextAreaInput.html"><code>TextAreaInput</code></a></strong>: Enter any string using a multi-line text input box.</li>
+</ul>
+<h5 id="Other">Other<a class="anchor-link" href="#Other">¶</a></h5><ul>
+<li><strong><a href="../reference/widgets/ColorPicker.html"><code>ColorPicker</code></a></strong>: Select a color using the browser's color-picking utilities.</li>
+<li><strong><a href="../reference/widgets/FileInput.html"><code>FileInput</code></a></strong>: Upload a file from the frontend, making the file data and MIME type available in Python.</li>
+<li><strong><a href="../reference/widgets/LiteralInput.html"><code>LiteralInput</code></a></strong>: Enter any Python literal using a text entry box, which is then parsed in Python.</li>
+</ul>
+<h4 id="Ranges">Ranges<a class="anchor-link" href="#Ranges">¶</a></h4><p>Allow selecting a range of values of the appropriate type stored as a <code>(lower, upper)</code> tuple on the <code>value</code> parameter.</p>
+<h5 id="Numeric">Numeric<a class="anchor-link" href="#Numeric">¶</a></h5><ul>
+<li><strong><a href="../reference/widgets/IntRangeSlider.html"><code>IntRangeSlider</code></a></strong>: Select an integer range using a slider with two handles.</li>
+<li><strong><a href="../reference/widgets/RangeSlider.html"><code>RangeSlider</code></a></strong>: Select a floating-point range using a slider with two handles.</li>
+</ul>
+<h5 id="Dates">Dates<a class="anchor-link" href="#Dates">¶</a></h5><ul>
+<li><strong><a href="../reference/widgets/DateRangeSlider.html"><code>DateRangeSlider</code></a></strong>: Select a date range using a slider with two handles.</li>
+</ul>
+<h3 id="Other">Other<a class="anchor-link" href="#Other">¶</a></h3><ul>
+<li><strong><a href="../reference/widgets/Button.html"><code>Button</code></a></strong>: Allows triggering events when the button is clicked.  Unlike other widgets, it does not have a <code>value</code> parameter.</li>
+<li><strong><a href="../reference/widgets/DataFrame.html"><code>DataFrame</code></a></strong>: A widget that allows displaying and editing a Pandas DataFrame.</li>
+<li><strong><a href="../reference/widgets/FileDownload.html"><code>FileDownload</code></a></strong>: A button that allows downloading a file on the frontend by sending the file data to the browser.</li>
+<li><strong><a href="../reference/widgets/Progress.html"><code>Progress</code></a></strong>: A Progress bar which allows updating current the progress towards some goal or indicate an ongoing process.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr class="docutils"/>
+<p><a class="reference external" href="https://raw.githubusercontent.com/holoviz/panel/master/examples/user_guide/Widgets.ipynb">Right click to download this notebook from GitHub.</a></p>
+</div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Deck gl json editor — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/gallery/links/deck_gl_json_editor.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../reference/index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="deck-gl-json-editor">
+<span id="links-gallery-deck-gl-json-editor"></span><h1>Deck gl json editor<a class="headerlink" href="#deck-gl-json-editor" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/gallery/links/deck_gl_json_editor.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s1">'ace'</span><span class="p">,</span> <span class="s1">'deckgl'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="dff63799-94e9-45ce-beec-eff4c8c4bf42"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#dff63799-94e9-45ce-beec-eff4c8c4bf42');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'paths': {'ace': '//cdnjs.cloudflare.com/ajax/libs/ace/1.4.7'}, 'shim': {'ace/ext-language_tools': {'deps': ['ace/ace']}, 'ace/ext-modelist': {'deps': ['ace/ace']}}});
+      window.requirejs.config({'paths': {'deck.gl': 'https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@^8.1.2/dist/index', 'mapbox-gl': 'https://cdn.jsdelivr.net/npm/mapbox-gl@1.7.0/dist/mapbox-gl.min'}});
+      require(["ace/ace", "ace/ext-language_tools", "deck.gl", "mapbox-gl"], function(ace,deck,mapboxgl,) {
+        window.ace = ace;
+        window.deck = deck;
+        window.mapboxgl = mapboxgl;
+      })
+    }
+    if (((window['ace'] !== undefined) && (!(window['ace'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.js', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-modelist.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }
+    if (((window['deck'] !== undefined) && (!(window['deck'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.jsdelivr.net/npm/deck.gl@8.1.12/dist.min.js', 'https://cdn.jsdelivr.net/npm/@deck.gl/json@8.1.12/dist.min.js', 'https://cdn.jsdelivr.net/npm/@loaders.gl/csv@2.0.2/dist/dist.min.js', 'https://cdn.jsdelivr.net/npm/@loaders.gl/json@2.0.2/dist/dist.min.js', 'https://cdn.jsdelivr.net/npm/@loaders.gl/3d-tiles@2.0.2/dist/dist.min.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }
+    if (((window['mapboxgl'] !== undefined) && (!(window['mapboxgl'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.js", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-modelist.js", "https://cdn.jsdelivr.net/npm/deck.gl@8.1.12/dist.min.js", "https://cdn.jsdelivr.net/npm/@deck.gl/json@8.1.12/dist.min.js", "https://cdn.jsdelivr.net/npm/@loaders.gl/csv@2.0.2/dist/dist.min.js", "https://cdn.jsdelivr.net/npm/@loaders.gl/json@2.0.2/dist/dist.min.js", "https://cdn.jsdelivr.net/npm/@loaders.gl/3d-tiles@2.0.2/dist/dist.min.js", "https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js", "https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="886f9f9c-17c3-42cd-9717-7debdad9c54d"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#886f9f9c-17c3-42cd-9717-7debdad9c54d');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This example demonstrates how to link a JSON editor to a DeckGL pane to enable live editing of a plot:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">MAPBOX_KEY</span> <span class="o">=</span> <span class="s2">"pk.eyJ1IjoicGFuZWxvcmciLCJhIjoiY2s1enA3ejhyMWhmZjNobjM1NXhtbWRrMyJ9.B_frQsAVepGIe-HiOJeqvQ"</span>
+
+<span class="n">json_spec</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"initialViewState"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"bearing"</span><span class="p">:</span> <span class="o">-</span><span class="mf">27.36</span><span class="p">,</span>
+        <span class="s2">"latitude"</span><span class="p">:</span> <span class="mf">52.2323</span><span class="p">,</span>
+        <span class="s2">"longitude"</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.415</span><span class="p">,</span>
+        <span class="s2">"maxZoom"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s2">"minZoom"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">"pitch"</span><span class="p">:</span> <span class="mf">40.5</span><span class="p">,</span>
+        <span class="s2">"zoom"</span><span class="p">:</span> <span class="mi">6</span>
+    <span class="p">},</span>
+    <span class="s2">"layers"</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">"@@type"</span><span class="p">:</span> <span class="s2">"HexagonLayer"</span><span class="p">,</span>
+        <span class="s2">"autoHighlight"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"coverage"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"data"</span><span class="p">:</span> <span class="s2">"https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv"</span><span class="p">,</span>
+        <span class="s2">"elevationRange"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">],</span>
+        <span class="s2">"elevationScale"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s2">"extruded"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"getPosition"</span><span class="p">:</span> <span class="s2">"@@=[lng, lat]"</span><span class="p">,</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"8a553b25-ef3a-489c-bbe2-e102d18a3211"</span><span class="p">,</span> <span class="s2">"pickable"</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}],</span>
+    <span class="s2">"mapStyle"</span><span class="p">:</span> <span class="s2">"mapbox://styles/mapbox/dark-v9"</span><span class="p">,</span>
+    <span class="s2">"views"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"@@type"</span><span class="p">:</span> <span class="s2">"MapView"</span><span class="p">,</span> <span class="s2">"controller"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}]</span>
+<span class="p">}</span>
+
+
+<span class="n">view_editor</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Ace</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_spec</span><span class="p">[</span><span class="s1">'initialViewState'</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+                             <span class="n">theme</span><span class="o">=</span> <span class="s1">'monokai'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">225</span><span class="p">)</span>
+<span class="n">layer_editor</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Ace</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_spec</span><span class="p">[</span><span class="s1">'layers'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+                             <span class="n">theme</span><span class="o">=</span> <span class="s1">'monokai'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">365</span><span class="p">)</span>
+
+<span class="n">deck_gl</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">DeckGL</span><span class="p">(</span><span class="n">json_spec</span><span class="p">,</span> <span class="n">mapbox_api_key</span><span class="o">=</span><span class="n">MAPBOX_KEY</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+<span class="n">view_editor</span><span class="o">.</span><span class="n">jscallback</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">'deck_gl'</span><span class="p">:</span> <span class="n">deck_gl</span><span class="p">},</span> <span class="n">value</span><span class="o">=</span><span class="s2">"deck_gl.initialViewState = JSON.parse(cb_obj.code)"</span><span class="p">)</span>
+<span class="n">layer_editor</span><span class="o">.</span><span class="n">jscallback</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">'deck_gl'</span><span class="p">:</span> <span class="n">deck_gl</span><span class="p">},</span> <span class="n">value</span><span class="o">=</span><span class="s2">"deck_gl.layers = [JSON.parse(cb_obj.code)]"</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">view_editor</span><span class="p">,</span> <span class="n">layer_editor</span><span class="p">),</span> <span class="n">deck_gl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="54a25301-d547-4c8a-b554-4f69e48694c8"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"5e52cb70-c60a-4c16-881f-dcabd11308f0":{"roots":{"references":[{"attributes":{"children":[{"id":"1003"},{"id":"1004"}],"margin":[0,0,0,0],"name":"Column02865"},"id":"1002","type":"Column"},{"attributes":{"data":{"mapStyle":"mapbox://styles/mapbox/dark-v9","views":[{"@@type":"MapView","controller":true}]},"height":600,"initialViewState":{"bearing":-27.36,"latitude":52.2323,"longitude":-1.415,"maxZoom":15,"minZoom":5,"pitch":40.5,"zoom":6},"layers":[{"@@type":"HexagonLayer","autoHighlight":true,"coverage":1,"data":"https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv","elevationRange":[0,3000],"elevationScale":50,"extruded":true,"getPosition":"@@=[lng, lat]","id":"8a553b25-ef3a-489c-bbe2-e102d18a3211","pickable":true}],"mapbox_api_key":"pk.eyJ1IjoicGFuZWxvcmciLCJhIjoiY2s1enA3ejhyMWhmZjNobjM1NXhtbWRrMyJ9.B_frQsAVepGIe-HiOJeqvQ","margin":[5,5,5,5],"name":"DeckGL02861","sizing_mode":"stretch_width","tooltip":true},"id":"1005","type":"panel.models.deckgl.DeckGLPlot"},{"attributes":{"args":{"deck_gl":{"id":"1005"},"source":{"id":"1004"}},"code":"try { deck_gl.layers = [JSON.parse(cb_obj.code)] } catch(err) { console.log(err) }","tags":[139950112649040]},"id":"1007","type":"CustomJS"},{"attributes":{"args":{"deck_gl":{"id":"1005"},"source":{"id":"1003"}},"code":"try { deck_gl.initialViewState = JSON.parse(cb_obj.code) } catch(err) { console.log(err) }","tags":[139950112648144]},"id":"1006","type":"CustomJS"},{"attributes":{"children":[{"id":"1002"},{"id":"1005"}],"margin":[0,0,0,0],"name":"Row02866","tags":["embedded"]},"id":"1001","type":"Row"},{"attributes":{"code":"{\n    \"bearing\": -27.36,\n    \"latitude\": 52.2323,\n    \"longitude\": -1.415,\n    \"maxZoom\": 15,\n    \"minZoom\": 5,\n    \"pitch\": 40.5,\n    \"zoom\": 6\n}","filename":"","height":225,"js_property_callbacks":{"change:code":[{"id":"1006"}]},"language":"text","margin":[5,10,5,10],"sizing_mode":"fixed","theme":"monokai","width":500},"id":"1003","type":"panel.models.ace.AcePlot"},{"attributes":{"code":"{\n    \"@@type\": \"HexagonLayer\",\n    \"autoHighlight\": true,\n    \"coverage\": 1,\n    \"data\": \"https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv\",\n    \"elevationRange\": [\n        0,\n        3000\n    ],\n    \"elevationScale\": 50,\n    \"extruded\": true,\n    \"getPosition\": \"@@=[lng, lat]\",\n    \"id\": \"8a553b25-ef3a-489c-bbe2-e102d18a3211\",\n    \"pickable\": true\n}","filename":"","height":365,"js_property_callbacks":{"change:code":[{"id":"1007"}]},"language":"text","margin":[5,10,5,10],"sizing_mode":"fixed","theme":"monokai","width":500},"id":"1004","type":"panel.models.ace.AcePlot"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"5e52cb70-c60a-4c16-881f-dcabd11308f0","root_ids":["1001"],"roots":{"1001":"54a25301-d547-4c8a-b554-4f69e48694c8"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined && root['deck'] !== undefined ) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined && root['deck'] !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils"/>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/gallery/links/deck_gl_json_editor.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

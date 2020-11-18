@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Dial — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/indicators/Dial.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="dial">
+<span id="indicators-gallery-dial"></span><h1>Dial<a class="headerlink" href="#dial" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/indicators/Dial.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="da2a430d-a1cb-49dd-8580-33dfa8f16564"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#da2a430d-a1cb-49dd-8580-33dfa8f16564');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="72e3283c-36ab-483d-84e9-de0c3f944727"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#72e3283c-36ab-483d-84e9-de0c3f944727');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Dial</code> is a value indicator providing a visual representation of a value as a simple radial dial.</p>
+<h4 id="Parameters:">Parameters:<a class="anchor-link" href="#Parameters:">¶</a></h4><p>For layout and styling related parameters see the <a href="../../user_guide/Customization.html">customization user guide</a>.</p>
+<ul>
+<li><strong><code>annulus_width</code></strong> (int, default=10): Width of the gauge annulus.</li>
+<li><strong><code>bounds</code></strong> (tuple, default=(0, 100)): The upper and lower bound of the dial.</li>
+<li><strong><code>colors</code></strong> (list): Color thresholds for the Gauge, specified as a list of tuples of the fractional threshold and the color to switch to.</li>
+<li><strong><code>default_color</code></strong> (str, default='lightblue'): Color to use if no color threshold are supplied to the <code>color</code> parameter</li>
+<li><strong><code>end_angle</code></strong> (float or int, default=-45) Angle at which the gauge ends.</li>
+<li><strong><code>format</code></strong> str(str, default='{value}%'): Formatting string for the value indicator.</li>
+<li><strong><code>nan_format</code></strong> str(str, default='-'): How to format nan values.</li>
+<li><strong><code>needle_color</code></strong> (str, default='black): Color of the needle.</li>
+<li><strong><code>needle_width</code></strong> (float, default=0.1): Radial width of needle in radians.</li>
+<li><strong><code>start_angle</code></strong> (float or int, default=225): Angle at which the gauge starts.</li>
+<li><strong><code>tick_size</code></strong> (int): Font size of the tick labels.</li>
+<li><strong><code>title_size</code></strong> (int): Font size of the title.</li>
+<li><strong><code>unfilled_color</code></strong> (str, default='whitesmoke'): Color of the unfilled region of the Dial</li>
+<li><strong><code>value</code></strong> (float or int, default=25): Value to indicate on the dial a value within the declared bounds.</li>
+<li><strong><code>value_size</code></strong> (str): Font size of value label.</li>
+</ul>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The simplest form of a Gauge just requires setting a <code>value</code> which must be within the <code>bounds</code>. The default formatter and bounds assume you are providing a percentage:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">indicators</span><span class="o">.</span><span class="n">Dial</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Failure Rate'</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="6daf7e69-f525-49ba-878d-7737185f340f"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"ec50f0ff-ab34-456b-b5f3-803b0d71fe4f":{"roots":{"references":[{"attributes":{"source":{"id":"1019"}},"id":"1024","type":"CDSView"},{"attributes":{},"id":"1011","type":"BasicTicker"},{"attributes":{},"id":"1051","type":"UnionRenderers"},{"attributes":{"axis":{"id":"1014"},"dimension":1,"ticker":null,"visible":false},"id":"1017","type":"Grid"},{"attributes":{"end_angle":{"field":"end","units":"rad"},"fill_color":{"value":"black"},"radius":{"field":"radius","units":"data"},"start_angle":{"field":"start","units":"rad"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1027","type":"Wedge"},{"attributes":{"end_angle":{"field":"end","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"black"},"line_alpha":{"value":0.1},"radius":{"field":"radius","units":"data"},"start_angle":{"field":"start","units":"rad"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1028","type":"Wedge"},{"attributes":{},"id":"1052","type":"Selection"},{"attributes":{"angle":{"field":"rot","units":"rad"},"text_align":"center","text_alpha":{"value":0.1},"text_baseline":"top","text_color":{"field":"color"},"text_font_size":{"field":"size"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1040","type":"Text"},{"attributes":{"below":[{"id":"1010"}],"center":[{"id":"1013"},{"id":"1017"}],"left":[{"id":"1014"}],"margin":[5,10,5,10],"name":"Failure Rate","outline_line_color":null,"plot_height":250,"plot_width":250,"renderers":[{"id":"1023"},{"id":"1029"},{"id":"1035"},{"id":"1041"}],"sizing_mode":"fixed","title":{"id":"1043"},"toolbar":{"id":"1018"},"toolbar_location":null,"x_range":{"id":"1002"},"x_scale":{"id":"1006"},"y_range":{"id":"1004"},"y_scale":{"id":"1008"}},"id":"1001","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1053","type":"UnionRenderers"},{"attributes":{"direction":"clock","end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"inner_radius":{"field":"radius","units":"data"},"line_color":{"value":"gray"},"outer_radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"1021","type":"AnnularWedge"},{"attributes":{"data_source":{"id":"1019"},"glyph":{"id":"1021"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1022"},"selection_glyph":null,"view":{"id":"1024"}},"id":"1023","type":"GlyphRenderer"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{},"id":"1054","type":"Selection"},{"attributes":{"axis":{"id":"1010"},"ticker":null,"visible":false},"id":"1013","type":"Grid"},{"attributes":{"direction":"clock","end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"field":"color"},"inner_radius":{"field":"radius","units":"data"},"line_alpha":{"value":0.1},"line_color":{"value":"gray"},"outer_radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"1022","type":"AnnularWedge"},{"attributes":{},"id":"1055","type":"UnionRenderers"},{"attributes":{"data":{"end":{"__ndarray__":"TxmANHRNKUA=","dtype":"float64","order":"little","shape":[1]},"radius":{"__ndarray__":"zczMzMzM7D8=","dtype":"float64","order":"little","shape":[1]},"start":{"__ndarray__":"G+ZMAUEaKUA=","dtype":"float64","order":"little","shape":[1]},"x":{"__ndarray__":"3YRFBk/I7L8=","dtype":"float64","order":"little","shape":[1]},"y":{"__ndarray__":"wEWSgukUoL8=","dtype":"float64","order":"little","shape":[1]}},"name":"needle_source","selected":{"id":"1052"},"selection_policy":{"id":"1051"}},"id":"1025","type":"ColumnDataSource"},{"attributes":{},"id":"1056","type":"Selection"},{"attributes":{"start":-1},"id":"1002","type":"Range1d"},{"attributes":{"source":{"id":"1031"}},"id":"1036","type":"CDSView"},{"attributes":{"source":{"id":"1037"}},"id":"1042","type":"CDSView"},{"attributes":{"start":-1},"id":"1004","type":"Range1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto"},"id":"1018","type":"Toolbar"},{"attributes":{},"id":"1006","type":"LinearScale"},{"attributes":{"formatter":{"id":"1048"},"ticker":{"id":"1015"},"visible":false},"id":"1014","type":"LinearAxis"},{"attributes":{},"id":"1015","type":"BasicTicker"},{"attributes":{},"id":"1050","type":"Selection"},{"attributes":{"data_source":{"id":"1025"},"glyph":{"id":"1027"},"hover_glyph":null,"muted_glyph":null,"name":"needle_renderer","nonselection_glyph":{"id":"1028"},"selection_glyph":null,"view":{"id":"1030"}},"id":"1029","type":"GlyphRenderer"},{"attributes":{"data_source":{"id":"1031"},"glyph":{"id":"1033"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1034"},"selection_glyph":null,"view":{"id":"1036"}},"id":"1035","type":"GlyphRenderer"},{"attributes":{"data_source":{"id":"1037"},"glyph":{"id":"1039"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1040"},"selection_glyph":null,"view":{"id":"1042"}},"id":"1041","type":"GlyphRenderer"},{"attributes":{"line_color":{"field":"color"},"line_width":{"value":2},"x0":{"field":"x0"},"x1":{"field":"x1"},"y0":{"field":"y0"},"y1":{"field":"y1"}},"id":"1033","type":"Segment"},{"attributes":{"source":{"id":"1025"}},"id":"1030","type":"CDSView"},{"attributes":{"formatter":{"id":"1046"},"ticker":{"id":"1011"},"visible":false},"id":"1010","type":"LinearAxis"},{"attributes":{"data":{"color":["lightblue","whitesmoke"],"ends":{"__ndarray__":"b3TVxVvrIkC+G2puLWMXQA==","dtype":"float64","order":"little","shape":[2]},"radius":{"__ndarray__":"mpmZmZmZ6T+amZmZmZnpPw==","dtype":"float64","order":"little","shape":[2]},"starts":{"__ndarray__":"fyogcuO4I0BvdNXFW+siQA==","dtype":"float64","order":"little","shape":[2]}},"name":"annulus_source","selected":{"id":"1050"},"selection_policy":{"id":"1049"}},"id":"1019","type":"ColumnDataSource"},{"attributes":{"data":{"color":[],"x0":[],"x1":[],"y0":[],"y1":[]},"name":"threshold_source","selected":{"id":"1054"},"selection_policy":{"id":"1053"}},"id":"1031","type":"ColumnDataSource"},{"attributes":{"text":""},"id":"1043","type":"Title"},{"attributes":{},"id":"1049","type":"UnionRenderers"},{"attributes":{"line_alpha":{"value":0.1},"line_color":{"field":"color"},"line_width":{"value":2},"x0":{"field":"x0"},"x1":{"field":"x1"},"y0":{"field":"y0"},"y1":{"field":"y1"}},"id":"1034","type":"Segment"},{"attributes":{},"id":"1046","type":"BasicTickFormatter"},{"attributes":{"data":{"color":["black","lightblue","black","black"],"rot":{"__ndarray__":"AAAAAAAAAAAAAAAAAAAAAMU1MUdiASpAvhtqbi1jF0A=","dtype":"float64","order":"little","shape":[4]},"size":["20.0pt","30.0pt","11.25pt","11.25pt"],"text":["Failure Rate","10%","0%","100%"],"x":{"__ndarray__":"AAAAAAAAAAAAAAAAAAAAABR1XKsGGuq/EXVcqwYa6j8=","dtype":"float64","order":"little","shape":[4]},"y":{"__ndarray__":"mpmZmZmZyb8AAAAAAADgvz485YTCV9i/RzzlhMJX2L8=","dtype":"float64","order":"little","shape":[4]}},"name":"label_source","selected":{"id":"1056"},"selection_policy":{"id":"1055"}},"id":"1037","type":"ColumnDataSource"},{"attributes":{},"id":"1048","type":"BasicTickFormatter"},{"attributes":{"angle":{"field":"rot","units":"rad"},"text_align":"center","text_baseline":"top","text_color":{"field":"color"},"text_font_size":{"field":"size"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1039","type":"Text"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"ec50f0ff-ab34-456b-b5f3-803b0d71fe4f","root_ids":["1001"],"roots":{"1001":"6daf7e69-f525-49ba-878d-7737185f340f"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to display some other value such as the revolutions per minute of an engine we can set a different <code>bounds</code> value and override the <code>format</code>. Additionally we may also provide a different set of colors defining the threshold points at which the color should change as a fraction of the provided bounds. The <code>colors</code> accepts a list of tuples defining the fractions and the color:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">indicators</span><span class="o">.</span><span class="n">Dial</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'Engine'</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'</span><span class="si">{value}</span><span class="s1"> rpm'</span><span class="p">,</span>
+    <span class="n">colors</span><span class="o">=</span><span class="p">[(</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="s1">'gold'</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">)]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1114">
+<div class="bk-root" data-root-id="1114" id="f1b6017f-0a1b-481b-8251-ef439172869e"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"46a1f9f3-0d47-4b36-8090-4e043b1c0d36":{"roots":{"references":[{"attributes":{"formatter":{"id":"1159"},"ticker":{"id":"1124"},"visible":false},"id":"1123","type":"LinearAxis"},{"attributes":{},"id":"1166","type":"UnionRenderers"},{"attributes":{"below":[{"id":"1123"}],"center":[{"id":"1126"},{"id":"1130"}],"left":[{"id":"1127"}],"margin":[5,10,5,10],"name":"Engine","outline_line_color":null,"plot_height":250,"plot_width":250,"renderers":[{"id":"1136"},{"id":"1142"},{"id":"1148"},{"id":"1154"}],"sizing_mode":"fixed","title":{"id":"1156"},"toolbar":{"id":"1131"},"toolbar_location":null,"x_range":{"id":"1115"},"x_scale":{"id":"1119"},"y_range":{"id":"1117"},"y_scale":{"id":"1121"}},"id":"1114","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1128","type":"BasicTicker"},{"attributes":{"line_color":{"field":"color"},"line_width":{"value":2},"x0":{"field":"x0"},"x1":{"field":"x1"},"y0":{"field":"y0"},"y1":{"field":"y1"}},"id":"1146","type":"Segment"},{"attributes":{},"id":"1124","type":"BasicTicker"},{"attributes":{},"id":"1167","type":"Selection"},{"attributes":{"axis":{"id":"1123"},"ticker":null,"visible":false},"id":"1126","type":"Grid"},{"attributes":{"direction":"clock","end_angle":{"field":"ends","units":"rad"},"fill_color":{"field":"color"},"inner_radius":{"field":"radius","units":"data"},"line_color":{"value":"gray"},"outer_radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"1134","type":"AnnularWedge"},{"attributes":{},"id":"1168","type":"UnionRenderers"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto"},"id":"1131","type":"Toolbar"},{"attributes":{"start":-1},"id":"1115","type":"Range1d"},{"attributes":{},"id":"1169","type":"Selection"},{"attributes":{"axis":{"id":"1127"},"dimension":1,"ticker":null,"visible":false},"id":"1130","type":"Grid"},{"attributes":{"direction":"clock","end_angle":{"field":"ends","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"field":"color"},"inner_radius":{"field":"radius","units":"data"},"line_alpha":{"value":0.1},"line_color":{"value":"gray"},"outer_radius":{"units":"data","value":1},"start_angle":{"field":"starts","units":"rad"},"x":{"value":0},"y":{"value":0}},"id":"1135","type":"AnnularWedge"},{"attributes":{"data_source":{"id":"1132"},"glyph":{"id":"1134"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1135"},"selection_glyph":null,"view":{"id":"1137"}},"id":"1136","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1150"}},"id":"1155","type":"CDSView"},{"attributes":{"formatter":{"id":"1161"},"ticker":{"id":"1128"},"visible":false},"id":"1127","type":"LinearAxis"},{"attributes":{"data_source":{"id":"1150"},"glyph":{"id":"1152"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1153"},"selection_glyph":null,"view":{"id":"1155"}},"id":"1154","type":"GlyphRenderer"},{"attributes":{"source":{"id":"1132"}},"id":"1137","type":"CDSView"},{"attributes":{"angle":{"field":"rot","units":"rad"},"text_align":"center","text_alpha":{"value":0.1},"text_baseline":"top","text_color":{"field":"color"},"text_font_size":{"field":"size"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1153","type":"Text"},{"attributes":{"data":{"color":["red","whitesmoke"],"ends":{"__ndarray__":"888NAkcQGkC+G2puLWMXQA==","dtype":"float64","order":"little","shape":[2]},"radius":{"__ndarray__":"mpmZmZmZ6T+amZmZmZnpPw==","dtype":"float64","order":"little","shape":[2]},"starts":{"__ndarray__":"fyogcuO4I0Dzzw0CRxAaQA==","dtype":"float64","order":"little","shape":[2]}},"name":"annulus_source","selected":{"id":"1163"},"selection_policy":{"id":"1162"}},"id":"1132","type":"ColumnDataSource"},{"attributes":{"data":{"color":[],"x0":[],"x1":[],"y0":[],"y1":[]},"name":"threshold_source","selected":{"id":"1167"},"selection_policy":{"id":"1166"}},"id":"1144","type":"ColumnDataSource"},{"attributes":{"angle":{"field":"rot","units":"rad"},"text_align":"center","text_baseline":"top","text_color":{"field":"color"},"text_font_size":{"field":"size"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1152","type":"Text"},{"attributes":{},"id":"1119","type":"LinearScale"},{"attributes":{"text":""},"id":"1156","type":"Title"},{"attributes":{"source":{"id":"1144"}},"id":"1149","type":"CDSView"},{"attributes":{},"id":"1162","type":"UnionRenderers"},{"attributes":{},"id":"1165","type":"Selection"},{"attributes":{"data_source":{"id":"1138"},"glyph":{"id":"1140"},"hover_glyph":null,"muted_glyph":null,"name":"needle_renderer","nonselection_glyph":{"id":"1141"},"selection_glyph":null,"view":{"id":"1143"}},"id":"1142","type":"GlyphRenderer"},{"attributes":{"end_angle":{"field":"end","units":"rad"},"fill_color":{"value":"black"},"radius":{"field":"radius","units":"data"},"start_angle":{"field":"start","units":"rad"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1140","type":"Wedge"},{"attributes":{"end_angle":{"field":"end","units":"rad"},"fill_alpha":{"value":0.1},"fill_color":{"value":"black"},"line_alpha":{"value":0.1},"radius":{"field":"radius","units":"data"},"start_angle":{"field":"start","units":"rad"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1141","type":"Wedge"},{"attributes":{"data":{"color":["black","red","black","black"],"rot":{"__ndarray__":"AAAAAAAAAAAAAAAAAAAAAMU1MUdiASpAvhtqbi1jF0A=","dtype":"float64","order":"little","shape":[4]},"size":["20.0pt","30.0pt","11.25pt","11.25pt"],"text":["Engine","2500 rpm","0 rpm","3000 rpm"],"x":{"__ndarray__":"AAAAAAAAAAAAAAAAAAAAABR1XKsGGuq/EXVcqwYa6j8=","dtype":"float64","order":"little","shape":[4]},"y":{"__ndarray__":"mpmZmZmZyb8AAAAAAADgvz485YTCV9i/RzzlhMJX2L8=","dtype":"float64","order":"little","shape":[4]}},"name":"label_source","selected":{"id":"1169"},"selection_policy":{"id":"1168"}},"id":"1150","type":"ColumnDataSource"},{"attributes":{},"id":"1159","type":"BasicTickFormatter"},{"attributes":{},"id":"1161","type":"BasicTickFormatter"},{"attributes":{"source":{"id":"1138"}},"id":"1143","type":"CDSView"},{"attributes":{},"id":"1121","type":"LinearScale"},{"attributes":{"line_alpha":{"value":0.1},"line_color":{"field":"color"},"line_width":{"value":2},"x0":{"field":"x0"},"x1":{"field":"x1"},"y0":{"field":"y0"},"y1":{"field":"y1"}},"id":"1147","type":"Segment"},{"attributes":{},"id":"1163","type":"Selection"},{"attributes":{"data_source":{"id":"1144"},"glyph":{"id":"1146"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1147"},"selection_glyph":null,"view":{"id":"1149"}},"id":"1148","type":"GlyphRenderer"},{"attributes":{},"id":"1164","type":"UnionRenderers"},{"attributes":{"data":{"end":{"__ndarray__":"2oyx7ztqI0A=","dtype":"float64","order":"little","shape":[1]},"radius":{"__ndarray__":"zczMzMzM7D8=","dtype":"float64","order":"little","shape":[1]},"start":{"__ndarray__":"pll+vAg3I0A=","dtype":"float64","order":"little","shape":[1]},"x":{"__ndarray__":"6mhgshAG7D8=","dtype":"float64","order":"little","shape":[1]},"y":{"__ndarray__":"LfM/hiORyj8=","dtype":"float64","order":"little","shape":[1]}},"name":"needle_source","selected":{"id":"1165"},"selection_policy":{"id":"1164"}},"id":"1138","type":"ColumnDataSource"},{"attributes":{"start":-1},"id":"1117","type":"Range1d"}],"root_ids":["1114"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"46a1f9f3-0d47-4b36-8090-4e043b1c0d36","root_ids":["1114"],"roots":{"1114":"f1b6017f-0a1b-481b-8251-ef439172869e"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/indicators/Dial.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

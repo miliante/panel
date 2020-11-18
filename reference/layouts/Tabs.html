@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Tabs — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/layouts/Tabs.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="tabs">
+<span id="layouts-gallery-tabs"></span><h1>Tabs<a class="headerlink" href="#tabs" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/layouts/Tabs.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="76ee3017-dcff-4f1e-9cc0-db3c39068c23"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#76ee3017-dcff-4f1e-9cc0-db3c39068c23');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="6cd9103d-87fb-495f-aab4-29a49d053e84"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#6cd9103d-87fb-495f-aab4-29a49d053e84');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>Tabs</code> allow switching between multiple objects by clicking on the corresponding tab header. Tab labels may be defined explicitly as part of a tuple or will be inferred from the <code>name</code> parameter of the tab's contents. Like <code>Column</code> and <code>Row</code>, <code>Tabs</code> has a list-like API with methods to <code>append</code>, <code>extend</code>, <code>clear</code>, <code>insert</code>, <code>pop</code>, <code>remove</code> and <code>__setitem__</code>, which make it possible to interactively update and modify the tabs.</p>
+<h4 id="Parameters:">Parameters:<a class="anchor-link" href="#Parameters:">¶</a></h4><p>For layout and styling related parameters see the <a href="../../user_guide/Customization.html">customization user guide</a>.</p>
+<ul>
+<li><strong><code>active</code></strong> (int, default=0): The index of the currently selected tab. Updates when a tab is selected and may also be set programmatically to flip between tabs.</li>
+<li><strong><code>dynamic</code></strong> (boolean, default=False): Dynamically populate only the active Tab.</li>
+<li><strong><code>closable</code></strong> (boolean, default=False): Whether it should be allowed to close tabs using the GUI, which deletes them from the list of objects.</li>
+<li><strong><code>objects</code></strong> (list): The list of objects to display in the Column. Should not generally be modified directly except when replaced in its entirety.</li>
+<li><strong><code>tabs_location</code></strong> (str, default='above'): The location of the tabs relative to the content. Must be one of 'left', 'right', 'below' or 'above'.</li>
+</ul>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tabs">Tabs<a class="anchor-link" href="#Tabs">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <code>Tabs</code> layout can either be instantiated as empty and be populated after the fact, or using a list of objects provided as positional arguments. If the objects are not already Panel components they will each be converted to one using the <code>pn.panel</code> conversion method. Unlike other panel <code>Tabs</code> also accepts tuples to specify the title of each tab, if no name is supplied explicitly the name of the underlying object will be used.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Scatter'</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Line'</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">tabs</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">((</span><span class="s1">'Scatter'</span><span class="p">,</span> <span class="n">p1</span><span class="p">),</span> <span class="n">p2</span><span class="p">)</span>
+<span class="n">tabs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1073">
+<div class="bk-root" data-root-id="1073" id="2b2ec358-5337-4409-ab3e-d9818104599f"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"6402a66f-9829-49de-9476-aca1c6b12c53":{"roots":{"references":[{"attributes":{},"id":"1004","type":"DataRange1d"},{"attributes":{},"id":"1002","type":"DataRange1d"},{"attributes":{},"id":"1038","type":"DataRange1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1054"},{"id":"1055"},{"id":"1056"},{"id":"1057"},{"id":"1058"},{"id":"1059"}]},"id":"1061","type":"Toolbar"},{"attributes":{},"id":"1021","type":"SaveTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1060","type":"BoxAnnotation"},{"attributes":{},"id":"1006","type":"LinearScale"},{"attributes":{"source":{"id":"1068"}},"id":"1072","type":"CDSView"},{"attributes":{"formatter":{"id":"1076"},"ticker":{"id":"1011"}},"id":"1010","type":"LinearAxis"},{"attributes":{},"id":"1011","type":"BasicTicker"},{"attributes":{"formatter":{"id":"1095"},"ticker":{"id":"1047"}},"id":"1046","type":"LinearAxis"},{"attributes":{},"id":"1054","type":"PanTool"},{"attributes":{"axis":{"id":"1010"},"ticker":null},"id":"1013","type":"Grid"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1070","type":"Line"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{},"id":"1055","type":"WheelZoomTool"},{"attributes":{"text":""},"id":"1074","type":"Title"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1018"},{"id":"1019"},{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"}]},"id":"1025","type":"Toolbar"},{"attributes":{"source":{"id":"1032"}},"id":"1036","type":"CDSView"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1033","type":"Scatter"},{"attributes":{},"id":"1022","type":"ResetTool"},{"attributes":{},"id":"1047","type":"BasicTicker"},{"attributes":{"overlay":{"id":"1060"}},"id":"1056","type":"BoxZoomTool"},{"attributes":{"below":[{"id":"1046"}],"center":[{"id":"1049"},{"id":"1053"}],"left":[{"id":"1050"}],"name":"Line","plot_height":300,"plot_width":300,"renderers":[{"id":"1071"}],"title":{"id":"1093"},"toolbar":{"id":"1061"},"x_range":{"id":"1038"},"x_scale":{"id":"1042"},"y_range":{"id":"1040"},"y_scale":{"id":"1044"}},"id":"1037","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1076","type":"BasicTickFormatter"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1024","type":"BoxAnnotation"},{"attributes":{"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1069","type":"Line"},{"attributes":{},"id":"1057","type":"SaveTool"},{"attributes":{},"id":"1099","type":"UnionRenderers"},{"attributes":{},"id":"1015","type":"BasicTicker"},{"attributes":{},"id":"1042","type":"LinearScale"},{"attributes":{},"id":"1058","type":"ResetTool"},{"attributes":{"axis":{"id":"1014"},"dimension":1,"ticker":null},"id":"1017","type":"Grid"},{"attributes":{},"id":"1040","type":"DataRange1d"},{"attributes":{},"id":"1078","type":"BasicTickFormatter"},{"attributes":{"formatter":{"id":"1078"},"ticker":{"id":"1015"}},"id":"1014","type":"LinearAxis"},{"attributes":{"data_source":{"id":"1068"},"glyph":{"id":"1069"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1070"},"selection_glyph":null,"view":{"id":"1072"}},"id":"1071","type":"GlyphRenderer"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1081"},"selection_policy":{"id":"1080"}},"id":"1032","type":"ColumnDataSource"},{"attributes":{},"id":"1081","type":"Selection"},{"attributes":{"child":{"id":"1037"},"name":"Line","title":"Line"},"id":"1111","type":"Panel"},{"attributes":{},"id":"1059","type":"HelpTool"},{"attributes":{"axis":{"id":"1046"},"ticker":null},"id":"1049","type":"Grid"},{"attributes":{},"id":"1095","type":"BasicTickFormatter"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1100"},"selection_policy":{"id":"1099"}},"id":"1068","type":"ColumnDataSource"},{"attributes":{},"id":"1044","type":"LinearScale"},{"attributes":{"text":""},"id":"1093","type":"Title"},{"attributes":{},"id":"1080","type":"UnionRenderers"},{"attributes":{},"id":"1100","type":"Selection"},{"attributes":{"data_source":{"id":"1032"},"glyph":{"id":"1033"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1034"},"selection_glyph":null,"view":{"id":"1036"}},"id":"1035","type":"GlyphRenderer"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1092"},{"id":"1111"}],"tags":["embedded"]},"id":"1073","type":"Tabs"},{"attributes":{},"id":"1097","type":"BasicTickFormatter"},{"attributes":{},"id":"1023","type":"HelpTool"},{"attributes":{},"id":"1051","type":"BasicTicker"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1034","type":"Scatter"},{"attributes":{"below":[{"id":"1010"}],"center":[{"id":"1013"},{"id":"1017"}],"left":[{"id":"1014"}],"name":"Scatter","plot_height":300,"plot_width":300,"renderers":[{"id":"1035"}],"title":{"id":"1074"},"toolbar":{"id":"1025"},"x_range":{"id":"1002"},"x_scale":{"id":"1006"},"y_range":{"id":"1004"},"y_scale":{"id":"1008"}},"id":"1001","subtype":"Figure","type":"Plot"},{"attributes":{"axis":{"id":"1050"},"dimension":1,"ticker":null},"id":"1053","type":"Grid"},{"attributes":{},"id":"1018","type":"PanTool"},{"attributes":{"formatter":{"id":"1097"},"ticker":{"id":"1051"}},"id":"1050","type":"LinearAxis"},{"attributes":{},"id":"1019","type":"WheelZoomTool"},{"attributes":{"child":{"id":"1001"},"name":"Scatter","title":"Scatter"},"id":"1092","type":"Panel"},{"attributes":{"overlay":{"id":"1024"}},"id":"1020","type":"BoxZoomTool"}],"root_ids":["1073"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"6402a66f-9829-49de-9476-aca1c6b12c53","root_ids":["1073"],"roots":{"1073":"2b2ec358-5337-4409-ab3e-d9818104599f"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Tabs</code> objects should never be modified directly. Instead, it is recommended to modify tabs using the provided methods, except when replacing the list of <code>objects</code> entirely.  Using the methods ensures that the rendered views of the <code>Tabs</code> are rerendered in response to the change, but even more importantly it ensures the tab titles are kept in sync with the objects. As a simple example we might add an additional widget to the <code>tabs</code> using the append method:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p3</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Square'</span><span class="p">)</span>
+<span class="n">p3</span><span class="o">.</span><span class="n">square</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">tabs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On a live server or in a notebook the <code>tabs</code> displayed above will dynamically expand to include the new tab. To see the effect in a statically rendered page, we will display the tabs a second time:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tabs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1313">
+<div class="bk-root" data-root-id="1313" id="8fb0b3ad-f32b-40f2-9c83-78b890398a53"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"0a9c6573-b05f-478c-9ae1-a4d7e594ed51":{"roots":{"references":[{"attributes":{},"id":"1004","type":"DataRange1d"},{"attributes":{"source":{"id":"1235"}},"id":"1239","type":"CDSView"},{"attributes":{},"id":"1038","type":"DataRange1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1054"},{"id":"1055"},{"id":"1056"},{"id":"1057"},{"id":"1058"},{"id":"1059"}]},"id":"1061","type":"Toolbar"},{"attributes":{},"id":"1021","type":"SaveTool"},{"attributes":{},"id":"1006","type":"LinearScale"},{"attributes":{"source":{"id":"1068"}},"id":"1072","type":"CDSView"},{"attributes":{},"id":"1011","type":"BasicTicker"},{"attributes":{"formatter":{"id":"1076"},"ticker":{"id":"1011"}},"id":"1010","type":"LinearAxis"},{"attributes":{},"id":"1054","type":"PanTool"},{"attributes":{"overlay":{"id":"1227"}},"id":"1223","type":"BoxZoomTool"},{"attributes":{"axis":{"id":"1010"},"ticker":null},"id":"1013","type":"Grid"},{"attributes":{"child":{"id":"1037"},"name":"Line","title":"Line"},"id":"1369","type":"Panel"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{},"id":"1055","type":"WheelZoomTool"},{"attributes":{"text":""},"id":"1074","type":"Title"},{"attributes":{},"id":"1022","type":"ResetTool"},{"attributes":{"overlay":{"id":"1060"}},"id":"1056","type":"BoxZoomTool"},{"attributes":{},"id":"1076","type":"BasicTickFormatter"},{"attributes":{},"id":"1224","type":"SaveTool"},{"attributes":{},"id":"1057","type":"SaveTool"},{"attributes":{},"id":"1099","type":"UnionRenderers"},{"attributes":{},"id":"1015","type":"BasicTicker"},{"attributes":{},"id":"1058","type":"ResetTool"},{"attributes":{"axis":{"id":"1014"},"dimension":1,"ticker":null},"id":"1017","type":"Grid"},{"attributes":{},"id":"1078","type":"BasicTickFormatter"},{"attributes":{"formatter":{"id":"1078"},"ticker":{"id":"1015"}},"id":"1014","type":"LinearAxis"},{"attributes":{"data_source":{"id":"1068"},"glyph":{"id":"1069"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1070"},"selection_glyph":null,"view":{"id":"1072"}},"id":"1071","type":"GlyphRenderer"},{"attributes":{},"id":"1081","type":"Selection"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1081"},"selection_policy":{"id":"1080"}},"id":"1032","type":"ColumnDataSource"},{"attributes":{"child":{"id":"1204"},"name":"Square","title":"Square"},"id":"1397","type":"Panel"},{"attributes":{},"id":"1059","type":"HelpTool"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1100"},"selection_policy":{"id":"1099"}},"id":"1068","type":"ColumnDataSource"},{"attributes":{},"id":"1222","type":"WheelZoomTool"},{"attributes":{"text":""},"id":"1093","type":"Title"},{"attributes":{},"id":"1100","type":"Selection"},{"attributes":{},"id":"1246","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1032"},"glyph":{"id":"1033"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1034"},"selection_glyph":null,"view":{"id":"1036"}},"id":"1035","type":"GlyphRenderer"},{"attributes":{},"id":"1097","type":"BasicTickFormatter"},{"attributes":{},"id":"1218","type":"BasicTicker"},{"attributes":{},"id":"1023","type":"HelpTool"},{"attributes":{},"id":"1244","type":"BasicTickFormatter"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1247"},"selection_policy":{"id":"1246"}},"id":"1235","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1034","type":"Scatter"},{"attributes":{},"id":"1018","type":"PanTool"},{"attributes":{},"id":"1019","type":"WheelZoomTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"1237","type":"Square"},{"attributes":{"overlay":{"id":"1024"}},"id":"1020","type":"BoxZoomTool"},{"attributes":{"data_source":{"id":"1235"},"glyph":{"id":"1236"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1237"},"selection_glyph":null,"view":{"id":"1239"}},"id":"1238","type":"GlyphRenderer"},{"attributes":{},"id":"1002","type":"DataRange1d"},{"attributes":{},"id":"1247","type":"Selection"},{"attributes":{},"id":"1221","type":"PanTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1060","type":"BoxAnnotation"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1221"},{"id":"1222"},{"id":"1223"},{"id":"1224"},{"id":"1225"},{"id":"1226"}]},"id":"1228","type":"Toolbar"},{"attributes":{},"id":"1225","type":"ResetTool"},{"attributes":{"formatter":{"id":"1095"},"ticker":{"id":"1047"}},"id":"1046","type":"LinearAxis"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1070","type":"Line"},{"attributes":{"below":[{"id":"1213"}],"center":[{"id":"1216"},{"id":"1220"}],"left":[{"id":"1217"}],"name":"Square","plot_height":300,"plot_width":300,"renderers":[{"id":"1238"}],"title":{"id":"1240"},"toolbar":{"id":"1228"},"x_range":{"id":"1205"},"x_scale":{"id":"1209"},"y_range":{"id":"1207"},"y_scale":{"id":"1211"}},"id":"1204","subtype":"Figure","type":"Plot"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1227","type":"BoxAnnotation"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1018"},{"id":"1019"},{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"}]},"id":"1025","type":"Toolbar"},{"attributes":{"source":{"id":"1032"}},"id":"1036","type":"CDSView"},{"attributes":{},"id":"1047","type":"BasicTicker"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1033","type":"Scatter"},{"attributes":{},"id":"1205","type":"DataRange1d"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1024","type":"BoxAnnotation"},{"attributes":{"below":[{"id":"1046"}],"center":[{"id":"1049"},{"id":"1053"}],"left":[{"id":"1050"}],"name":"Line","plot_height":300,"plot_width":300,"renderers":[{"id":"1071"}],"title":{"id":"1093"},"toolbar":{"id":"1061"},"x_range":{"id":"1038"},"x_scale":{"id":"1042"},"y_range":{"id":"1040"},"y_scale":{"id":"1044"}},"id":"1037","subtype":"Figure","type":"Plot"},{"attributes":{"text":""},"id":"1240","type":"Title"},{"attributes":{"child":{"id":"1001"},"name":"Scatter","title":"Scatter"},"id":"1341","type":"Panel"},{"attributes":{},"id":"1042","type":"LinearScale"},{"attributes":{},"id":"1040","type":"DataRange1d"},{"attributes":{},"id":"1211","type":"LinearScale"},{"attributes":{},"id":"1209","type":"LinearScale"},{"attributes":{"axis":{"id":"1046"},"ticker":null},"id":"1049","type":"Grid"},{"attributes":{},"id":"1207","type":"DataRange1d"},{"attributes":{},"id":"1095","type":"BasicTickFormatter"},{"attributes":{},"id":"1044","type":"LinearScale"},{"attributes":{},"id":"1242","type":"BasicTickFormatter"},{"attributes":{},"id":"1080","type":"UnionRenderers"},{"attributes":{"formatter":{"id":"1244"},"ticker":{"id":"1218"}},"id":"1217","type":"LinearAxis"},{"attributes":{"formatter":{"id":"1242"},"ticker":{"id":"1214"}},"id":"1213","type":"LinearAxis"},{"attributes":{},"id":"1214","type":"BasicTicker"},{"attributes":{"axis":{"id":"1213"},"ticker":null},"id":"1216","type":"Grid"},{"attributes":{},"id":"1051","type":"BasicTicker"},{"attributes":{},"id":"1226","type":"HelpTool"},{"attributes":{"axis":{"id":"1217"},"dimension":1,"ticker":null},"id":"1220","type":"Grid"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"1236","type":"Square"},{"attributes":{"below":[{"id":"1010"}],"center":[{"id":"1013"},{"id":"1017"}],"left":[{"id":"1014"}],"name":"Scatter","plot_height":300,"plot_width":300,"renderers":[{"id":"1035"}],"title":{"id":"1074"},"toolbar":{"id":"1025"},"x_range":{"id":"1002"},"x_scale":{"id":"1006"},"y_range":{"id":"1004"},"y_scale":{"id":"1008"}},"id":"1001","subtype":"Figure","type":"Plot"},{"attributes":{"axis":{"id":"1050"},"dimension":1,"ticker":null},"id":"1053","type":"Grid"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1341"},{"id":"1369"},{"id":"1397"}],"tags":["embedded"]},"id":"1313","type":"Tabs"},{"attributes":{"formatter":{"id":"1097"},"ticker":{"id":"1051"}},"id":"1050","type":"LinearAxis"},{"attributes":{"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1069","type":"Line"}],"root_ids":["1313"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"0a9c6573-b05f-478c-9ae1-a4d7e594ed51","root_ids":["1313"],"roots":{"1313":"8fb0b3ad-f32b-40f2-9c83-78b890398a53"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="active"><code>active</code><a class="anchor-link" href="#active">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In addition to being able to modify the <code>objects</code> using methods we can also get and set the currently <code>active</code> tab as an integer, which will update any rendered views of the object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tabs</span><span class="o">.</span><span class="n">active</span><span class="p">)</span>
+<span class="n">tabs</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="dynamic"><code>dynamic</code><a class="anchor-link" href="#dynamic">¶</a></h4><p>When enabled the dynamic option ensures that only the active tab is actually rendered, only when switching to a new Tab are the contents loaded. This can be very helpful in a server context or notebook context when displaying a lot of tabs or when rendering the individual objects are very large or expensive to render.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tabs</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">)</span>
+
+<span class="n">tabs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1535">
+<div class="bk-root" data-root-id="1535" id="438a3bec-ec31-44e1-a4b3-f6f9f793a0d1"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"69cbc6c4-01ca-406a-a9e9-3d84a002f3dc":{"roots":{"references":[{"attributes":{},"id":"1004","type":"DataRange1d"},{"attributes":{"source":{"id":"1235"}},"id":"1239","type":"CDSView"},{"attributes":{},"id":"1038","type":"DataRange1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1054"},{"id":"1055"},{"id":"1056"},{"id":"1057"},{"id":"1058"},{"id":"1059"}]},"id":"1061","type":"Toolbar"},{"attributes":{},"id":"1021","type":"SaveTool"},{"attributes":{},"id":"1006","type":"LinearScale"},{"attributes":{"source":{"id":"1068"}},"id":"1072","type":"CDSView"},{"attributes":{},"id":"1011","type":"BasicTicker"},{"attributes":{"formatter":{"id":"1076"},"ticker":{"id":"1011"}},"id":"1010","type":"LinearAxis"},{"attributes":{},"id":"1054","type":"PanTool"},{"attributes":{"overlay":{"id":"1227"}},"id":"1223","type":"BoxZoomTool"},{"attributes":{"axis":{"id":"1010"},"ticker":null},"id":"1013","type":"Grid"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{},"id":"1055","type":"WheelZoomTool"},{"attributes":{"text":""},"id":"1074","type":"Title"},{"attributes":{},"id":"1022","type":"ResetTool"},{"attributes":{"overlay":{"id":"1060"}},"id":"1056","type":"BoxZoomTool"},{"attributes":{},"id":"1076","type":"BasicTickFormatter"},{"attributes":{},"id":"1224","type":"SaveTool"},{"attributes":{},"id":"1057","type":"SaveTool"},{"attributes":{},"id":"1099","type":"UnionRenderers"},{"attributes":{},"id":"1015","type":"BasicTicker"},{"attributes":{},"id":"1058","type":"ResetTool"},{"attributes":{"axis":{"id":"1014"},"dimension":1,"ticker":null},"id":"1017","type":"Grid"},{"attributes":{},"id":"1078","type":"BasicTickFormatter"},{"attributes":{"formatter":{"id":"1078"},"ticker":{"id":"1015"}},"id":"1014","type":"LinearAxis"},{"attributes":{"data_source":{"id":"1068"},"glyph":{"id":"1069"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1070"},"selection_glyph":null,"view":{"id":"1072"}},"id":"1071","type":"GlyphRenderer"},{"attributes":{},"id":"1081","type":"Selection"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1081"},"selection_policy":{"id":"1080"}},"id":"1032","type":"ColumnDataSource"},{"attributes":{},"id":"1059","type":"HelpTool"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1100"},"selection_policy":{"id":"1099"}},"id":"1068","type":"ColumnDataSource"},{"attributes":{},"id":"1222","type":"WheelZoomTool"},{"attributes":{"text":""},"id":"1093","type":"Title"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1563"},{"id":"1591"},{"id":"1619"}],"tags":["embedded"]},"id":"1535","type":"Tabs"},{"attributes":{},"id":"1100","type":"Selection"},{"attributes":{},"id":"1246","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1032"},"glyph":{"id":"1033"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1034"},"selection_glyph":null,"view":{"id":"1036"}},"id":"1035","type":"GlyphRenderer"},{"attributes":{},"id":"1097","type":"BasicTickFormatter"},{"attributes":{},"id":"1218","type":"BasicTicker"},{"attributes":{},"id":"1023","type":"HelpTool"},{"attributes":{},"id":"1244","type":"BasicTickFormatter"},{"attributes":{"data":{"x":[0,1,2,3,4,5,6],"y":[0,1,2,3,2,1,0]},"selected":{"id":"1247"},"selection_policy":{"id":"1246"}},"id":"1235","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1034","type":"Scatter"},{"attributes":{},"id":"1018","type":"PanTool"},{"attributes":{},"id":"1019","type":"WheelZoomTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"1237","type":"Square"},{"attributes":{"overlay":{"id":"1024"}},"id":"1020","type":"BoxZoomTool"},{"attributes":{"data_source":{"id":"1235"},"glyph":{"id":"1236"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1237"},"selection_glyph":null,"view":{"id":"1239"}},"id":"1238","type":"GlyphRenderer"},{"attributes":{"child":{"id":"1001"},"name":"Scatter","title":"Scatter"},"id":"1563","type":"Panel"},{"attributes":{},"id":"1002","type":"DataRange1d"},{"attributes":{},"id":"1247","type":"Selection"},{"attributes":{},"id":"1221","type":"PanTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1060","type":"BoxAnnotation"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1221"},{"id":"1222"},{"id":"1223"},{"id":"1224"},{"id":"1225"},{"id":"1226"}]},"id":"1228","type":"Toolbar"},{"attributes":{},"id":"1225","type":"ResetTool"},{"attributes":{"formatter":{"id":"1095"},"ticker":{"id":"1047"}},"id":"1046","type":"LinearAxis"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1070","type":"Line"},{"attributes":{"below":[{"id":"1213"}],"center":[{"id":"1216"},{"id":"1220"}],"left":[{"id":"1217"}],"name":"Square","plot_height":300,"plot_width":300,"renderers":[{"id":"1238"}],"title":{"id":"1240"},"toolbar":{"id":"1228"},"x_range":{"id":"1205"},"x_scale":{"id":"1209"},"y_range":{"id":"1207"},"y_scale":{"id":"1211"}},"id":"1204","subtype":"Figure","type":"Plot"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1227","type":"BoxAnnotation"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1018"},{"id":"1019"},{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"}]},"id":"1025","type":"Toolbar"},{"attributes":{"source":{"id":"1032"}},"id":"1036","type":"CDSView"},{"attributes":{},"id":"1047","type":"BasicTicker"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1033","type":"Scatter"},{"attributes":{},"id":"1205","type":"DataRange1d"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1024","type":"BoxAnnotation"},{"attributes":{"below":[{"id":"1046"}],"center":[{"id":"1049"},{"id":"1053"}],"left":[{"id":"1050"}],"name":"Line","plot_height":300,"plot_width":300,"renderers":[{"id":"1071"}],"title":{"id":"1093"},"toolbar":{"id":"1061"},"x_range":{"id":"1038"},"x_scale":{"id":"1042"},"y_range":{"id":"1040"},"y_scale":{"id":"1044"}},"id":"1037","subtype":"Figure","type":"Plot"},{"attributes":{"text":""},"id":"1240","type":"Title"},{"attributes":{"child":{"id":"1204"},"name":"Square","title":"Square"},"id":"1619","type":"Panel"},{"attributes":{},"id":"1042","type":"LinearScale"},{"attributes":{},"id":"1040","type":"DataRange1d"},{"attributes":{},"id":"1211","type":"LinearScale"},{"attributes":{},"id":"1209","type":"LinearScale"},{"attributes":{"axis":{"id":"1046"},"ticker":null},"id":"1049","type":"Grid"},{"attributes":{},"id":"1207","type":"DataRange1d"},{"attributes":{"child":{"id":"1037"},"name":"Line","title":"Line"},"id":"1591","type":"Panel"},{"attributes":{},"id":"1095","type":"BasicTickFormatter"},{"attributes":{},"id":"1044","type":"LinearScale"},{"attributes":{},"id":"1242","type":"BasicTickFormatter"},{"attributes":{},"id":"1080","type":"UnionRenderers"},{"attributes":{"formatter":{"id":"1244"},"ticker":{"id":"1218"}},"id":"1217","type":"LinearAxis"},{"attributes":{"formatter":{"id":"1242"},"ticker":{"id":"1214"}},"id":"1213","type":"LinearAxis"},{"attributes":{},"id":"1214","type":"BasicTicker"},{"attributes":{"axis":{"id":"1213"},"ticker":null},"id":"1216","type":"Grid"},{"attributes":{},"id":"1051","type":"BasicTicker"},{"attributes":{},"id":"1226","type":"HelpTool"},{"attributes":{"axis":{"id":"1217"},"dimension":1,"ticker":null},"id":"1220","type":"Grid"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"1236","type":"Square"},{"attributes":{"below":[{"id":"1010"}],"center":[{"id":"1013"},{"id":"1017"}],"left":[{"id":"1014"}],"name":"Scatter","plot_height":300,"plot_width":300,"renderers":[{"id":"1035"}],"title":{"id":"1074"},"toolbar":{"id":"1025"},"x_range":{"id":"1002"},"x_scale":{"id":"1006"},"y_range":{"id":"1004"},"y_scale":{"id":"1008"}},"id":"1001","subtype":"Figure","type":"Plot"},{"attributes":{"axis":{"id":"1050"},"dimension":1,"ticker":null},"id":"1053","type":"Grid"},{"attributes":{"formatter":{"id":"1097"},"ticker":{"id":"1051"}},"id":"1050","type":"LinearAxis"},{"attributes":{"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1069","type":"Line"}],"root_ids":["1535"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"69cbc6c4-01ca-406a-a9e9-3d84a002f3dc","root_ids":["1535"],"roots":{"1535":"438a3bec-ec31-44e1-a4b3-f6f9f793a0d1"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="closable"><code>closable</code><a class="anchor-link" href="#closable">¶</a></h4><p><code>Tabs</code> may also be initialized as <code>closable</code>, which provides an <code>x</code> widget in the GUI that makes it possible to remove tabs and therefore remove them from the list of <code>objects</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tabs</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span>
+    <span class="p">(</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+
+<span class="n">tabs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1757">
+<div class="bk-root" data-root-id="1757" id="86fdcbc3-d7c2-4526-93ba-c9194a35be48"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"1a648ef7-f39a-4f01-94a9-08b09d3a02fc":{"roots":{"references":[{"attributes":{"child":{"id":"1758"},"name":"Spacer02880","title":"red"},"id":"1759","type":"Panel"},{"attributes":{"background":"red","height":100,"margin":[5,5,5,5],"name":"Spacer02880","sizing_mode":"fixed","width":100},"id":"1758","type":"Spacer"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1759"},{"id":"1761"},{"id":"1763"}],"tags":["embedded"]},"id":"1757","type":"Tabs"},{"attributes":{"child":{"id":"1762"},"name":"Spacer02882","title":"green"},"id":"1763","type":"Panel"},{"attributes":{"child":{"id":"1760"},"name":"Spacer02881","title":"blue"},"id":"1761","type":"Panel"},{"attributes":{"background":"green","height":100,"margin":[5,5,5,5],"name":"Spacer02882","sizing_mode":"fixed","width":100},"id":"1762","type":"Spacer"},{"attributes":{"background":"blue","height":100,"margin":[5,5,5,5],"name":"Spacer02881","sizing_mode":"fixed","width":100},"id":"1760","type":"Spacer"}],"root_ids":["1757"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"1a648ef7-f39a-4f01-94a9-08b09d3a02fc","root_ids":["1757"],"roots":{"1757":"86fdcbc3-d7c2-4526-93ba-c9194a35be48"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="tabs_location"><code>tabs_location</code><a class="anchor-link" href="#tabs_location">¶</a></h4><p>Lastly, it is possible to modify the location of the tabs header relative to the content using the <code>tabs_location</code> parameter:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">tabs</span><span class="p">,</span> <span class="n">tabs</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">active</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tabs_location</span><span class="o">=</span><span class="s1">'right'</span><span class="p">),</span> <span class="n">tabs</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">active</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">tabs_location</span><span class="o">=</span><span class="s1">'below'</span><span class="p">),</span> <span class="n">tabs</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">tabs_location</span><span class="o">=</span><span class="s1">'left'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1766">
+<div class="bk-root" data-root-id="1766" id="1f89e40c-81c7-4291-a1a9-5ff57afd506d"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"7317b821-b53e-4836-8d2e-c469d6455091":{"roots":{"references":[{"attributes":{"child":{"id":"1768"},"name":"Spacer02880","title":"red"},"id":"1769","type":"Panel"},{"attributes":{"child":{"id":"1791"},"name":"Spacer02881","title":"blue"},"id":"1792","type":"Panel"},{"attributes":{"background":"green","height":100,"margin":[5,5,5,5],"name":"Spacer02882","sizing_mode":"fixed","width":100},"id":"1772","type":"Spacer"},{"attributes":{"background":"blue","height":100,"margin":[5,5,5,5],"name":"Spacer02881","sizing_mode":"fixed","width":100},"id":"1784","type":"Spacer"},{"attributes":{"child":{"id":"1789"},"name":"Spacer02880","title":"red"},"id":"1790","type":"Panel"},{"attributes":{"background":"red","height":100,"margin":[5,5,5,5],"name":"Spacer02880","sizing_mode":"fixed","width":100},"id":"1782","type":"Spacer"},{"attributes":{"background":"red","height":100,"margin":[5,5,5,5],"name":"Spacer02880","sizing_mode":"fixed","width":100},"id":"1768","type":"Spacer"},{"attributes":{"background":"red","height":100,"margin":[5,5,5,5],"name":"Spacer02880","sizing_mode":"fixed","width":100},"id":"1789","type":"Spacer"},{"attributes":{"child":{"id":"1775"},"name":"Spacer02880","title":"red"},"id":"1776","type":"Panel"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1769"},{"id":"1771"},{"id":"1773"}]},"id":"1767","type":"Tabs"},{"attributes":{"background":"red","height":100,"margin":[5,5,5,5],"name":"Spacer02880","sizing_mode":"fixed","width":100},"id":"1775","type":"Spacer"},{"attributes":{"background":"green","height":100,"margin":[5,5,5,5],"name":"Spacer02882","sizing_mode":"fixed","width":100},"id":"1786","type":"Spacer"},{"attributes":{"background":"blue","height":100,"margin":[5,5,5,5],"name":"Spacer02881","sizing_mode":"fixed","width":100},"id":"1777","type":"Spacer"},{"attributes":{"background":"blue","height":100,"margin":[5,5,5,5],"name":"Spacer02881","sizing_mode":"fixed","width":100},"id":"1770","type":"Spacer"},{"attributes":{"background":"green","height":100,"margin":[5,5,5,5],"name":"Spacer02882","sizing_mode":"fixed","width":100},"id":"1793","type":"Spacer"},{"attributes":{"child":{"id":"1770"},"name":"Spacer02881","title":"blue"},"id":"1771","type":"Panel"},{"attributes":{"child":{"id":"1784"},"name":"Spacer02881","title":"blue"},"id":"1785","type":"Panel"},{"attributes":{"child":{"id":"1779"},"name":"Spacer02882","title":"green"},"id":"1780","type":"Panel"},{"attributes":{"background":"blue","height":100,"margin":[5,5,5,5],"name":"Spacer02881","sizing_mode":"fixed","width":100},"id":"1791","type":"Spacer"},{"attributes":{"child":{"id":"1793"},"name":"Spacer02882","title":"green"},"id":"1794","type":"Panel"},{"attributes":{"children":[{"id":"1767"},{"id":"1774"},{"id":"1781"},{"id":"1788"}],"margin":[0,0,0,0],"name":"Row02889","tags":["embedded"]},"id":"1766","type":"Row"},{"attributes":{"child":{"id":"1772"},"name":"Spacer02882","title":"green"},"id":"1773","type":"Panel"},{"attributes":{"active":2,"margin":[0,0,0,0],"tabs":[{"id":"1783"},{"id":"1785"},{"id":"1787"}],"tabs_location":"below"},"id":"1781","type":"Tabs"},{"attributes":{"child":{"id":"1786"},"name":"Spacer02882","title":"green"},"id":"1787","type":"Panel"},{"attributes":{"background":"green","height":100,"margin":[5,5,5,5],"name":"Spacer02882","sizing_mode":"fixed","width":100},"id":"1779","type":"Spacer"},{"attributes":{"active":1,"margin":[0,0,0,0],"tabs":[{"id":"1776"},{"id":"1778"},{"id":"1780"}],"tabs_location":"right"},"id":"1774","type":"Tabs"},{"attributes":{"margin":[0,0,0,0],"tabs":[{"id":"1790"},{"id":"1792"},{"id":"1794"}],"tabs_location":"left"},"id":"1788","type":"Tabs"},{"attributes":{"child":{"id":"1782"},"name":"Spacer02880","title":"red"},"id":"1783","type":"Panel"},{"attributes":{"child":{"id":"1777"},"name":"Spacer02881","title":"blue"},"id":"1778","type":"Panel"}],"root_ids":["1766"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"7317b821-b53e-4836-8d2e-c469d6455091","root_ids":["1766"],"roots":{"1766":"1f89e40c-81c7-4291-a1a9-5ff57afd506d"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/layouts/Tabs.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

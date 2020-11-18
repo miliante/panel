@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Markdown — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/panes/Markdown.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="markdown">
+<span id="panes-gallery-markdown"></span><h1>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/panes/Markdown.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="70ff3309-6279-436c-b10c-f99d2a4fe4bb"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#70ff3309-6279-436c-b10c-f99d2a4fe4bb');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="c7b918a5-fd9b-4ad8-a2a9-f16a203d9990"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#c7b918a5-fd9b-4ad8-a2a9-f16a203d9990');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Markdown</code> pane allows rendering arbitrary <a href="https://python-markdown.github.io">Markdown</a> in a panel. It renders strings containing valid Markdown as well as objects with a <code>_repr_markdown_</code> method, and may define custom CSS styles.</p>
+<h4 id="Parameters:">Parameters:<a class="anchor-link" href="#Parameters:">¶</a></h4><p>For layout and styling related parameters see the <a href="../../user_guide/Customization.html">customization user guide</a>.</p>
+<ul>
+<li><strong><code>dedent</code></strong> (bool): Whether to dedent common whitespace across all lines.</li>
+<li><strong><code>extensions</code></strong> (list): A list of <a href="https://python-markdown.github.io/extensions/">Python-Markdown extensions</a> to use.</li>
+<li><strong><code>object</code></strong> (str or object): A string containing Markdown, or an object with a <code>_repr_markdown_</code> method</li>
+<li><strong><code>style</code></strong> (dict): Dictionary specifying CSS styles</li>
+</ul>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Markdown</code> pane accepts all valid Markdown, including embedded HTML. It also supports a <code>style</code> dictionary to apply styles to control the appearance of the <code>&lt;div&gt;</code> tag the Markdown contents will be rendered in.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"""</span>
+
+<span class="s2"># H1</span>
+<span class="s2">## H2</span>
+<span class="s2">### H3</span>
+<span class="s2">#### H4</span>
+<span class="s2">##### H5</span>
+<span class="s2">###### H6</span>
+
+<span class="s2">### Emphasis</span>
+
+<span class="s2">Emphasis, aka italics, with *asterisks* or _underscores_.</span>
+
+<span class="s2">Strong emphasis, aka bold, with **asterisks** or __underscores__.</span>
+
+<span class="s2">Combined emphasis with ** asterisks and _underscores_ **.</span>
+
+<span class="s2">&lt;br&gt;</span>
+
+<span class="s2">### Table</span>
+
+<span class="s2">| Syntax | Description |</span>
+<span class="s2">| ----------- | ----------- |</span>
+<span class="s2">| Header | Title |</span>
+<span class="s2">| Paragraph | Text |</span>
+
+<span class="s2">&lt;br&gt;</span>
+
+<span class="s2">### Fenced code</span>
+
+<span class="s2">```python</span>
+<span class="s2">{</span>
+<span class="s2">  "firstName": "John",</span>
+<span class="s2">  "lastName": "Smith",</span>
+<span class="s2">  "age": 25</span>
+<span class="s2">}</span>
+<span class="s2">```</span>
+
+<span class="s2">### Nested list</span>
+
+<span class="s2">1. First list item</span>
+<span class="s2">    - First nested list item</span>
+<span class="s2">        - Second nested list item</span>
+
+<span class="s2">[This is a link to panel web portal](https://panel.pyviz.org/)</span>
+
+<span class="s2">------------</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="65534916-70e5-4163-a6e1-37e159144aa5"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"fc2045ad-fbdc-4738-93ed-a0d9f71408b0":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02859","text":"&lt;h1&gt;H1&lt;/h1&gt;\n&lt;h2&gt;H2&lt;/h2&gt;\n&lt;h3&gt;H3&lt;/h3&gt;\n&lt;h4&gt;H4&lt;/h4&gt;\n&lt;h5&gt;H5&lt;/h5&gt;\n&lt;h6&gt;H6&lt;/h6&gt;\n&lt;h3&gt;Emphasis&lt;/h3&gt;\n&lt;p&gt;Emphasis, aka italics, with &lt;em&gt;asterisks&lt;/em&gt; or &lt;em&gt;underscores&lt;/em&gt;.&lt;/p&gt;\n&lt;p&gt;Strong emphasis, aka bold, with &lt;strong&gt;asterisks&lt;/strong&gt; or &lt;strong&gt;underscores&lt;/strong&gt;.&lt;/p&gt;\n&lt;p&gt;Combined emphasis with &lt;strong&gt; asterisks and &lt;em&gt;underscores&lt;/em&gt; &lt;/strong&gt;.&lt;/p&gt;\n&lt;p&gt;&lt;br&gt;&lt;/p&gt;\n&lt;h3&gt;Table&lt;/h3&gt;\n&lt;table&gt;\n&lt;thead&gt;\n&lt;tr&gt;\n&lt;th&gt;Syntax&lt;/th&gt;\n&lt;th&gt;Description&lt;/th&gt;\n&lt;/tr&gt;\n&lt;/thead&gt;\n&lt;tbody&gt;\n&lt;tr&gt;\n&lt;td&gt;Header&lt;/td&gt;\n&lt;td&gt;Title&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;Paragraph&lt;/td&gt;\n&lt;td&gt;Text&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&lt;p&gt;&lt;br&gt;&lt;/p&gt;\n&lt;h3&gt;Fenced code&lt;/h3&gt;\n&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;\n  &lt;span class=&quot;s2&quot;&gt;&amp;quot;firstName&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;\n  &lt;span class=&quot;s2&quot;&gt;&amp;quot;lastName&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Smith&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;\n  &lt;span class=&quot;s2&quot;&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;\n&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;\n&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;\n\n&lt;h3&gt;Nested list&lt;/h3&gt;\n&lt;ol&gt;\n&lt;li&gt;First list item&lt;ul&gt;\n&lt;li&gt;First nested list item&lt;ul&gt;\n&lt;li&gt;Second nested list item&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ol&gt;\n&lt;p&gt;&lt;a href=&quot;https://panel.pyviz.org/&quot;&gt;This is a link to panel web portal&lt;/a&gt;&lt;/p&gt;\n&lt;hr&gt;","width":500},"id":"1001","type":"panel.models.markup.HTML"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"fc2045ad-fbdc-4738-93ed-a0d9f71408b0","root_ids":["1001"],"roots":{"1001":"65534916-70e5-4163-a6e1-37e159144aa5"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you want to control the behavior of the HTML that is generated from the Markdown source, it is often possible to do that by passing parameters to the <code>style</code> parameter of this pane.  For instance, you can add a blue border around a Markdown table as follows:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">| Syntax | Description |</span>
+<span class="s2">| ----------- | ----------- |</span>
+<span class="s2">| Header | Title |</span>
+<span class="s2">| Paragraph | Text |</span>
+
+<span class="s2">"""</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">'border'</span><span class="p">:</span> <span class="s2">"4px solid blue"</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1003">
+<div class="bk-root" data-root-id="1003" id="a73ccb19-79df-4a7b-899e-551d44be3e69"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"83967a0d-b675-4223-b3bf-4611e1a36d32":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02864","style":{"border":"4px solid blue"},"text":"&lt;table&gt;\n&lt;thead&gt;\n&lt;tr&gt;\n&lt;th&gt;Syntax&lt;/th&gt;\n&lt;th&gt;Description&lt;/th&gt;\n&lt;/tr&gt;\n&lt;/thead&gt;\n&lt;tbody&gt;\n&lt;tr&gt;\n&lt;td&gt;Header&lt;/td&gt;\n&lt;td&gt;Title&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;Paragraph&lt;/td&gt;\n&lt;td&gt;Text&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;"},"id":"1003","type":"panel.models.markup.HTML"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"83967a0d-b675-4223-b3bf-4611e1a36d32","root_ids":["1003"],"roots":{"1003":"a73ccb19-79df-4a7b-899e-551d44be3e69"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, styles specified in this way will only be applied to the outermost Div, and there is not currently any way to apply styling in this way to specific internal elements of the HTML.  In this case, we cannot use the <code>style</code> parameter to control styling of the rows or headings of the generated table.</p>
+<p>If we do want to change specific internal elements of the generated HTML, we can do so by providing an HTML/CSS &lt;style&gt; section. For instance, we can change the border thickness for headers and data as follows, but note that the changes will apply to subsequent Markdown as well, including other cells if in a notebook context:</p>
+<p>(For this reason the code here saves the result to a separate HTML file, to avoid changing the style for all other tables).</p>
+</div>
+</div>
+</div>import panel as pn
+from bokeh.resources import INLINE
+SimpleTable = pn.pane.Markdown("""
+<style>
+table, th, td {
+  border: 5px solid black;
+}
+</style>
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
+
+""")
+
+SimpleTable.save('SimpleTable', resources=INLINE)
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="image.png" src="data:image/png;base64,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"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you want to change styling only for a specific bit of Markdown text, you can do so, but it requires making a special type of Div as a target for the styling. E.g. here we can have only the following table use a red border, without affecting the entire notebook:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">css</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">div.special_table + table * {</span>
+<span class="s2">  border: 1px solid red;</span>
+<span class="s2">}</span>
+<span class="s2">"""</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="n">raw_css</span><span class="o">=</span><span class="p">[</span><span class="n">css</span><span class="p">])</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">&lt;div class="special_table"&gt;&lt;/div&gt;</span>
+
+<span class="s2">| Syntax | Description |</span>
+<span class="s2">| ----------- | ----------- |</span>
+<span class="s2">| Header | Title |</span>
+<span class="s2">| Paragraph | Text |</span>
+
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="0a10d20f-e92e-474f-8c41-1e22d66d7a8d"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#0a10d20f-e92e-474f-8c41-1e22d66d7a8d');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      inject_raw_css("\ndiv.special_table + table * {\n  border: 1px solid red;\n}\n");
+    },
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="3921db41-b4aa-46ea-80f0-cae76005418f"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#3921db41-b4aa-46ea-80f0-cae76005418f');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1005">
+<div class="bk-root" data-root-id="1005" id="2285580c-ff83-4f12-a858-fe4b85f664e3"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"6f32995d-3553-4262-a63f-aeaa12a75079":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02869","text":"&lt;div class=&quot;special_table&quot;&gt;&lt;/div&gt;\n\n&lt;table&gt;\n&lt;thead&gt;\n&lt;tr&gt;\n&lt;th&gt;Syntax&lt;/th&gt;\n&lt;th&gt;Description&lt;/th&gt;\n&lt;/tr&gt;\n&lt;/thead&gt;\n&lt;tbody&gt;\n&lt;tr&gt;\n&lt;td&gt;Header&lt;/td&gt;\n&lt;td&gt;Title&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;Paragraph&lt;/td&gt;\n&lt;td&gt;Text&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;"},"id":"1005","type":"panel.models.markup.HTML"}],"root_ids":["1005"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"6f32995d-3553-4262-a63f-aeaa12a75079","root_ids":["1005"],"roots":{"1005":"2285580c-ff83-4f12-a858-fe4b85f664e3"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/panes/Markdown.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

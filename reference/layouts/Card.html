@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Card — Panel 0.10.2 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/css/main.css" rel="stylesheet"/>
+<link href="../../_static/nbsite.css" rel="stylesheet"/>
+<link href="../../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/reference/layouts/Card.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../../index.html">
+<img alt="Logo" src="../../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="../../user_guide/index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="card">
+<span id="layouts-gallery-card"></span><h1>Card<a class="headerlink" href="#card" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/layouts/Card.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+<hr class="docutils"/>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="7c424a77-c148-42b9-8259-0e84038c40a4"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#7c424a77-c148-42b9-8259-0e84038c40a4');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.2/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.2/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.2/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="f9b86ea1-8a6c-4cb2-a66a-13cb43bb1a77"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#f9b86ea1-8a6c-4cb2-a66a-13cb43bb1a77');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>Card</code> layout allows arranging multiple Panel objects in a collapsible, vertical container with a header bar. It has a list-like API with methods for interactively updating and modifying the layout, including <code>append</code>, <code>extend</code>, <code>clear</code>, <code>insert</code>, <code>pop</code>, <code>remove</code> and <code>__setitem__</code> (for replacing the card's contents).</p>
+<p><code>Card</code> components are very helpful for laying out components in a grid in a complex dashboard to make clear visual separations between different sections. The ability to collapse them can also be very useful to save space on a page with a lot of components.</p>
+<h4 id="Parameters:">Parameters:<a class="anchor-link" href="#Parameters:">¶</a></h4><ul>
+<li><strong><code>collapsed</code></strong> (bool): Whether the <code>Card</code> is collapsed.</li>
+<li><strong><code>collapsible</code></strong> (bool): Whether the <code>Card</code> can be expanded and collapsed.</li>
+<li><strong><code>header</code></strong> (Viewable): A Panel component to display in the header bar of the Card.</li>
+<li><strong><code>objects</code></strong> (list): The list of objects to display in the Card, which will be formatted like a <code>Column</code>. Should not generally be modified directly except when replaced in its entirety.</li>
+<li><strong><code>title</code></strong> (str): The title to display in the header bar if no explicit <code>header</code> is defined.</li>
+</ul>
+<p>Styling related parameters:</p>
+<ul>
+<li><strong><code>active_header_background</code></strong> (str): The background color of the header when the <code>Card</code> is expanded.</li>
+<li><strong><code>background</code></strong> (str): The background color of the content area.</li>
+<li><strong><code>header_color</code></strong> (str): The color of the header text.</li>
+<li><strong><code>button_css_classes</code></strong> (list[str]): The list of CSS classes to apply to the collapse button.</li>
+<li><strong><code>css_classes</code></strong> (list[str]): The list of CSS classes to apply to the main area.</li>
+<li><strong><code>header_background</code></strong> (str): The background color of the header.</li>
+<li><strong><code>header_css_classes</code></strong> (list[str]): The list of CSS classes to apply to the header.</li>
+</ul>
+<p>For layout and styling related parameters see the <a href="../../user_guide/Customization.html">customization user guide</a>.</p>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <code>Card</code> layout can either be instantiated as empty and populated after the fact, or by using a list of objects provided on instantiation as positional arguments. If the objects are not already Panel components they will each be converted to one using the <code>pn.panel</code> conversion method. Unlike the <code>Row</code> and <code>Column</code> layouts, a <code>Card</code> has an explicit <code>title</code> that will be shown in the header bar alongside the collapse button (if the <code>collapsible</code> parameter is enabled):</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">w1</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Text:'</span><span class="p">)</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Slider'</span><span class="p">)</span>
+
+<span class="n">card</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Card'</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">'WhiteSmoke'</span><span class="p">)</span>
+<span class="n">card</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="f7a60181-0f55-4274-96c5-d2889f5ec7ca"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"0c4a879c-fa96-4518-ac90-d5334cb51385":{"roots":{"references":[{"attributes":{"end":1.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.1,"title":"Slider","value":0.0,"value_throttled":0.0},"id":"1005","type":"Slider"},{"attributes":{"margin":[5,10,5,10],"title":"Text:"},"id":"1004","type":"TextInput"},{"attributes":{"active_header_background":"","background":"WhiteSmoke","button_css_classes":["card-button"],"children":[{"id":"1002"},{"id":"1004"},{"id":"1005"}],"collapsed":false,"css_classes":["card"],"header_background":"","header_color":"","header_css_classes":["card-header"],"margin":[5,5,5,5],"name":"Card02862","tags":["embedded"]},"id":"1001","type":"panel.models.layout.Card"},{"attributes":{"children":[{"id":"1003"}],"css_classes":["card-header-row"],"margin":[0,0,0,0],"name":"Row02861","sizing_mode":"stretch_width"},"id":"1002","type":"Row"},{"attributes":{"css_classes":["card-title"],"margin":[2,5,2,5],"name":"HTML02863","sizing_mode":"stretch_width","text":"Card"},"id":"1003","type":"panel.models.markup.HTML"}],"root_ids":["1001"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"0c4a879c-fa96-4518-ac90-d5334cb51385","root_ids":["1001"],"roots":{"1001":"f7a60181-0f55-4274-96c5-d2889f5ec7ca"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The contents of the <code>Card.objects</code> list should never be modified individually, because Panel cannot detect when items in that list have changed internally, and will thus fail to update any already-rendered views of those objects. Instead, use the provided methods for adding and removing items from the list.  The only change that is safe to make directly to <code>Card.objects</code> is to replace the list of <code>objects</code> entirely.  As a simple example of using the methods, we might add an additional widget to the card using the append method:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">w3</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">])</span>
+<span class="n">card</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On a live server or in a notebook the <code>card</code> displayed after the previous code cell (above) will dynamically expand in size to accomodate all three widgets and the title. To see the effect in a statically rendered page, we will display the column a second time:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">card</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1009">
+<div class="bk-root" data-root-id="1009" id="24b0d2bc-3cc6-438a-a66b-db77c968b961"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"aa8f3ded-fb57-4681-aa42-68f71af09875":{"roots":{"references":[{"attributes":{"margin":[5,10,5,10],"options":["A","B","C"],"value":"A"},"id":"1014","type":"Select"},{"attributes":{"margin":[5,10,5,10],"title":"Text:"},"id":"1012","type":"TextInput"},{"attributes":{"css_classes":["card-title"],"margin":[2,5,2,5],"name":"HTML02863","sizing_mode":"stretch_width","text":"Card"},"id":"1011","type":"panel.models.markup.HTML"},{"attributes":{"active_header_background":"","background":"WhiteSmoke","button_css_classes":["card-button"],"children":[{"id":"1010"},{"id":"1012"},{"id":"1013"},{"id":"1014"}],"collapsed":false,"css_classes":["card"],"header_background":"","header_color":"","header_css_classes":["card-header"],"margin":[5,5,5,5],"name":"Card02862","tags":["embedded"]},"id":"1009","type":"panel.models.layout.Card"},{"attributes":{"end":1.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.1,"title":"Slider","value":0.0,"value_throttled":0.0},"id":"1013","type":"Slider"},{"attributes":{"children":[{"id":"1011"}],"css_classes":["card-header-row"],"margin":[0,0,0,0],"name":"Row02861","sizing_mode":"stretch_width"},"id":"1010","type":"Row"}],"root_ids":["1009"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"aa8f3ded-fb57-4681-aa42-68f71af09875","root_ids":["1009"],"roots":{"1009":"24b0d2bc-3cc6-438a-a66b-db77c968b961"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Whether the <code>Card</code> is collapsed or not can be controlled from Python and Javascript:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">collapsed</span><span class="p">)</span>
+<span class="n">card</span><span class="o">.</span><span class="n">collapsed</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Header">Header<a class="anchor-link" href="#Header">¶</a></h3><p>Instead of using a <code>title</code>, a <code>Card</code> may also be given an explicit <code>header</code> that can contain any component, e.g. in this case the Panel logo:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">logo</span> <span class="o">=</span> <span class="s1">'https://panel.holoviz.org/_static/logo_horizontal.png'</span>
+
+<span class="n">red</span>   <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">green</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">blue</span>  <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+    <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span>
+    <span class="n">header_background</span><span class="o">=</span><span class="s1">'#2f2f2f'</span><span class="p">,</span>
+    <span class="n">header_color</span><span class="o">=</span><span class="s1">'white'</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">logo</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1017">
+<div class="bk-root" data-root-id="1017" id="cfc0866b-f927-47de-a3f9-1c432f46b32e"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"eaeb0e41-ddff-4844-b1cc-657072c07653":{"roots":{"references":[{"attributes":{"children":[{"id":"1019"}],"css_classes":["card-header-row"],"margin":[0,0,0,0],"name":"Row02876","sizing_mode":"stretch_width"},"id":"1018","type":"Row"},{"attributes":{"height":40,"margin":[5,5,5,5],"name":"PNG02874","text":"&lt;img src=&quot;data:image/png;base64,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&quot; width=&quot;171px&quot; height=&quot;40px&quot; alt=&quot;&quot;&gt;&lt;/img&gt;","width":171},"id":"1019","type":"panel.models.markup.HTML"},{"attributes":{"background":"blue","height":50,"margin":[5,5,5,5],"min_height":50,"name":"Spacer02873"},"id":"1022","type":"Spacer"},{"attributes":{"background":"red","height":50,"margin":[5,5,5,5],"min_height":50,"name":"Spacer02871"},"id":"1020","type":"Spacer"},{"attributes":{"background":"green","height":50,"margin":[5,5,5,5],"min_height":50,"name":"Spacer02872"},"id":"1021","type":"Spacer"},{"attributes":{"active_header_background":"","button_css_classes":["card-button"],"children":[{"id":"1018"},{"id":"1020"},{"id":"1021"},{"id":"1022"}],"collapsed":false,"css_classes":["card"],"header_background":"#2f2f2f","header_color":"white","header_css_classes":["card-header"],"margin":[5,5,5,5],"min_width":300,"name":"Card02877","tags":["embedded"],"width":300},"id":"1017","type":"panel.models.layout.Card"}],"root_ids":["1017"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"eaeb0e41-ddff-4844-b1cc-657072c07653","root_ids":["1017"],"roots":{"1017":"cfc0866b-f927-47de-a3f9-1c432f46b32e"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Layout">Layout<a class="anchor-link" href="#Layout">¶</a></h3><p>In general a <code>Card</code> does not have to be given an explicit <code>width</code>, <code>height</code>, or <code>sizing_mode</code>, allowing it to adapt to the size of its contents. However in certain cases it can be useful to declare a fixed-size layout, which its responsively sized contents will then fill, making it possible to achieve equal spacing between multiple objects:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">red</span>   <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_both'</span><span class="p">)</span>
+<span class="n">green</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_both'</span><span class="p">)</span>
+<span class="n">blue</span>  <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_both'</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Fixed size'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1025">
+<div class="bk-root" data-root-id="1025" id="be215c6e-2c01-4ead-9b15-8a5684f209cd"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"0d88a842-151f-4142-af52-fe6e2d27c506":{"roots":{"references":[{"attributes":{"background":"red","margin":[5,5,5,5],"name":"Spacer02880","sizing_mode":"stretch_both"},"id":"1028","type":"Spacer"},{"attributes":{"background":"green","margin":[5,5,5,5],"name":"Spacer02881","sizing_mode":"stretch_both"},"id":"1029","type":"Spacer"},{"attributes":{"active_header_background":"","button_css_classes":["card-button"],"children":[{"id":"1026"},{"id":"1028"},{"id":"1029"},{"id":"1030"}],"collapsed":false,"css_classes":["card"],"header_background":"","header_color":"","header_css_classes":["card-header"],"height":300,"margin":[5,5,5,5],"name":"Card02884","sizing_mode":"fixed","tags":["embedded"],"width":200},"id":"1025","type":"panel.models.layout.Card"},{"attributes":{"background":"blue","margin":[5,5,5,5],"name":"Spacer02882","sizing_mode":"stretch_both"},"id":"1030","type":"Spacer"},{"attributes":{"css_classes":["card-title"],"margin":[2,5,2,5],"name":"HTML02885","sizing_mode":"stretch_width","text":"Fixed size"},"id":"1027","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1027"}],"css_classes":["card-header-row"],"margin":[0,0,0,0],"name":"Row02883","sizing_mode":"stretch_width"},"id":"1026","type":"Row"}],"root_ids":["1025"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"0d88a842-151f-4142-af52-fe6e2d27c506","root_ids":["1025"],"roots":{"1025":"be215c6e-2c01-4ead-9b15-8a5684f209cd"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When no fixed size is specified the column will expand to accomodate the sizing behavior of its contents:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Divider</span><span class="p">(),</span> <span class="n">p2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Responsive"</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1105">
+<div class="bk-root" data-root-id="1105" id="3e3ebe04-903a-4047-9995-078589c6bc5e"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"65d39599-b74a-46d7-98aa-591290ab7649":{"roots":{"references":[{"attributes":{"source":{"id":"1100"}},"id":"1104","type":"CDSView"},{"attributes":{},"id":"1054","type":"ResetTool"},{"attributes":{},"id":"1114","type":"Selection"},{"attributes":{},"id":"1038","type":"LinearScale"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1102","type":"Circle"},{"attributes":{},"id":"1082","type":"WheelZoomTool"},{"attributes":{},"id":"1115","type":"UnionRenderers"},{"attributes":{},"id":"1055","type":"HelpTool"},{"attributes":{"text":""},"id":"1127","type":"Title"},{"attributes":{},"id":"1040","type":"LinearScale"},{"attributes":{"active_header_background":"","button_css_classes":["card-button"],"children":[{"id":"1106"},{"id":"1033"},{"id":"1126"},{"id":"1064"}],"collapsed":false,"css_classes":["card"],"header_background":"","header_color":"","header_css_classes":["card-header"],"margin":[5,5,5,5],"name":"Card02895","sizing_mode":"stretch_width","tags":["embedded"]},"id":"1105","type":"panel.models.layout.Card"},{"attributes":{"data":{"x":[1,2,3],"y":[1,2,3]},"selected":{"id":"1133"},"selection_policy":{"id":"1134"}},"id":"1100","type":"ColumnDataSource"},{"attributes":{},"id":"1086","type":"HelpTool"},{"attributes":{},"id":"1036","type":"DataRange1d"},{"attributes":{},"id":"1130","type":"BasicTickFormatter"},{"attributes":{"css_classes":["card-title"],"margin":[2,5,2,5],"name":"HTML02896","sizing_mode":"stretch_width","text":"Responsive"},"id":"1107","type":"panel.models.markup.HTML"},{"attributes":{"formatter":{"id":"1113"},"ticker":{"id":"1043"}},"id":"1042","type":"LinearAxis"},{"attributes":{},"id":"1047","type":"BasicTicker"},{"attributes":{"children":[{"id":"1107"}],"css_classes":["card-header-row"],"margin":[0,0,0,0],"name":"Row02890","sizing_mode":"stretch_width"},"id":"1106","type":"Row"},{"attributes":{"data_source":{"id":"1095"},"glyph":{"id":"1096"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1097"},"selection_glyph":null,"view":{"id":"1099"}},"id":"1098","type":"GlyphRenderer"},{"attributes":{},"id":"1043","type":"BasicTicker"},{"attributes":{},"id":"1113","type":"BasicTickFormatter"},{"attributes":{"formatter":{"id":"1130"},"ticker":{"id":"1078"}},"id":"1077","type":"LinearAxis"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1097","type":"Line"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1101","type":"Circle"},{"attributes":{},"id":"1132","type":"BasicTickFormatter"},{"attributes":{"axis":{"id":"1042"},"ticker":null},"id":"1045","type":"Grid"},{"attributes":{},"id":"1133","type":"Selection"},{"attributes":{},"id":"1134","type":"UnionRenderers"},{"attributes":{},"id":"1034","type":"DataRange1d"},{"attributes":{"axis":{"id":"1046"},"dimension":1,"ticker":null},"id":"1049","type":"Grid"},{"attributes":{"axis":{"id":"1077"},"dimension":1,"ticker":null},"id":"1080","type":"Grid"},{"attributes":{},"id":"1053","type":"SaveTool"},{"attributes":{"formatter":{"id":"1111"},"ticker":{"id":"1047"}},"id":"1046","type":"LinearAxis"},{"attributes":{},"id":"1081","type":"PanTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1087","type":"BoxAnnotation"},{"attributes":{"below":[{"id":"1042"}],"center":[{"id":"1045"},{"id":"1049"}],"left":[{"id":"1046"}],"margin":[5,5,5,5],"plot_height":250,"renderers":[{"id":"1098"}],"sizing_mode":"stretch_width","title":{"id":"1108"},"toolbar":{"id":"1057"},"x_range":{"id":"1034"},"x_scale":{"id":"1038"},"y_range":{"id":"1036"},"y_scale":{"id":"1040"}},"id":"1033","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1069","type":"LinearScale"},{"attributes":{"axis":{"id":"1073"},"ticker":null},"id":"1076","type":"Grid"},{"attributes":{},"id":"1051","type":"WheelZoomTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1081"},{"id":"1082"},{"id":"1083"},{"id":"1084"},{"id":"1085"},{"id":"1086"}]},"id":"1088","type":"Toolbar"},{"attributes":{"below":[{"id":"1073"}],"center":[{"id":"1076"},{"id":"1080"}],"left":[{"id":"1077"}],"margin":[5,5,5,5],"plot_height":250,"renderers":[{"id":"1103"}],"sizing_mode":"stretch_width","title":{"id":"1127"},"toolbar":{"id":"1088"},"x_range":{"id":"1065"},"x_scale":{"id":"1069"},"y_range":{"id":"1067"},"y_scale":{"id":"1071"}},"id":"1064","subtype":"Figure","type":"Plot"},{"attributes":{"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1096","type":"Line"},{"attributes":{},"id":"1067","type":"DataRange1d"},{"attributes":{"data":{"x":[1,2,3],"y":[1,2,3]},"selected":{"id":"1114"},"selection_policy":{"id":"1115"}},"id":"1095","type":"ColumnDataSource"},{"attributes":{},"id":"1078","type":"BasicTicker"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1050"},{"id":"1051"},{"id":"1052"},{"id":"1053"},{"id":"1054"},{"id":"1055"}]},"id":"1057","type":"Toolbar"},{"attributes":{"overlay":{"id":"1087"}},"id":"1083","type":"BoxZoomTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1056","type":"BoxAnnotation"},{"attributes":{"margin":[5,5,5,5],"name":"Divider02889","style":{"height":"100%","width":"100%"},"text":"<hr style=\"margin: 0px\">","width_policy":"fit"},"id":"1126","type":"Div"},{"attributes":{},"id":"1065","type":"DataRange1d"},{"attributes":{"source":{"id":"1095"}},"id":"1099","type":"CDSView"},{"attributes":{},"id":"1074","type":"BasicTicker"},{"attributes":{},"id":"1084","type":"SaveTool"},{"attributes":{},"id":"1050","type":"PanTool"},{"attributes":{},"id":"1085","type":"ResetTool"},{"attributes":{"text":""},"id":"1108","type":"Title"},{"attributes":{"data_source":{"id":"1100"},"glyph":{"id":"1101"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1102"},"selection_glyph":null,"view":{"id":"1104"}},"id":"1103","type":"GlyphRenderer"},{"attributes":{},"id":"1071","type":"LinearScale"},{"attributes":{},"id":"1111","type":"BasicTickFormatter"},{"attributes":{"overlay":{"id":"1056"}},"id":"1052","type":"BoxZoomTool"},{"attributes":{"formatter":{"id":"1132"},"ticker":{"id":"1074"}},"id":"1073","type":"LinearAxis"}],"root_ids":["1105"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"65d39599-b74a-46d7-98aa-591290ab7649","root_ids":["1105"],"roots":{"1105":"3e3ebe04-903a-4047-9995-078589c6bc5e"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils">
+<p><a class="reference external" href="https://raw.githubusercontent.com/pyviz/panel/master/examples/reference/layouts/Card.ipynb">Download this notebook from GitHub (right-click to download).</a></p>
+</hr></div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2');
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
